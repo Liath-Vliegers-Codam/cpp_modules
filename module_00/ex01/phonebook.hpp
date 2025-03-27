@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   phonebook.hpp                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/03/02 18:32:52 by livliege      #+#    #+#                 */
+/*   Updated: 2025/03/27 18:32:52 by livliege      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include <cstdlib>
 #include <iostream>
@@ -10,6 +21,7 @@
 #define GREEN   					"\033[32m"
 #define YELLOW  					"\033[33m"
 #define BLUE    					"\033[34m"
+#define LIGHT_BLUE					"\033[94m"
 #define MAGENTA 					"\033[35m"
 #define CYAN    					"\033[36m"
 #define WHITE   					"\033[37m"
@@ -40,7 +52,6 @@
 
 class Contact
 {
-	
 	std::string first_name;
 	std::string last_name;
 	std::string nick_name;
@@ -51,7 +62,6 @@ class Contact
 		std::string user_input_names(std::string prompt);
 		std::string user_input_number(std::string prompt);
 		std::string user_input_secret(std::string prompt);
-
 		void set_first_name(std::string input)
 		{
 			first_name = input;
@@ -72,7 +82,6 @@ class Contact
 		{
 			darkest_secret = input;
 		}
-
 		std::string get_first_name(void)
 		{
 			return (first_name);
@@ -108,6 +117,25 @@ class Contact
 				resized_info = info.substr(0, 9) + ".";
 				return (resized_info);
 			}
+		}
+		std::string new_contact_resize(std::string name)
+		{
+			size_t len;
+			std::string resized_name;
+
+			len = name.length();
+			if (len <= 10)
+			{
+				// std::cout << "TEST" << std::endl;
+				while (len < 10)
+				{
+					name = name + ' ';
+					len++;
+				}
+				return (name);
+			}
+			else
+				return (search_menu_resize(name));
 		}
 };
 

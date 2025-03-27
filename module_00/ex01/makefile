@@ -1,7 +1,20 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         ::::::::             #
+#    makefile                                           :+:    :+:             #
+#                                                      +:+                     #
+#    By: livliege <livliege@student.codam.nl>         +#+                      #
+#                                                    +#+                       #
+#    Created: 2025/03/02 18:34:22 by livliege      #+#    #+#                  #
+#    Updated: 2025/03/27 18:34:22 by livliege      ########   odam.nl          #
+#                                                                              #
+# **************************************************************************** #
+
 NAME	:= phonebook
 
 CC		:= g++
-FLAGS	:= -Wall -Wextra -std=c++98
+FLAGS	:= -std=c++98 -Wall -Wextra -Werror 
+#-g -fsanitize=address
 
 SRC		:= phonebook.cpp
 

@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        ::::::::            */
+/*   phonebook.cpp                                      :+:    :+:            */
+/*                                                     +:+                    */
+/*   By: livliege <livliege@student.codam.nl>         +#+                     */
+/*                                                   +#+                      */
+/*   Created: 2025/03/02 18:33:03 by livliege      #+#    #+#                 */
+/*   Updated: 2025/03/27 18:33:03 by livliege      ########   odam.nl         */
+/*                                                                            */
+/* ************************************************************************** */
 
 #include "phonebook.hpp"
 
@@ -126,7 +137,7 @@ void	PhoneBook::add_new_contact(int index)
 	std::cout << GREEN << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|        ADDED ";
-	std::cout << DEFAULT << std::setw(10) << new_contact.search_menu_resize(new_contact.get_first_name()) << GREEN;
+	std::cout << DEFAULT << new_contact.new_contact_resize(new_contact.get_first_name()) << GREEN;
 	std::cout << " TO CONTACTS       |" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 	// std::cout << "     ADDED "  << DEFAULT << new_contact.get_first_name() << GREEN <<  " TO CONTACTS|" << "(on index " << index << ")" << std::endl;
@@ -143,15 +154,15 @@ void	PhoneBook::print_contact_information(int i)
 
 	index = i - 1;
 
-	std::cout << BLUE << std::endl;
+	std::cout << LIGHT_BLUE << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "             CONTACT INFORMATION             " << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 	
-	std::cout << "|first name	: " << std::setw(26) << contact[index].get_first_name() << "|" << std::endl;
-	std::cout << "|last name	: " << std::setw(26) << contact[index].get_last_name() << "|" << std::endl;
-	std::cout << "|nick name	: " << std::setw(26) << contact[index].get_nick_name() << "|" << std::endl;
-	std::cout << "|phone number	: " << std::setw(26) << contact[index].get_phone_number() << "|" << std::endl;
+	std::cout << "|first name	: " << MAGENTA << std::setw(26) << contact[index].get_first_name() << LIGHT_BLUE << "|" << std::endl;
+	std::cout << "|last name	: " << MAGENTA << std::setw(26) << contact[index].get_last_name() << LIGHT_BLUE << "|" << std::endl;
+	std::cout << "|nick name	: " << MAGENTA << std::setw(26) << contact[index].get_nick_name() << LIGHT_BLUE << "|" << std::endl;
+	std::cout << "|phone number	: " << MAGENTA << std::setw(26) << contact[index].get_phone_number() << LIGHT_BLUE << "|" << std::endl;
 
 	std::string secret_line;
 	std::string secret_line_one;
@@ -163,14 +174,14 @@ void	PhoneBook::print_contact_information(int i)
 	{
 		secret_line_one = secret_line.substr(0, 26);
 		secret_line_two = secret_line.substr(26);
-		std::cout << "|darkest secret	: " << std::setw(26) << secret_line_one << "|" << std::endl;
-		std::cout << "|" << std::setw(43) << secret_line_one << "|" << std::endl;
+		std::cout << "|darkest secret	: "  << MAGENTA << std::setw(26) << secret_line_one << LIGHT_BLUE << "|" << std::endl;
+		std::cout << "|"  << MAGENTA << std::setw(43) << secret_line_two << LIGHT_BLUE << "|" << std::endl;
 	}
 	else
 	{
-		std::cout << "|darkest secret	: " << std::setw(26) << secret_line << "|" << std::endl;
+		std::cout << "|darkest secret	: " << MAGENTA << std::setw(26) << secret_line << LIGHT_BLUE << "|" << std::endl;
 	}
-
+	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << DEFAULT;
 }
 
@@ -178,7 +189,7 @@ void	PhoneBook::search_contacts(int amount_contacts)
 {
 	std::string user_input_index;
 
-	std::cout << BLUE << std::endl;
+	std::cout << LIGHT_BLUE << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|              SEARCH CONTACTS              |" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
@@ -186,10 +197,10 @@ void	PhoneBook::search_contacts(int amount_contacts)
 	std::cout << "---------------------------------------------" << std::endl;
 	for (int i = 0; i < amount_contacts; i++)
 	{
-		std::cout << "|" << std::setw(10) << i + 1;
-		std::cout << "|" << std::setw(10) << contact[i].search_menu_resize(contact[i].get_first_name());
-		std::cout << "|" << std::setw(10) << contact[i].search_menu_resize(contact[i].get_last_name());
-		std::cout << "|" << std::setw(10) << contact[i].search_menu_resize(contact[i].get_nick_name());
+		std::cout << "|" << MAGENTA << std::setw(10) << i + 1 << LIGHT_BLUE;
+		std::cout << "|" << MAGENTA << std::setw(10) << contact[i].search_menu_resize(contact[i].get_first_name()) << LIGHT_BLUE;
+		std::cout << "|" << MAGENTA << std::setw(10) << contact[i].search_menu_resize(contact[i].get_last_name()) << LIGHT_BLUE;
+		std::cout << "|" << MAGENTA << std::setw(10) << contact[i].search_menu_resize(contact[i].get_nick_name()) << LIGHT_BLUE;
 		std::cout << "|" << std::endl;
 	}
 	std::cout << "---------------------------------------------" << std::endl;
@@ -198,7 +209,7 @@ void	PhoneBook::search_contacts(int amount_contacts)
 
 	while (1)
 	{
-		std::cout << GREEN << "index : " << DEFAULT;
+		std::cout << LIGHT_BLUE << "index : " << DEFAULT;
 		if (!std::getline(std::cin, user_input_index))
 		{
 			std::exit(1);
@@ -222,7 +233,6 @@ void	PhoneBook::search_contacts(int amount_contacts)
 
 
 
-
 void print_menu()
 {
 	std::cout << YELLOW << std::endl;
@@ -231,9 +241,9 @@ void print_menu()
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "| please enter one of the following options:|" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
-	std::cout << "|         " << GREEN << "ADD" << YELLOW << "|";
-	std::cout << "         " << BLUE << "SEARCH" << YELLOW << "|";
-	std::cout << "          " << RED << "EXIT" << YELLOW << "|" << std::endl;
+	std::cout << "|     " << GREEN << "ADD" << YELLOW << "     |";
+	std::cout << "    " << LIGHT_BLUE << "SEARCH" << YELLOW << "    |";
+	std::cout << "     " << RED << "EXIT" << YELLOW << "     |" << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << DEFAULT << std::endl;
 }
@@ -246,9 +256,11 @@ int main(void)
 	std::string	user_input;
 
 	index = 0;
+	std::cout << MAGENTA << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;
 	std::cout << "|     WELCOME TO THE ULTIMATE PHONEBOOK!    |" << std::endl;
-	std::cout << "---------------------------------------------" << std::endl;
+	std::cout << "---------------------------------------------";
+	std::cout << DEFAULT;
 	while (1)
 	{
 		print_menu();
@@ -281,7 +293,7 @@ int main(void)
 		{
 			std::cout << RED << std::endl;
 			std::cout << "---------------------------------------------" << std::endl;
-			std::cout << "             EXITING PHONEBOOK...            " << std::endl;
+			std::cout << "|            EXITING PHONEBOOK...           |" << std::endl;
 			std::cout << "---------------------------------------------" << std::endl;
 			std::cout << DEFAULT << std::endl;
 			std::exit(0); // or return 0 ? user_input probably needs to be freed
@@ -291,5 +303,5 @@ int main(void)
 			continue;
 		}
 	}
-	
 }
+
