@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 18:35:12 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 21:49:28 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/28 17:53:39 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,18 @@ class Zombie
 	public:
 		void announce(void)
 		{
-			std::cout << name << ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
+			std::cout << this->name << ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
 		}
-		Zombie(std::string name);
-		~Zombie (void);
+		Zombie(std::string name) // constructor
+		{
+			this->name = name;
+			std::cout << "oh no! a person was infected.. a new zombie was born.." << std::endl;
+			std::cout << "his name is: " << this->name << std::endl;
+		}
+		~Zombie(void) // deconstructor
+		{
+			std::cout << "the zombie named " << this->name << "was destroyed" << std::endl;
+		}
 };
 
 void randomChump(std::string name)
