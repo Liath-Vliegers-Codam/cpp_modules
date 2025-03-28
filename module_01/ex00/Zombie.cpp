@@ -6,7 +6,9 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 18:35:21 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/27 18:35:22 by livliege      ########   odam.nl         */
+/*   Updated: 2025/03/27 21:16:05 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
+
+#include "./Zombie.hpp"
 
