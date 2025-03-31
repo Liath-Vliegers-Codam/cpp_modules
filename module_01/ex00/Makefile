@@ -6,38 +6,64 @@
 #    By: livliege <livliege@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/27 18:35:15 by livliege      #+#    #+#                  #
-#    Updated: 2025/03/27 21:34:50 by anonymous     ########   odam.nl          #
+#    Updated: 2025/03/31 14:31:25 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
+# **************************************************************************** #
+#                                Makefile                                     #
+# **************************************************************************** #
+NAME		:= zombies
 
-NAME	:= phonebook
+CC			:= g++
+CFLAGS		:= -Wall -Wextra -Werror -g -fsanitize=address
 
-CC		:= g++
-FLAGS	:= -std=c++98 -Wall -Wextra -Werror 
-#-g -fsanitize=address
+OBJ_DIR		:= obj
+SRC_DIR		:= src  # Define a source directory for better organization
 
-SRC		:= phonebook.cpp
+INCL		:= Zombie.hpp  # Header file(s)
 
-OBJ		:= $(SRC:.cpp=.o)
+# List of source files
+SRCS		:= 	main.cpp \
+				newZombie.cpp \
+				randomChump.cpp \
+				Zombie.cpp
 
+# Convert source files into object files
+OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
+
+RM			:= rm -rf
+MKDIR		:= mkdir -p
+
+# Default rule (compiles the program)
 all: $(NAME)
 
+# Linking the final executable
+$(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -I . $^ -o $@
+
+# Compiling source files into object files
+$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -I . -c $< -o $@
+
+# Ensure the object directory exists
+$(OBJ_DIR):
+	$(MKDIR) $(OBJ_DIR)
+
+# Cleaning compiled files
+clean:
+	rm -rf $(OBJ_DIR)
+
+# Cleaning everything (object files + executable)
+fclean: clean
+	rm -rf $(NAME)
+
+# Recompile everything
+re: fclean all
+
+# Compile and run the program
 run: all
 	./$(NAME)
 
-%.o: %.cpp
-	$(CC) $(FLAGS) -c $< -o $@
-
-$(NAME): $(OBJ)
-	$(CC) $^ -o $(NAME)
-
-clean:
-	@$(RM) $(OBJ)
-
-fclean: 
-	@$(RM) $(NAME) $(OBJ)
-
-re: fclean all
-
-.PHONY: clean all fclean re
+# Phony targets (to prevent conflicts with actual files)
+.PHONY: all clean fclean re run
