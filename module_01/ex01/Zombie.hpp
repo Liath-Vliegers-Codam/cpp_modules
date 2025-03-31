@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   newZombie.cpp                                      :+:    :+:            */
+/*   Zombie.hpp                                         :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/03/27 18:35:17 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/31 15:05:30 by anonymous     ########   odam.nl         */
+/*   Created: 2025/03/27 18:35:24 by livliege      #+#    #+#                 */
+/*   Updated: 2025/03/31 16:10:50 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./Zombie.hpp"
+#include <iostream>
 
-// This function creates a zombie, names it, and returns it so you can use it outside of the function scope.
-Zombie* newZombie(std::string name)
+class Zombie
 {
-	Zombie *heap_zombie;
-	
-	heap_zombie = new Zombie(name);
-	if (!heap_zombie)
-		return (NULL);
-	else
-		return (heap_zombie);
-}
+	private:
+		std::string name;
+
+	public:
+		void announce(void);
+		Zombie(std::string name);
+		Zombie(void);
+		~Zombie(void);
+};
+
+Zombie* zombieHorde(int N, std::string name);

@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 18:35:12 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/31 13:58:13 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/03/31 15:06:18 by anonymous     ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 Exercise : 00
 BraiiiiiiinnnzzzZ
+
 Turn-in directory	: ex00/
 Files to turn in	: Makefile, main.cpp, Zombie.{h, hpp}, Zombie.cpp, newZombie.cpp, randomChump.cpp
 Forbidden functions : None
@@ -43,6 +44,8 @@ int main(void)
 	
 	randomChump("Stackey");
 	heap_zombie = newZombie("Heapsters");
+	if (!heap_zombie)
+		return (1);
 	heap_zombie->announce();
 	delete heap_zombie;
 	return (0);
