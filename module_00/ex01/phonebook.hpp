@@ -10,6 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef PHONEBOOK_H
+#define PHONEBOOK_H
+
 #include <cstdlib>
 #include <iostream>
 #include <iomanip> 
@@ -149,3 +152,5 @@ class PhoneBook
 		void print_contact_information(int index);
 
 };
+
+#endif

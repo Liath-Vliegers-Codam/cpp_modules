@@ -6,14 +6,11 @@
 #    By: livliege <livliege@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/27 18:35:15 by livliege      #+#    #+#                  #
-#    Updated: 2025/03/31 15:13:04 by anonymous     ########   odam.nl          #
+#    Updated: 2025/04/01 15:37:04 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-# **************************************************************************** #
-#                                Makefile                                     #
-# **************************************************************************** #
-NAME		:= zombies
+NAME		:= zombies_ex01
 
 CC			:= g++
 CFLAGS		:= -Wall -Wextra -Werror -g -fsanitize=address

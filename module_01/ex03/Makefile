@@ -6,19 +6,26 @@
 #    By: livliege <livliege@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/27 18:35:15 by livliege      #+#    #+#                  #
-#    Updated: 2025/04/01 18:15:50 by anonymous     ########   odam.nl          #
+#    Updated: 2025/04/01 18:16:45 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= brain
+NAME		:= weapon
 
 CC			:= g++
-CFLAGS		:= -Wall -Wextra -Werror -g -fsanitize=address
+CFLAGS		:= -Wall -Wextra -Werror #-g -fsanitize=address
 
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-SRCS		:= 	main.cpp
+INCL		:=	HumanA.hpp \
+				HumanB.hpp \
+				Weapon.hpp
+
+SRCS		:= 	HumanA.cpp \
+				HumanB.cpp \
+				Weapon.cpp \
+				main.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
