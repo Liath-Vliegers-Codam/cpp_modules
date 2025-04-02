@@ -33,28 +33,24 @@ void Harl::error(void)
 	std::cout << "This is unacceptable! I want to speak to the manager now." << std::endl;
 }
 
-void Harl::complain(std::string level)
+void Harl::complain(int level)
 {
-// Harl also has a public member function that calls the four member functions above depending on the level passed as a parameter
-	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
-	function_ptr complaining[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	size_t complaint_degree = 10;
-	size_t i = 0;
-
-	while (i < 4)
+	switch (level)
 	{
-		if (level == levels[i])
-		{
-			complaint_degree = i;
-		}
-		i++;
-	}
-	if (complaint_degree == 10)
-	{
-		std::cout << "Not a valid complaint level!" << std::endl;
-	}
-	else
-	{
-		(this->*complaining[complaint_degree])();
-	}
+		case 0:
+			Harl::debug();
+			[[fallthrough]];
+		case 1:
+			Harl::info();
+			[[fallthrough]];
+		case 2:
+			Harl::warning();
+			[[fallthrough]];
+		case 3:
+			Harl::error();
+			break;
+		default:
+			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
+			break;
+	}	
 }

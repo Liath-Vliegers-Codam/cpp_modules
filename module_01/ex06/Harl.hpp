@@ -21,9 +21,8 @@ class Harl
 		void error(void);
 
 	public:
-		void complain(std::string level);
+		void complain(int level);
 };
 
-typedef void (Harl::*function_ptr)(void);
 
 
