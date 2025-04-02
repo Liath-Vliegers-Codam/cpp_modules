@@ -3,14 +3,14 @@
 
 ## Contents
 ```
-Chapter I Introduction 2
-Chapter II General rules 3
-Chapter III New rules 6
-Chapter IV Exercise 00: My First Class in Orthodox Canonical Form 7
-Chapter V Exercise 01: Towards a more useful fixed-point number class 9
-Chapter VI Exercise 02: Now we’re talking 11
-Chapter VII Exercise 03: BSP 13
-Chapter VIII Submission and Peer-Evaluation 15
+Chapter I Introduction
+Chapter II General rules
+Chapter III New rules
+Chapter IV Exercise 00: My First Class in Orthodox Canonical Form
+Chapter V Exercise 01: Towards a more useful fixed-point number class
+Chapter VI Exercise 02: Now we’re talking
+Chapter VII Exercise 03: BSP
+Chapter VIII Submission and Peer-Evaluation
 ```
 ## Chapter I Introduction
 C++ is a general-purpose programming language created by Bjarne Stroustrup as an extension of the C programming language, or "C with Classes" (source: Wikipedia).
@@ -19,7 +19,6 @@ This will be the starting point of your C++ journey. Many languages are recommen
 We decided to choose C++ since it’s derived from your old friend C.   
 Since C++ is a complex language, and in order to keep things simple, your code will follow the C++98 standard.
 We are aware modern C++ is way different in a lot of aspects. So if you want to become a proficient C++ developer, it’s up to you to go further after the 42 Common Core!
-
 
 ## Chapter II General rules
 #### Compiling
@@ -66,7 +65,9 @@ theoretical concepts.
 
 
 ## Chapter III New rules
-From now on, all your classes must be designed in the Orthodox Canonical Form, unless explicitly stated otherwise. They will then implement the four required member functions below:  
+From now on, all your classes must be designed in the Orthodox Canonical Form, unless explicitly stated otherwise.  
+
+They will then implement the four required member functions below:  
 - Default constructor
 - Copy constructor
 - Copy assignment operator
@@ -86,14 +87,27 @@ Files to turn in 	: Makefile
 					  Fixed.cpp
 Forbidden functions : None
 ```
-You think you know integers and floating-point numbers. How cute.  
-Please read this 3 pages article (1, 2, 3) to discover that you don’t. Go on, read it.  
+You think you know integers and floating-point numbers.  
+How cute.  
+Please read this 3 pages article ([1](https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point.html), [2](https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_representation.html), [3](https://www.cprogramming.com/tutorial/floating_point/understanding_floating_point_printing.html)) to discover that you don’t.  
+
+Go on, read it.  
 Until today, every number you used in your code was basically either an integer or a floating-point number, or any of their variants (short, char, long, double, and so forth).  
-After reading the article above, it’s safe to assume that integers and floating-point numbers have opposite characteristics.
-But today, things will change. You are going to discover a new and awesome number type: fixed-point numbers!  
+After reading the article above, it’s safe to assume that integers and floating-point numbers have opposite characteristics.  
+But today, things will change.  
+
+You are going to discover a new and awesome number type: fixed-point numbers!  
+
 Forever missing from the scalar types of most languages, fixed-point numbers offer a valuable balance between performance, accuracy, range and precision.  
+
 That explains why fixed-point numbers are particularly applicable to computer graphics, sound processing or scientific programming, just to name a few.  
-As C++ lacks fixed-point numbers, you’re going to add them. This article from Berkeley is a good start. If you have no idea what Berkeley University is, read this section of its Wikipedia page.
+
+As C++ lacks fixed-point numbers, you’re going to add them.  
+[This article](https://web.archive.org/web/20231224143018/https://inst.eecs.berkeley.edu/~cs61c/sp06/handout/fixedpt.html) from Berkeley is a good start.  
+
+
+If you have no idea what Berkeley University is, read [this section](https://en.wikipedia.org/wiki/University_of_California,_Berkeley#Notable_alumni.2C_faculty.2C_and_staff) of its Wikipedia page.
+
 
 Create a class in Orthodox Canonical Form that represents a fixed-point number:
 - Private members:
