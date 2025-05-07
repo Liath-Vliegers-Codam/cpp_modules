@@ -18,9 +18,10 @@ CFLAGS		:= -Wall -Wextra -Werror #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:= phonebook.hpp
+INCL		:=	phonebook.hpp
 
-SRCS		:= 	phonebook.cpp
+SRCS		:= 	contact.cpp \
+				phonebook.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
