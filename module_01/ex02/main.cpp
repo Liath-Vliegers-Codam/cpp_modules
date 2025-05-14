@@ -10,32 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-
-Exercise : 02
-HI THIS IS BRAIN
-
-Turn-in directory	: ex02/
-Files to turn in	: Makefile, main.cpp
-Forbidden functions : None
-
-Write a program that contains:
-	• A string variable initialized to "HI THIS IS BRAIN".
-	• stringPTR: a pointer to the string.
-	• stringREF: a reference to the string.
-Your program must print:
-	• The memory address of the string variable.
-	• The memory address held by stringPTR.
-	• The memory address held by stringREF.
-And then:
-	• The value of the string variable.
-	• The value pointed to by stringPTR.
-	• The value pointed to by stringREF.
-That’s all—no tricks. The goal of this exercise is to demystify references, which may seem completely new. 
-Although there are some small differences, this is simply another syntax for something you already do: address manipulation.
-
-*/
-
+// inplaats van the value kopieren we het adress in een reference
+// references are stored on the stack. pointers often on the heap.
 #include <iostream>
 
 int main(void)
@@ -54,3 +30,8 @@ int main(void)
 
 	return (0);
 }
+
+// *stringPTR = "bliep";
+// std::cout << str << std::endl;
+// stringREF = "miep";
+// std::cout << str << std::endl;

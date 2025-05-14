@@ -13,10 +13,9 @@
 #ifndef PHONEBOOK_H
 #define PHONEBOOK_H
 
-// #include <cstdlib>
 #include <iostream>
 #include <iomanip> 
-// #include <string>
+#include <cstdlib>
 
 #define DEFAULT 					"\033[0m"
 #define BOLD    					"\033[1m"
@@ -41,7 +40,7 @@
 #define ERR_MSG_INPUT_NBR_DATA		"The number can only contain characters 0 - 9"
 #define ERR_MSG_INPUT_SECRET_LENGTH	"The secret can not be more than 69 characters"
 #define ERR_MSG_INPUT_SECRET_DATA	"Please do not use whitespaces (except space)"
-#define ERR_MSG_INPUT_INDEX			"The index should be a single positive digit"
+#define ERR_MSG_INPUT_INDEX			"The index should be a single digit above 0."
 #define ERR_MSG_INPUT_INDEX_MAX		"The Phonebook does not contain that many contacts."
 
 class Contact

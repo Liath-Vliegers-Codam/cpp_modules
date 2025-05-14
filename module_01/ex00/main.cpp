@@ -6,12 +6,11 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 18:35:12 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/31 15:06:18 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/05/14 16:30:01 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 /*
-
 Exercise : 00
 BraiiiiiiinnnzzzZ
 
@@ -33,7 +32,6 @@ This function creates a zombie, names it, and returns it so you can use it outsi
 This function creates a zombie, names it, and makes it announce itself.
 Now, what is the actual point of the exercise? You have to determine in which case it is better to allocate zombies on the stack or the heap.
 Zombies must be destroyed when you no longer need them. The destructor must print a message with the name of the zombie for debugging purposes
-
 */
 
 #include "./Zombie.hpp"

@@ -10,17 +10,18 @@
 #                                                                              #
 # **************************************************************************** #
 
-NAME		:= megaphone
+NAME		:= phonebook
 
 CC			:= g++
-CFLAGS		:= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:= phonebook.hpp
+INCL		:=	phonebook.hpp
 
-SRCS		:= 	megaphone.cpp
+SRCS		:= 	contact.cpp \
+				phonebook.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
@@ -57,33 +58,3 @@ run: all
 
 # Phony targets (to prevent conflicts with actual files)
 .PHONY: all clean fclean re run
-
-NAME	:= megaphone
-
-CC		:= g++
-FLAGS	:= -Wall -Wextra -std=c++98
-
-SRC		:= megaphone.cpp
-
-OBJ		:= $(SRC:.cpp=.o)
-
-all: $(NAME)
-
-run: all
-	./$(NAME)
-
-%.o: %.cpp
-	$(CC) $(FLAGS) -c $< -o $@
-
-$(NAME): $(OBJ)
-	$(CC) $^ -o $(NAME)
-
-clean:
-	@$(RM) $(OBJ)
-
-fclean: 
-	@$(RM) $(NAME) $(OBJ)
-
-re: fclean all
-
-.PHONY: clean all fclean re

@@ -28,7 +28,7 @@ std::string Contact::user_input_names(std::string prompt)
 		std::cout << GREEN << prompt << DEFAULT;
 		if (!std::getline(std::cin, input))
 		{
-			std::exit(1);
+			exit(1);
 		}
 		if (input.length() < 1)
 		{
@@ -61,7 +61,7 @@ std::string Contact::user_input_number(std::string prompt)
 		std::cout << GREEN << prompt << DEFAULT;
 		if (!std::getline(std::cin, input))
 		{
-			std::exit(1);
+			exit(1);
 		}
 		if (input.length() < 1)
 		{
@@ -94,7 +94,7 @@ std::string Contact::user_input_secret(std::string prompt)
 		std::cout << GREEN << prompt << DEFAULT;
 		if (!std::getline(std::cin, input))
 		{
-			std::exit(1);
+			exit(1);
 		}
 		if (input.length() < 1)
 		{
@@ -208,7 +208,7 @@ void	PhoneBook::search_contacts(int amount_contacts)
 		std::cout << LIGHT_BLUE << "index : " << DEFAULT;
 		if (!std::getline(std::cin, user_input_index))
 		{
-			std::exit(1);
+			exit(1);
 		}
 		if (user_input_index.length() < 1)
 		{
@@ -262,7 +262,7 @@ void run_phonebook()
 		print_menu();
 		if (!std::getline(std::cin, user_input))
 		{
-			std::exit(1);
+			exit(1);
 		}
 		if (user_input == "ADD")
 		{
@@ -313,4 +313,3 @@ int main(void)
 
 	return (0);
 }
-
