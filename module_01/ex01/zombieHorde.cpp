@@ -6,13 +6,11 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 18:35:17 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/31 16:26:16 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/05/15 17:23:30 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./Zombie.hpp"
-
-
 
 Zombie* zombieHorde(int N, std::string name)
 {

@@ -6,14 +6,14 @@
 #    By: livliege <livliege@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/27 18:35:15 by livliege      #+#    #+#                  #
-#    Updated: 2025/04/02 10:00:39 by anonymous     ########   odam.nl          #
+#    Updated: 2025/05/15 17:27:24 by livliege      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= harlFilter
 
-CC			:= g++
-CFLAGS		:= -Wall -Wextra -Werror #-g -fsanitize=address
+CC			:= c++
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 
 OBJ_DIR		:= obj
 SRC_DIR		:= src
@@ -22,7 +22,6 @@ INCL		:=	Harl.hpp
 
 SRCS		:= 	Harl.cpp \
 				main.cpp
-				
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

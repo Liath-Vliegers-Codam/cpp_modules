@@ -25,5 +25,3 @@ class Harl
 };
 
 typedef void (Harl::*function_ptr)(void);
-
-

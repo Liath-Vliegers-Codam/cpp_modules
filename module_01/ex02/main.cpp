@@ -10,8 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-// inplaats van the value kopieren we het adress in een reference
-// references are stored on the stack. pointers often on the heap.
 #include <iostream>
 
 int main(void)
@@ -35,3 +33,4 @@ int main(void)
 // std::cout << str << std::endl;
 // stringREF = "miep";
 // std::cout << str << std::endl;
+ 

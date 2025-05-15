@@ -10,40 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-/*
-Exercise 06			: Harl filter
-Turn-in directory 	: ex06/
-Files to turn in 	: Makefile
-					  main.cpp
-					  Harl.{h, hpp}
-					  Harl.cpp
-					  Forbidden functions : None
-
-Sometimes you don’t want to pay attention to everything Harl says. 
-Implement a system to filter what Harl says depending on the log levels you want to listen to.
-Create a program that takes as a parameter one of the four levels. 
-It will display all messages from this level and above.   
-For example:
-
-$> ./harlFilter "WARNING"
-[ WARNING ]
-I think I deserve to have some extra bacon for free.
-I've been coming for years, whereas you started working here just last month.
-[ ERROR ]
-This is unacceptable! I want to speak to the manager now.
-$> ./harlFilter "I am not sure how tired I am today..."
-[ Probably complaining about insignificant problems ]
-
-Although there are several ways to deal with Harl, one of the most effective is to SWITCH it off.  
-Give the name harlFilter to your executable.  
-You must use, and maybe discover, the switch statement in this exercise.  
-
-You can pass this module without doing exercise 06.
-*/
-
 
 #include "./Harl.hpp"
-
 
 int main(int argc, char **argv)
 {
@@ -67,7 +35,6 @@ int main(int argc, char **argv)
 		}
 		i++;
 	}
-	
 	switch (complaint_degree)
 	{
 		case 0:

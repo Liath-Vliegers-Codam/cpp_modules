@@ -6,21 +6,17 @@
 #    By: livliege <livliege@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/27 18:35:15 by livliege      #+#    #+#                  #
-#    Updated: 2025/04/01 18:29:06 by anonymous     ########   odam.nl          #
+#    Updated: 2025/05/15 17:26:37 by livliege      ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= SedIsForLosers
 
-CC			:= g++
-CFLAGS		:= -Wall -Wextra -Werror #-g -fsanitize=address
+CC			:= c++
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 
 OBJ_DIR		:= obj
 SRC_DIR		:= src
-
-# INCL		:=	HumanA.hpp \
-# 				HumanB.hpp \
-# 				Weapon.hpp
 
 SRCS		:= 	main.cpp
 
