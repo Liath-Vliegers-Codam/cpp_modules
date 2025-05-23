@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 18:35:24 by livliege      #+#    #+#                 */
-/*   Updated: 2025/05/15 17:23:26 by livliege      ########   odam.nl         */
+/*   Updated: 2025/05/23 15:05:47 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ class Zombie
 
 	public:
 		void announce(void);
-		Zombie(std::string name);
+		void set_name(std::string name);
 		Zombie(void);
 		~Zombie(void);
 };

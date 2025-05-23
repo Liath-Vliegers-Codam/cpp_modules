@@ -6,7 +6,7 @@
 /*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2025/03/27 18:35:17 by livliege      #+#    #+#                 */
-/*   Updated: 2025/03/31 15:05:30 by anonymous     ########   odam.nl         */
+/*   Updated: 2025/05/23 14:31:34 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Zombie* newZombie(std::string name)
 {
 	Zombie *heap_zombie;
 	
-	heap_zombie = new Zombie(name);
+	heap_zombie = new Zombie(name); 
 	if (!heap_zombie)
 		return (NULL);
 	else

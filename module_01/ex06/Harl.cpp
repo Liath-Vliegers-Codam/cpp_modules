@@ -39,13 +39,10 @@ void Harl::complain(int level)
 	{
 		case 0:
 			Harl::debug();
-			[[fallthrough]];
 		case 1:
 			Harl::info();
-			[[fallthrough]];
 		case 2:
 			Harl::warning();
-			[[fallthrough]];
 		case 3:
 			Harl::error();
 			break;

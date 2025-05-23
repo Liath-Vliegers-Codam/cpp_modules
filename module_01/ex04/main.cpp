@@ -15,13 +15,13 @@
 
 std::string replace_s1_with_s2(std::string line, std::string s1, std::string s2)
 {
-	(void)s2;
 	size_t position;
 
 	position = line.find(s1, 0);
 	while (position != std::string::npos)
 	{
-		std::cout << "we found " << s1 << "!" << std::endl;
+		std::cout << "we found \"" << s1 << "\", and we will replace it with \"" << s2 << "\"" << std::endl;
+
 		line.erase(position, s1.length());
 		line.insert(position, s2);
 
@@ -30,6 +30,8 @@ std::string replace_s1_with_s2(std::string line, std::string s1, std::string s2)
 	return (line);
 }
 
+// std::ifstream and std::ofstream do not have constructors that take std::string as an argument — only const char*
+// We neet to convert std::string filenames to c_str() when passing to the file streams
 int main(int argc, char **argv)
 {
 	if (argc != 4)
@@ -45,8 +47,8 @@ int main(int argc, char **argv)
 		
 	std::string line;
 
-	std::ifstream original_file(og_file_name);
-	std::ofstream replace_file(rep_file_name);
+	std::ifstream original_file(og_file_name.c_str());
+	std::ofstream replace_file(rep_file_name.c_str());
 
 	if (original_file.is_open() && replace_file.is_open())
 	{

@@ -22,7 +22,6 @@ void HumanB::setWeapon(Weapon &weapon)
 {
 	this->weapon_of_choice = &weapon;
 	// std::cout << "Weapon was set to " << this->weapon_of_choice->getType() << std::endl;
-
 }
 
 void HumanB::attack()
