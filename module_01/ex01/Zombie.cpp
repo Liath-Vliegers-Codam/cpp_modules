@@ -12,10 +12,7 @@
 
 #include "./Zombie.hpp"
 
-void Zombie::announce(void)
-{
-	std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl;
-}
+void Zombie::announce(void) { std::cout << this->name << ": BraiiiiiiinnnzzzZ..." << std::endl; }
 
 void Zombie::set_name(std::string name)
 {
@@ -23,10 +20,7 @@ void Zombie::set_name(std::string name)
 	std::cout << "A new zombie named " << this->name << " was born!" << std::endl;
 }
 
-Zombie::Zombie(void)
-{
-	std::cout << "Oh no! Someone was bitten!" << std::endl;	
-}
+Zombie::Zombie(void) { std::cout << "Oh no! Someone was bitten!" << std::endl; }
 
 Zombie::~Zombie(void)
 {

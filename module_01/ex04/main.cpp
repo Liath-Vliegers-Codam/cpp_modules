@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include <fstream>
+#include <iostream>
 
 std::string replace_s1_with_s2(std::string line, std::string s1, std::string s2)
 {
@@ -36,15 +36,17 @@ int main(int argc, char **argv)
 {
 	if (argc != 4)
 	{
-		std::cout << "This program takes three parameters in the following order: a filename and two strings, s1 and s2." << std::endl;
+		std::cout
+			<< "This program takes three parameters in the following order: a filename and two strings, s1 and s2."
+			<< std::endl;
 		return (1);
 	}
-	
+
 	std::string og_file_name = argv[1];
 	std::string rep_file_name = og_file_name + ".replace";
 	std::string s1 = argv[2];
 	std::string s2 = argv[3];
-		
+
 	std::string line;
 
 	std::ifstream original_file(og_file_name.c_str());

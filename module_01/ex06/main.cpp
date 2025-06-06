@@ -10,7 +10,6 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-
 #include "./Harl.hpp"
 
 int main(int argc, char **argv)
@@ -20,7 +19,7 @@ int main(int argc, char **argv)
 		std::cout << "[ Harl is uneasy.. There is nothing to complaining about ]" << std::endl;
 		return (1);
 	}
-		
+
 	Harl harl;
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	std::string level = argv[1];
@@ -52,6 +51,5 @@ int main(int argc, char **argv)
 		default:
 			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 			break;
-	}	
-
+	}
 }
