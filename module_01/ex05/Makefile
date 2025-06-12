@@ -23,7 +23,6 @@ INCL		:=	Harl.hpp
 SRCS		:= 	Harl.cpp \
 				main.cpp
 				
-
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 

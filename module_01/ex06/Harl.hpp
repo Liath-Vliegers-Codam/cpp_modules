@@ -23,6 +23,3 @@ class Harl
 	public:
 		void complain(int level);
 };
-
-
-

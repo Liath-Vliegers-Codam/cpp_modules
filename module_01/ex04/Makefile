@@ -18,10 +18,6 @@ CFLAGS		:= -Wall -Wextra -Werror #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-# INCL		:=	HumanA.hpp \
-# 				HumanB.hpp \
-# 				Weapon.hpp
-
 SRCS		:= 	main.cpp
 
 # Convert source files into object files

@@ -16,7 +16,6 @@
 #include "./Weapon.hpp"
 #include <iostream>
 
-
 class HumanB
 {
 	private:

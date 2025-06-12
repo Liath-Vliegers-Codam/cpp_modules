@@ -11,9 +11,11 @@
 /* ************************************************************************** */
 
 #include "Weapon.hpp"
+
+#include <iostream>
+
 #include "HumanA.hpp"
 #include "HumanB.hpp"
-#include <iostream>
 
 Weapon::Weapon(std::string type)
 {
@@ -22,7 +24,6 @@ Weapon::Weapon(std::string type)
 
 Weapon::Weapon(void)
 {
-
 }
 
 const std::string &Weapon::getType(void)

@@ -3,10 +3,10 @@
 /*                                                        ::::::::            */
 /*   Fixed.cpp                                          :+:    :+:            */
 /*                                                     +:+                    */
-/*   By: anonymous <anonymous@student.codam.nl>       +#+                     */
+/*   By: livliege <livliege@student.codam.nl>         +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2025/04/02 13:15:19 by anonymous     #+#    #+#                 */
-/*   Updated: 2025/04/02 13:15:19 by anonymous     ########   odam.nl         */
+/*   Created: 2025/06/06 15:47:03 by livliege      #+#    #+#                 */
+/*   Updated: 2025/06/06 15:47:03 by livliege      ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
