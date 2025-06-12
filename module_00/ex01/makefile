@@ -12,8 +12,8 @@
 
 NAME		:= phonebook
 
-CC			:= g++
-CFLAGS		:= -Wall -Wextra -Werror #-g -fsanitize=address
+CC			:= c++
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address 
 
 OBJ_DIR		:= obj
 SRC_DIR		:= src

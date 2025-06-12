@@ -6,14 +6,14 @@
 #    By: livliege <livliege@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/27 18:35:15 by livliege      #+#    #+#                  #
-#    Updated: 2025/04/01 15:37:04 by anonymous     ########   odam.nl          #
+#    Updated: 2025/06/12 10:07:35 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= zombies_ex01
 
-CC			:= g++
-CFLAGS		:= -Wall -Wextra -Werror -g -fsanitize=address
+CC			:= c++
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address 
 
 OBJ_DIR		:= obj
 SRC_DIR		:= src
