@@ -6,14 +6,14 @@
 #    By: livliege <livliege@student.codam.nl>         +#+                      #
 #                                                    +#+                       #
 #    Created: 2025/03/27 18:35:15 by livliege      #+#    #+#                  #
-#    Updated: 2025/06/12 10:04:47 by anonymous     ########   odam.nl          #
+#    Updated: 2025/06/12 10:27:51 by anonymous     ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		:= fixed
 
 CC			:= c++
-CFLAGS		:= -Wall -Wextra -Werror #-g -fsanitize=address
+CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address 
 
 OBJ_DIR		:= obj
 SRC_DIR		:= src
