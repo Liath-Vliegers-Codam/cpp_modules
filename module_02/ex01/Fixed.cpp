@@ -34,10 +34,12 @@ Fixed::Fixed(const float float_value)
 
 Fixed::Fixed(const Fixed &other) 
 {
-	this->_rawBits = other._rawBits;
 	std::cout << "Copy constructor called" << std::endl;
+	*this = other;
 }
 
+// its good practise to link the copy constructor to the copy assignment operator, this ensures that there will be no issues while copying.
+// now when you call the copy constructor, it will use the copy assignment operator to copy the data.
 Fixed& Fixed::operator=(const Fixed &other) 
 {
 	if (this != &other)
