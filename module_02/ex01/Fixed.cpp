@@ -32,13 +32,14 @@ Fixed::Fixed(const float float_value)
 	std::cout << "Float constructor called" << std::endl;
 }
 
-Fixed::Fixed(const Fixed &other) 
+Fixed::Fixed(const Fixed &other)
 {
-	this->_rawBits = other._rawBits;
+	// this->_rawBits = other._rawBits;
 	std::cout << "Copy constructor called" << std::endl;
+	*this = other;
 }
 
-Fixed& Fixed::operator=(const Fixed &other) 
+Fixed& Fixed::operator=(const Fixed &other)
 {
 	if (this != &other)
 	{
@@ -75,8 +76,26 @@ int Fixed::toInt(void) const
 	return (this->_rawBits >> this->_fractionalBits); 
 }
 
+/*
+	std::ostream & 		: Returns a reference to an output stream, enabling operator chaining
+	operator<< 			: Overloads the left - shift operator for output operations
+	std::ostream &os 	: Reference to the output stream(like std::cout, std::cerr, file streams, etc.)
+	const Fixed &fixed	: Constant reference to the Fixed object being output (avoids unnecessary copying)
+
+	1. Converts the Fixed object to a float using the toFloat() member function
+	2. Sends that float value to the output stream using the built-in << operator for floats
+	3. Returns the stream reference to enable chaining operations
+
+	This operator is defined as a free function (outside the class) rather than a member function because:
+
+	The left operand is std::ostream, not Fixed
+	If it were a member, you'd have to write fixed << std::cout instead of std::cout << fixed
+	This maintains the natural left-to-right reading order
+	This is a standard pattern in C++ for making custom types work seamlessly with the stream I/O system.
+*/
+
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 {
-	os << fixed.toFloat();
-	return (os);	
+	os << fixed.toFloat();	// Convert Fixed to float and send to stream
+	return (os);			// Return stream reference for chaining
 }

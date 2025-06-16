@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
 #include <cmath>
+#include <iostream>
 
 class Fixed
 {
@@ -26,7 +26,7 @@ class Fixed
 	Fixed(const float float_value);	 // Float constructor
 	Fixed(const Fixed &other);		 // Copy constructor
 
-	// Assignment operator overloads
+	// Assignment operator overloads (calls copy constructor)
 	Fixed &operator=(const Fixed &other);
 
 	// Deconstructor
@@ -38,6 +38,30 @@ class Fixed
 
 	float toFloat(void) const;
 	int toInt(void) const;
+
+
+// Function overloading provides a clean, intuitive interface that allows your custom types to behave like built-in types, 
+// making your code more readable and maintainable.
+
+// added in this exersize:
+
+	bool operator>(const Fixed &other);
+	bool operator<(const Fixed &other);
+	bool operator>=(const Fixed &other);
+	bool operator<=(const Fixed &other);
+	bool operator==(const Fixed &other);
+	bool operator!=(const Fixed &other);
+
+	Fixed operator+(const Fixed &other) const;
+	Fixed operator-(const Fixed &other) const;
+	Fixed operator*(const Fixed &other) const;
+	Fixed operator/(const Fixed &other) const;
+
+	Fixed& operator++();
+	Fixed& operator--();
+	Fixed operator++(int);
+	Fixed operator--(int);
 };
 
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed);
+
