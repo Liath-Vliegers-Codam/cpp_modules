@@ -1,5 +1,5 @@
 
-NAME		:= module_02
+NAME		:= module_03
 
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address 
@@ -7,9 +7,9 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	Fixed.hpp
+INCL		:=	ClapTrap.hpp
 
-SRCS		:= 	Fixed.cpp \
+SRCS		:= 	ClapTrap.cpp \
 				main.cpp
 				
 

@@ -1,16 +1,5 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         ::::::::             #
-#    Makefile                                           :+:    :+:             #
-#                                                      +:+                     #
-#    By: livliege <livliege@student.codam.nl>         +#+                      #
-#                                                    +#+                       #
-#    Created: 2025/03/27 18:35:15 by livliege      #+#    #+#                  #
-#    Updated: 2025/06/12 10:27:56 by anonymous     ########   odam.nl          #
-#                                                                              #
-# **************************************************************************** #
 
-NAME		:= fixed
+NAME		:= module_02
 
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address 
