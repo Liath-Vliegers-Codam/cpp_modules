@@ -10,10 +10,10 @@ ClapTrap::ClapTrap()
 	this->_attack_damage = 0;
 }
 
-ClapTrap::ClapTrap(std::string n) 
+ClapTrap::ClapTrap(std::string name) 
 {
 	std::cout << "ClapTrap Constructor called" << std::endl;
-	this->_name = n;
+	this->_name = name;
 	this->_hit_points = 10;
 	this->_energy_points = 10;
 	this->_attack_damage = 0;

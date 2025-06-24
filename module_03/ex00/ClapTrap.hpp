@@ -23,13 +23,13 @@ class ClapTrap
 
 	public:
 		ClapTrap();
-		ClapTrap(std::string);
+		ClapTrap(std::string name);
 		~ClapTrap();
 
 		// Copy constructor
-		ClapTrap(const ClapTrap &obj);
+		ClapTrap(const ClapTrap &other);
 		// Operator overload
-		ClapTrap &operator=(const ClapTrap &obj);
+		ClapTrap &operator=(const ClapTrap &other);
 
 	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
