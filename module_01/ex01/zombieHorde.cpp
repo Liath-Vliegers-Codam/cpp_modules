@@ -3,7 +3,8 @@
 
 Zombie* zombieHorde(int N, std::string name)
 {
-	if (N <= 0) return (NULL);
+	if (N <= 0)
+		return (NULL);
 
 	Zombie* heap_zombies = new Zombie[N];
 

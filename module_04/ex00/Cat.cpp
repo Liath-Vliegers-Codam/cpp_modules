@@ -1,6 +1,5 @@
 #include "Cat.hpp"
 		
-// Constructors and Destructor
 Cat::Cat()
 {
 	std::cout << "Cat default constructor called" << std::endl;
@@ -16,7 +15,6 @@ Cat::~Cat()
 	std::cout << "Cat destructor called" << std::endl;
 }
 
-// Operator overload
 Cat &Cat::operator=(const Cat &other)
 {
 	std::cout << "Cat copy assignment operator called" << std::endl;
@@ -27,7 +25,6 @@ Cat &Cat::operator=(const Cat &other)
 	return (*this);
 }
 
-// Member functions
 void Cat::makeSound() const
 {
 	std::cout << "Meow Meow!" << std::endl;

@@ -1,7 +1,7 @@
 
 #include "./Zombie.hpp"
 
-int main(void)
+int main()
 {
 	Zombie *heap_zombie;
 

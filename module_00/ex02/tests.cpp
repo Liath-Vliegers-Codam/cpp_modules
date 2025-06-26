@@ -13,7 +13,7 @@
 
 #include "Account.hpp"
 
-int main(void)
+int main()
 {
 	typedef std::vector<Account::t> accounts_t;
 	typedef std::vector<int> ints_t;

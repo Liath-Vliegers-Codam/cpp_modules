@@ -35,5 +35,5 @@ class ClapTrap
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
 
-	void printStats(void) const;
+	void printStats() const;
 };

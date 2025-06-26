@@ -1,7 +1,7 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(void)
+Fixed::Fixed()
 {
 	this->_rawBits = 0;
 	std::cout << "Default constructor called" << std::endl;
@@ -39,12 +39,12 @@ Fixed& Fixed::operator=(const Fixed &other)
 	return (*this);
 }
 
-Fixed::~Fixed(void) 
+Fixed::~Fixed() 
 {
 	std::cout << "Destructor called" << std::endl;
 }
 
-int Fixed::getRawBits(void) const 
+int Fixed::getRawBits() const 
 {
 	std::cout << "getRawBits member function called" << std::endl;
 	return (_rawBits);
@@ -56,12 +56,12 @@ void Fixed::setRawBits(int const raw)
 	std::cout << "setRawBits member function called" << std::endl;
 }
 
-float Fixed::toFloat(void) const
+float Fixed::toFloat() const
 {
 	return ((float)this->_rawBits) / (2 << (this->_fractionalBits - 1));
 }
 
-int Fixed::toInt(void) const
+int Fixed::toInt() const
 {
 	return (this->_rawBits >> this->_fractionalBits); 
 }

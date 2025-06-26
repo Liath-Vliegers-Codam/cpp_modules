@@ -311,7 +311,7 @@ void run_phonebook()
 	}
 }
 
-int main(void)
+int main()
 {
 	std::cout << MAGENTA << std::endl;
 	std::cout << "---------------------------------------------" << std::endl;

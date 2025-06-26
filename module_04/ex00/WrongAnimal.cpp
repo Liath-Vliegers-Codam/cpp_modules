@@ -9,7 +9,7 @@ WrongAnimal::WrongAnimal()
 
 WrongAnimal::~WrongAnimal()
 {
-    std::cout << "WrongAnimal " << this->_type << " destructor called" << std::endl;
+    std::cout << "WrongAnimal destructor called" << std::endl;
 }
 
 WrongAnimal::WrongAnimal(const WrongAnimal &other)
@@ -30,7 +30,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 
 void WrongAnimal::makeSound() const
 {
-    std::cout << this->_type << "Miauw Woof Chirp!" << std::endl;
+    std::cout << " Miauw Woof Chirp!" << std::endl;
 }
 
 const std::string &WrongAnimal::getType() const

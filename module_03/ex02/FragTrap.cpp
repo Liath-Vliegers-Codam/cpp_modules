@@ -24,14 +24,12 @@ FragTrap::~FragTrap()
 	std::cout << "FragTrap Destructor called" << std::endl;
 }
 
-
 FragTrap &FragTrap::operator=(const FragTrap &other) 
 {
 	this->_name = other._name;
 	this->_attack_damage = other._attack_damage;
 	this->_energy_points = other._energy_points;
 	this->_hit_points = other._hit_points;
-	// this->_gatekeeper = other._gatekeeper;
 	return (*this);
 }
 
@@ -53,7 +51,7 @@ void	FragTrap::attack(const std::string &target)
 
 }
 
-void	FragTrap::highFivesGuys(void)
+void	FragTrap::highFivesGuys()
 {
 	std::cout << "FragTrap " << _name << " wants to high five the other robots!" << std::endl;
 }

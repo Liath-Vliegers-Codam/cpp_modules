@@ -1,6 +1,5 @@
 #include "ClapTrap.hpp"
 
-// Constructors and Destructor
 ClapTrap::ClapTrap() 
 {
 	std::cout << "ClapTrap default Constructor called" << std::endl;
@@ -98,7 +97,6 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << _name << " heals itself with " << amount << " points!" << std::endl;
 	}
 }
-
 
 void ClapTrap::printStats() const
 {

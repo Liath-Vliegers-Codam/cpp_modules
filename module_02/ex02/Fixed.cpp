@@ -1,7 +1,7 @@
 
 #include "Fixed.hpp"
 
-Fixed::Fixed(void)
+Fixed::Fixed()
 {
 	this->_rawBits = 0;
 	// std::cout << "Default constructor called" << std::endl;
@@ -23,7 +23,6 @@ Fixed::Fixed(const float float_value)
 
 Fixed::Fixed(const Fixed &other)
 {
-	// this->_rawBits = other._rawBits;
 	// std::cout << "Copy constructor called" << std::endl;
 	*this = other;
 }
@@ -32,18 +31,18 @@ Fixed &Fixed::operator=(const Fixed &other)
 {
 	if (this != &other)
 	{
-		this->_rawBits = other._rawBits;
 		// std::cout << "Copy assignment operator called" << std::endl;
+		this->_rawBits = other._rawBits;
 	}
 	return (*this);
 }
 
-Fixed::~Fixed(void)
+Fixed::~Fixed()
 {
 	// std::cout << "Destructor called" << std::endl;
 }
 
-int Fixed::getRawBits(void) const
+int Fixed::getRawBits() const
 {
 	// std::cout << "getRawBits member function called" << std::endl;
 	return (_rawBits);
@@ -51,20 +50,19 @@ int Fixed::getRawBits(void) const
 
 void Fixed::setRawBits(int const raw)
 {
-	this->_rawBits = raw;
 	// std::cout << "setRawBits member function called" << std::endl;
+	this->_rawBits = raw;
 }
 
-float Fixed::toFloat(void) const
+float Fixed::toFloat() const
 {
 	return ((float)this->_rawBits) / (2 << (this->_fractionalBits - 1));
 }
 
-int Fixed::toInt(void) const
+int Fixed::toInt() const
 {
 	return (this->_rawBits >> this->_fractionalBits);
 }
-
 
 std::ostream &operator<<(std::ostream &os, const Fixed &fixed)
 {
@@ -121,8 +119,6 @@ bool Fixed::operator!=(const Fixed &other) const
 	else 
 		return (false);
 }
-
-
 
 // Arithmetic operator overloads
 // • The 4 arithmetic operators: +, -, *, and /.
@@ -181,17 +177,14 @@ Fixed Fixed::operator/(const Fixed &other) const
 
 	You're adding 1 / 2^8 to the actual floating-point value
 	This is exactly ε.
-
 		
 	Pre-increment (++variable)
-
 		No parameters - distinguishes it from post-increment
 		Increments first, then returns the incremented value
 		Returns a reference (Fixed&) to the current object for efficiency
 		Increases by the smallest representable value (1 in raw bits = ε)
 
 	Post-increment (variable++)
-		￼
 		int parameter - dummy parameter to distinguish from pre-increment
 		Returns old value first, then increments
 		Returns by value (Fixed) - must return the old state

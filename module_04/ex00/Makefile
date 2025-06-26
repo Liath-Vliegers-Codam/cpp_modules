@@ -9,10 +9,14 @@ SRC_DIR		:= src
 
 INCL		:=	Animal.hpp \
 				Cat.hpp \
-				Dog.hpp
+				Dog.hpp \
+				WrongAnimal.hpp \
+				WrongCat.hpp
 SRCS		:= 	Animal.cpp \
 				Cat.cpp \
 				Dog.cpp \
+				WrongAnimal.cpp \
+				WrongCat.cpp \
 				main.cpp
 
 # Convert source files into object files

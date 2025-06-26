@@ -1,7 +1,7 @@
 
 #include "Fixed.hpp"
 
-int main(void)
+int main()
 {	
 	std::cout << "======= Testing arithmetic operators =======" << std::endl;
 
@@ -68,7 +68,7 @@ int main(void)
 }
 
 
-// int main(void)
+// int main()
 // {
 // 	Fixed a;
 // 	Fixed const b(Fixed(5.05f) * Fixed(2));

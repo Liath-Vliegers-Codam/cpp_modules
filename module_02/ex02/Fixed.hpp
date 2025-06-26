@@ -9,24 +9,21 @@ class Fixed
 	static const int _fractionalBits = 8;
 
    public:
-	// Constructor overloads
-	Fixed(void);					 // Default constructor
-	Fixed(const int int_value);		 // Int constructor
-	Fixed(const float float_value);	 // Float constructor
-	Fixed(const Fixed &other);		 // Copy constructor
+		Fixed();					 // Default constructor
+		Fixed(const int int_value);		 // Int constructor
+		Fixed(const float float_value);	 // Float constructor
+		Fixed(const Fixed &other);		 // Copy constructor
 
-	// Assignment operator overloads (calls copy constructor)
 	Fixed &operator=(const Fixed &other);
 
-	// Deconstructor
-	~Fixed(void);
+	~Fixed();
 
 	// Member functions
-	int getRawBits(void) const;
+	int getRawBits() const;
 	void setRawBits(int const raw);
 
-	float toFloat(void) const;
-	int toInt(void) const;
+	float toFloat() const;
+	int toInt() const;
 
 
 // Function overloading provides a clean, intuitive interface that allows your custom types to behave like built-in types, 

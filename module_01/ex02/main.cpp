@@ -1,11 +1,15 @@
 
 #include <iostream>
 
-// str heeft een eigen adress
-// pointer heeft een eigen adress maar points to het adress van str
-// ref copys adress van str
+// str has a memory address
+// stringPTR is a pointer that holds the address of str
+// stringREF is a reference that refers to str
+// pointer has its own address but points to the address of str
+// ref copies the address of str
+// reference is an alias for a variable
+// pointer is a variable that holds the address of another variable
 
-int main(void)
+int main()
 {
 	std::string str = "HI THIS IS BRAIN";
 	std::string *stringPTR = &str;

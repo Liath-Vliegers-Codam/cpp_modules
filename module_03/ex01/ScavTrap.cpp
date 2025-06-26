@@ -18,7 +18,6 @@ This member function will display a message informing that ScavTrap is now in Ga
 */
 
 
-// Constructors and Destructor
 ScavTrap::ScavTrap() : ClapTrap()
 {
 	std::cout << "ScavTrap default Constructor called" << std::endl;
@@ -49,7 +48,6 @@ ScavTrap &ScavTrap::operator=(const ScavTrap &other)
 	this->_attack_damage = other._attack_damage;
 	this->_energy_points = other._energy_points;
 	this->_hit_points = other._hit_points;
-	// this->_gatekeeper = other._gatekeeper;
 	return (*this);
 }
 
@@ -71,7 +69,7 @@ void	ScavTrap::attack(const std::string &target)
 
 }
 
-void	ScavTrap::guardGate(void)
+void	ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << _name << " is now in GateKeeper Mode!" << std::endl;
 }

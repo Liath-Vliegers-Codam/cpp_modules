@@ -1,13 +1,12 @@
 #include "WrongCat.hpp"
 
-// Constructors and Destructor
 WrongCat::WrongCat()
 {
     std::cout << "WrongCat default constructor called" << std::endl;
     this->_type = "WrongCat";
 }
 
-WrongCat::WrongCat(const WrongCat &other)
+WrongCat::WrongCat(const WrongCat &other) : WrongAnimal(other)
 {
     std::cout << "WrongCat copy constructor called" << std::endl;
     *this = other;
@@ -16,10 +15,9 @@ WrongCat::WrongCat(const WrongCat &other)
 
 WrongCat::~WrongCat()
 {
-    std::cout << "WrongCat " << this->_type << " destructor called" << std::endl;
+    std::cout << "WrongCat destructor called" << std::endl;
     return;
 }
-
 
 WrongCat& WrongCat::operator=(const WrongCat &other)
 {

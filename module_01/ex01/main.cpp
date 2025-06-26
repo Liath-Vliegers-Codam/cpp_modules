@@ -1,7 +1,7 @@
 
 #include "./Zombie.hpp"
 
-int main(void)
+int main()
 {
 	int horde_size = 10;
 

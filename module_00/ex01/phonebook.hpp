@@ -61,11 +61,11 @@ class Contact
 		void set_nick_name(std::string input);
 		void set_phone_number(std::string input);
 		void set_darkest_sectret(std::string input);
-		std::string get_first_name(void);
-		std::string get_last_name(void);
-		std::string get_nick_name(void);
-		std::string get_phone_number(void);
-		std::string get_darkest_sectret(void);
+		std::string get_first_name();
+		std::string get_last_name();
+		std::string get_nick_name();
+		std::string get_phone_number();
+		std::string get_darkest_sectret();
 		std::string search_menu_resize(std::string info);
 		std::string new_contact_resize(std::string name);
 };

@@ -1,7 +1,7 @@
 
 #include "Fixed.hpp"
 
-int main(void) 
+int main() 
 {
 	Fixed a;
 	Fixed const b(10);

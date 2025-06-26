@@ -2,11 +2,10 @@
 #include "Animal.hpp"
 
 
-// Default constructor
 Animal::Animal()
 {
 	std::cout << "Animal default constructor called" << std::endl;
-	this->_type = "Unknown";
+	this->_type = "Animal";
 }
 Animal::Animal(std::string type)
 {
@@ -18,13 +17,11 @@ Animal::~Animal()
 	std::cout << "Animal destructor called" << std::endl;
 }
 
-// Copy constructor
 Animal::Animal(const Animal &other)
 {
 	std::cout << "Animal copy constructor called" << std::endl;
 	this->_type = other._type;
 }
-// Operator overload
 Animal &Animal::operator=(const Animal &other)
 {
 	std::cout << "Animal copy assignment operator called" << std::endl;
@@ -35,13 +32,12 @@ Animal &Animal::operator=(const Animal &other)
 	return (*this);
 }
 
-// Member functions
-void Animal::makeSound(void) const
+void Animal::makeSound() const
 {
 	std::cout << "An animal makes a sound!" << std::endl;
 }
 
-const std::string &Animal::getType(void) const
+const std::string &Animal::getType() const
 {
     return (this->_type);
 }

@@ -19,8 +19,6 @@ std::string replace_s1_with_s2(std::string line, std::string s1, std::string s2)
 	return (line);
 }
 
-// std::ifstream and std::ofstream do not have constructors that take std::string as an argument — only const char*
-// We neet to convert std::string filenames to c_str() when passing to the file streams
 int main(int argc, char **argv)
 {
 	if (argc != 4)

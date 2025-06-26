@@ -7,6 +7,15 @@ HumanA::HumanA(std::string name, Weapon &weapon) : name(name), weapon_of_choice(
 	// this->weapon_of_choice = weapon;
 }
 
+
+// waarom kan dit niet?
+
+// HumanA::HumanA(std::string name, Weapon &weapon)
+// {
+// 	this->name = name;
+// 	this->weapon_of_choice = weapon;
+// }
+
 void HumanA::attack()
 {
 	std::cout << this->name << " attacked using their " << this->weapon_of_choice.getType() << std::endl;
