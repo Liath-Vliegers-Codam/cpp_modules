@@ -10,12 +10,12 @@ int main(int argc, char **argv)
 	}
 
 	Harl harl;
-	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	std::string levels[5] = {"DEBUG", "INFO", "WARNING", "ERROR", "DO_NOT_REMOVE"};
 	std::string level = argv[1];
-	size_t complaint_degree = 10;
+	int complaint_degree = -1;
 	size_t i = 0;
 
-	while (i < 4)
+	while (levels[i] != "DO_NOT_REMOVE")
 	{
 		if (level == levels[i])
 		{
@@ -23,22 +23,8 @@ int main(int argc, char **argv)
 		}
 		i++;
 	}
-	switch (complaint_degree)
-	{
-		case 0:
-			harl.complain(0);
-			break;
-		case 1:
-			harl.complain(1);
-			break;
-		case 2:
-			harl.complain(2);
-			break;
-		case 3:
-			harl.complain(3);
-			break;
-		default:
-			std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
-			break;
-	}
+	if (complaint_degree >= 0)
+		harl.complain(complaint_degree);
+	else
+		std::cout << "[ Probably complaining about insignificant problems ]" << std::endl;
 }

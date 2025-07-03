@@ -7,8 +7,6 @@ Zombie* newZombie(std::string name)
 	Zombie* heap_zombie;
 
 	heap_zombie = new Zombie(name);
-	if (!heap_zombie)
-		return (NULL);
-	else
-		return (heap_zombie);
+
+	return (heap_zombie);
 }

@@ -19,5 +19,5 @@ void Zombie::announce()
 void Zombie::set_name(std::string name)
 {
 	this->name = name;
-	std::cout << "A new zombie named " << this->name << " was born!" << std::endl;
+	std::cout << "A zombie has a name now: " << this->name << std::endl;
 }

@@ -26,8 +26,7 @@ void Harl::error()
 
 void Harl::complain(std::string level)
 {
-	// Harl also has a public member function that calls the four member functions above depending on the level passed
-	// as a parameter
+	// Harl also has a public member function that calls the four member functions above depending on the level passed as a parameter
 	std::string levels[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
 	function_ptr complaining[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
 	size_t complaint_degree = 10;
