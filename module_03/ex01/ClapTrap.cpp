@@ -82,9 +82,8 @@ void ClapTrap::takeDamage(unsigned int amount)
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_hit_points == 0)
-	{
+{
 		std::cout << "ClapTrap " << _name << " can not heal because it is already dead." << std::endl;
-	
 	}
 	else if (_energy_points == 0)
 	{
