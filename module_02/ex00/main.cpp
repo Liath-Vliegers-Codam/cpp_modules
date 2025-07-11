@@ -14,6 +14,7 @@ int main()
 	// a.setRawBits(3);
 	// b.setRawBits(5);
 	// c.setRawBits(8);
+	
 	// std::cout << a.getRawBits() << std::endl;
 	// std::cout << b.getRawBits() << std::endl;
 	// std::cout << c.getRawBits() << std::endl;

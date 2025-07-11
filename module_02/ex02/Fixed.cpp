@@ -126,7 +126,7 @@ Fixed Fixed::operator+(const Fixed &other) const
 {
 	Fixed result;
 
-	result._rawBits = _rawBits + other._rawBits;
+	result._rawBits = this->_rawBits + other._rawBits;
 
 	return (result);
 }
@@ -135,7 +135,7 @@ Fixed Fixed::operator-(const Fixed &other) const
 {
 	Fixed result;
 
-	result._rawBits = _rawBits - other._rawBits;
+	result._rawBits = this->_rawBits - other._rawBits;
 
 	return (result);
 }
@@ -144,18 +144,20 @@ Fixed Fixed::operator*(const Fixed &other) const
 {
 	Fixed result;
 
-	result._rawBits = (_rawBits * other._rawBits) >> _fractionalBits;
+	result._rawBits = (this->_rawBits * other._rawBits) >> _fractionalBits;
+	// result._rawBits = this->_rawBits * other._rawBits;
 
-	return result;
+	return (result);
 }
 
 Fixed Fixed::operator/(const Fixed &other) const
 {
 	Fixed result;
 
-	result._rawBits = (_rawBits << _fractionalBits) / other._rawBits;
+	result._rawBits = (this->_rawBits << _fractionalBits) / other._rawBits;
+	// result._rawBits = this->_rawBits / other._rawBits;
 
-	return result;
+	return (result);
 }
 
 /*
@@ -194,13 +196,13 @@ Fixed Fixed::operator/(const Fixed &other) const
 
 	Fixed& Fixed::operator++()
 	{
-		++_rawBits;
+		++this->_rawBits;
 		return (*this);
 	}
 
 	Fixed& Fixed::operator--()
 	{
-		--_rawBits;
+		--this->_rawBits;
 		return (*this);
 	}
 
@@ -208,7 +210,7 @@ Fixed Fixed::operator/(const Fixed &other) const
 	{
 		Fixed old(*this);
 
-		++_rawBits;
+		++this->_rawBits;
 
 		return (old);
 	}
@@ -217,7 +219,7 @@ Fixed Fixed::operator/(const Fixed &other) const
 	{
 		Fixed old(*this);
 
-		--_rawBits;
+		--this->_rawBits;
 
 		return (old);
 	}

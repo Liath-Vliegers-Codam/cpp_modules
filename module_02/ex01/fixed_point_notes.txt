@@ -1,0 +1,76 @@
+⚙️ Background: Fixed-Point Representation
+
+In fixed-point arithmetic, you represent numbers with a fixed number of fractional bits. That means:
+
+    You store numbers as integers (_rawBits), but interpret them as having a decimal point at a fixed position.
+
+    For example, if you choose 8 fractional bits, the number 1.0 is stored as 1 << 8 = 256.
+
+This lets you do fast arithmetic using integer operations while still supporting decimal values.
+👇 So what’s happening with the bit shifting?
+
+Your class has this line:
+
+this->_rawBits = int_value << this->_fractionalBits;
+
+Example: Fixed(5); with _fractionalBits = 8
+
+Let's say int_value = 5 and _fractionalBits = 8. Then:
+
+this->_rawBits = 5 << 8; // 5 * 256 = 1280
+
+So instead of storing 5 directly, you're storing 1280 — which is 5.0 in fixed-point.
+
+This works because the binary representation of 1280 looks like:
+
+00000101 00000000
+
+You shifted the bits 8 places to the left to make space for 8 fractional bits. You interpret this as 5.0 later by shifting back.
+🧮 Converting from float to fixed-point
+
+this->_rawBits = roundf(float_value * (2 << (this->_fractionalBits - 1)));
+
+This line looks confusing but here’s what’s really going on:
+
+2 << (this->_fractionalBits - 1)
+
+This is equal to:
+
+1 << this->_fractionalBits
+
+Why?
+
+    2 is 1 << 1
+
+    So: 2 << (n - 1) = (1 << 1) << (n - 1) = 1 << n
+
+So this line:
+
+this->_rawBits = roundf(float_value * (1 << this->_fractionalBits));
+
+Which means:
+
+    Multiply the float by 256 (if _fractionalBits = 8) to shift it into fixed-point space.
+
+    Then round it to an integer.
+
+🔁 Converting back to float:
+
+return ((float)this->_rawBits) / (1 << this->_fractionalBits);
+
+You divide by 256 to shift the decimal point back to the left.
+🔁 Converting back to int:
+
+return (this->_rawBits >> this->_fractionalBits); 
+
+Shifting right undoes what you did in the constructor:
+
+1280 >> 8 = 5
+
+You're just dropping the fractional part and returning the integer portion.
+✅ Summary
+Operation	Code	What it does
+Int → Fixed	int << fracBits	Shift left to scale up
+Float → Fixed	float * (1 << fracBits)	Scale up to fixed-point
+Fixed → Float	rawBits / (1 << fracBits)	Scale down to float
+Fixed → Int	rawBits >> fracBits	Drop the fractional part
