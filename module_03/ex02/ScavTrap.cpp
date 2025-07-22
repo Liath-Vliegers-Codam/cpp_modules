@@ -48,10 +48,20 @@ void	ScavTrap::attack(const std::string &target)
 		_energy_points--;
 		std::cout << "ScavTrap " << _name << " attacks " << target << ", causing " << _attack_damage << " points of damage!" << std::endl;
 	}
-
 }
 
-void	ScavTrap::guardGate()
+void ScavTrap::guardGate()
 {
 	std::cout << "ScavTrap " << _name << " is now in GateKeeper Mode!" << std::endl;
+}
+
+void ScavTrap::printStats() const
+{
+	std::cout << YELLOW;
+	std::cout << _name << " Stats:" << std::endl;
+	std::cout << GREEN;
+	std::cout << "Hit points	= " << _hit_points << std::endl;
+	std::cout << "Energy points	= " << _energy_points << std::endl;
+	std::cout << "Attack damage	= " << _attack_damage << std::endl;
+	std::cout << DEFAULT;
 }

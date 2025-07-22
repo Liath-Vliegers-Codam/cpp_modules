@@ -1,5 +1,5 @@
 
-NAME		:= module_02
+NAME		:= module_04
 
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address 
@@ -7,11 +7,20 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	Fixed.hpp
-
-SRCS		:= 	Fixed.cpp \
+INCL		:=	Animal.hpp \
+				Brain.cpp \
+				Cat.hpp \
+				Dog.hpp \
+				WrongAnimal.hpp \
+				WrongCat.hpp
+SRCS		:= 	Animal.cpp \
+				Brain.hpp \
+				Cat.cpp \
+				Dog.cpp \
+				WrongAnimal.cpp \
+				WrongCat.cpp \
 				main.cpp
-				
+
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
 

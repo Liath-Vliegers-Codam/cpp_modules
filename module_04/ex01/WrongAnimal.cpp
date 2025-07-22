@@ -30,7 +30,7 @@ WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
 
 void WrongAnimal::makeSound() const
 {
-    std::cout << "Miauw Woof Chirp!" << std::endl;
+    std::cout << " Miauw Woof Chirp!" << std::endl;
 }
 
 const std::string &WrongAnimal::getType() const

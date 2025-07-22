@@ -1,15 +1,5 @@
 #include "ClapTrap.hpp"
 
-// Constructors and Destructor
-ClapTrap::ClapTrap() 
-{
-	std::cout << "ClapTrap default Constructor called" << std::endl;
-	this->_name = "ClapTrap";
-	this->_hit_points = 10;
-	this->_energy_points = 10;
-	this->_attack_damage = 0;
-}
-
 ClapTrap::ClapTrap(std::string name) 
 {
 	std::cout << "ClapTrap Constructor called" << std::endl;
@@ -48,7 +38,6 @@ void ClapTrap::attack(const std::string& target)
 	if (_hit_points == 0)
 	{
 		std::cout << "ClapTrap " << _name << " can not attack because it is already dead" << std::endl;
-	
 	}
 	else if (_energy_points == 0)
 	{

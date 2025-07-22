@@ -64,36 +64,36 @@ void ClapTrap::takeDamage(unsigned int amount)
 {
 	if (_hit_points == 0)
 	{
-		std::cout << "ClapTrap " << _name << " can not take damage because it is already dead." << std::endl;
+		std::cout << _name << " can not take damage because it is already dead." << std::endl;
 	
 	}
 	else if (amount >= _hit_points)
 	{
 		_hit_points = 0;
-		std::cout << "ClapTrap " << _name << " has taken " << amount << " points of damage and has been killed." << std::endl;
+		std::cout << _name << " has taken " << amount << " points of damage and has been killed." << std::endl;
 	}
 	else
 	{
 		_hit_points -= amount;
-		std::cout << "ClapTrap " << _name << " has taken " << amount << " points of damage, but is still holding on.. " << std::endl;
+		std::cout << _name << " has taken " << amount << " points of damage, but is still holding on.. " << std::endl;
 	}
 }
 
 void ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_hit_points == 0)
-{
-		std::cout << "ClapTrap " << _name << " can not heal because it is already dead." << std::endl;
+	{
+		std::cout << _name << " can not heal because it is already dead." << std::endl;
 	}
 	else if (_energy_points == 0)
 	{
-		std::cout << "ClapTrap " << _name << " can not heal because it has no energy points left.." << std::endl;
+		std::cout << _name << " can not heal because it has no energy points left.." << std::endl;
 	}
 	else
 	{
 		_energy_points--;
 		_hit_points += amount;
-		std::cout << "ClapTrap " << _name << " heals itself with " << amount << " points!" << std::endl;
+		std::cout << _name << " heals itself with " << amount << " points!" << std::endl;
 	}
 }
 

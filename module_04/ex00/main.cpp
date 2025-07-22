@@ -5,6 +5,14 @@
 #include "WrongAnimal.hpp"
 #include "WrongCat.hpp"
 
+#define DEFAULT     		"\033[0m"   // Reset to default colour
+#define RED         		"\033[31m"  // Red text
+#define GREEN       		"\033[32m"  // Green text
+#define YELLOW      		"\033[33m"  // Yellow text
+#define BLUE        		"\033[34m"  // Blue text
+#define MAGENTA     		"\033[35m"  // Magenta text
+#define CYAN        		"\033[36m"  // Cyan text
+
 // Running this code should print the specific sounds of the Dog and Cat classes, not the Animal’s.
 
 
@@ -82,22 +90,25 @@ int main()
 	const WrongAnimal wrong_animal;
 	const WrongCat not_a_cat;
 
-	std::cout << "Animal type of default_animal = " << default_animal.getType() << std::endl;
-	std::cout << "Animal type of cat = " << cat.getType() << std::endl;
-	std::cout << "Animal type of dog = " << dog.getType() << std::endl;
-	std::cout << "Animal type of wrong_animal = " << wrong_animal.getType() << std::endl;
-	std::cout << "Animal type of not_a_cat = " << not_a_cat.getType() << std::endl;
+	std::cout << YELLOW;
+	std::cout << "Animal type of default_animal	= " << default_animal.getType() << std::endl;
+	std::cout << "Animal type of cat		= " << cat.getType() << std::endl;
+	std::cout << "Animal type of dog		= " << dog.getType() << std::endl;
+	std::cout << "Animal type of wrong_animal	= " << wrong_animal.getType() << std::endl;
+	std::cout << "Animal type of not_a_cat	= " << not_a_cat.getType() << std::endl;
 
-	std::cout << "default_animal: ";
+	std::cout << GREEN;
+	std::cout << "default_animal:	";
 	default_animal.makeSound(); // will output an animal sound!
-	std::cout << "cat: ";
+	std::cout << "cat:		";
 	cat.makeSound(); // will output the cat sound!
-	std::cout << "dog: ";
+	std::cout << "dog:		";
 	dog.makeSound(); // will output the dog sound!
-	std::cout << "wrong_animal: ";
+	std::cout << "wrong_animal:	";
 	wrong_animal.makeSound(); // will output the wrong animal sound!
-	std::cout << "not_a_cat: ";
+	std::cout << "not_a_cat:	";
 	not_a_cat.makeSound(); // will output the wrong cat sound!
+	std::cout << DEFAULT;
 
 	return (0);
 }

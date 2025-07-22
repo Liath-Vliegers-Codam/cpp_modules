@@ -22,18 +22,15 @@ class ClapTrap
 		unsigned int _attack_damage;
 
 	public:
-		ClapTrap();
 		ClapTrap(std::string name);
 		~ClapTrap();
 
-		// Copy constructor
 		ClapTrap(const ClapTrap &other);
-		// Operator overload
 		ClapTrap &operator=(const ClapTrap &other);
 
-	void attack(const std::string& target);
-	void takeDamage(unsigned int amount);
-	void beRepaired(unsigned int amount);
+		void attack(const std::string& target);
+		void takeDamage(unsigned int amount);
+		void beRepaired(unsigned int amount);
 
-	void printStats() const;
+		void printStats() const;
 };
