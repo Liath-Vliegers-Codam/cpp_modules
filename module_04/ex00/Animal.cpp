@@ -7,11 +7,7 @@ Animal::Animal()
 	std::cout << "Animal default constructor called" << std::endl;
 	this->_type = "Animal";
 }
-Animal::Animal(const std::string &type)
-{
-	std::cout << "Animal constructor called, a " << type << " was created" << std::endl;
-	this->_type = type;
-}
+
 Animal::~Animal()
 {
 	std::cout << "Animal destructor called" << std::endl;
@@ -20,7 +16,7 @@ Animal::~Animal()
 Animal::Animal(const Animal &other)
 {
 	std::cout << "Animal copy constructor called" << std::endl;
-	this->_type = other._type;
+	*this = other;
 }
 
 Animal &Animal::operator=(const Animal &other)

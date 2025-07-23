@@ -2,10 +2,10 @@
 
 #include <iostream>
 #include <string>
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Brain.hpp"
 
-class Cat : public Animal
+class Cat : public AAnimal
 {
 	private:
 		Brain *_brain;
@@ -18,5 +18,4 @@ class Cat : public Animal
 		Cat &operator=(const Cat &other);
 
 		void makeSound() const;
-		// const std::string &getType() const;
 };

@@ -1,4 +1,4 @@
-#include "Animal.hpp"
+#include "AAnimal.hpp"
 #include "Dog.hpp"
 #include "Cat.hpp"
 #include "WrongAnimal.hpp"
@@ -18,7 +18,7 @@ void test_direct_vs_polymorphic()
 	{
 		std::cout << YELLOW << "\nDIRECT INSTANTIATION - Creating objects directly by their specific type:" << DEFAULT << std::endl;
 
-		Animal		direct_animal;
+		// AAnimal		direct_animal;  // Cannot instantiate abstract class
 		Dog			direct_dog;
 		Cat			direct_cat;
 		WrongAnimal	direct_wrong_animal;
@@ -26,8 +26,8 @@ void test_direct_vs_polymorphic()
 
 		std::cout << GREEN << "\nDirect calls - compile-time binding:" << DEFAULT << std::endl;
 
-		std::cout << "direct_animal is of type " << direct_animal.getType();
-		direct_animal.makeSound();
+		// std::cout << "direct_animal is of type " << direct_animal.getType();
+		// direct_animal.makeSound();
 		std::cout << "direct_dog is of type " << direct_dog.getType();
 		direct_dog.makeSound();
 		std::cout << "direct_cat is of type " << direct_cat.getType();
@@ -42,16 +42,16 @@ void test_direct_vs_polymorphic()
 	{
 		std::cout << YELLOW << "/nPOLYMORPHIC INSTANTIATION - Creating objects through base class pointers:" << DEFAULT << std::endl;
 
-		const Animal* poly_animal = new Animal();
-		const Animal* poly_dog = new Dog();
-		const Animal* poly_cat = new Cat();
+		// const AAnimal* poly_animal = new AAnimal();  // Cannot instantiate abstract class
+		const AAnimal* poly_dog = new Dog();
+		const AAnimal* poly_cat = new Cat();
 		const WrongAnimal* poly_wrong_animal = new WrongAnimal();
 		const WrongAnimal* poly_wrong_cat = new WrongCat();
 
 		std::cout << GREEN << "\nPolymorphic calls - runtime binding:" << DEFAULT << std::endl;
 
-		std::cout << "poly_animal is of type " << poly_animal->getType();
-		poly_animal->makeSound();
+		// std::cout << "poly_animal is of type " << poly_animal->getType();
+		// poly_animal->makeSound();
 		std::cout << "poly_dog is of type " << poly_dog->getType();
 		poly_dog->makeSound();
 		std::cout << "poly_cat is of type " << poly_cat->getType();
@@ -62,12 +62,7 @@ void test_direct_vs_polymorphic()
 		poly_wrong_cat->makeSound();
 		std::cout << std::endl;
 
-		// Key differences:
-		// 1. Animal classes: Same Animal* pointer type, different behaviors (virtual functions)
-		// 2. WrongAnimal classes: Same WrongAnimal* pointer type, SAME behavior (no virtual)
-		// Notice: poly_wrong_cat calls WrongAnimal::makeSound(), not WrongCat::makeSound()!
-
-		delete poly_animal;
+		// delete poly_animal;  // Cannot instantiate abstract class
 		delete poly_dog;
 		delete poly_cat;
 		delete poly_wrong_animal;
@@ -80,7 +75,7 @@ void test_array_of_animals()
 	std::cout << YELLOW << "\nARRAY TEST - creating 5 dogs and 5 cats" << DEFAULT << std::endl;
     
     const int array_size = 10;
-    Animal* animals[array_size];
+    AAnimal* animals[array_size];
     
     for (int i = 0; i < array_size; i++)
     {
@@ -102,7 +97,6 @@ void test_array_of_animals()
         delete animals[i];
     }
 }
-
 
 void test_deep_copy()
 {
@@ -126,5 +120,6 @@ int main()
     test_direct_vs_polymorphic();
     test_array_of_animals();
     test_deep_copy();
+	
 	return (0);
 }

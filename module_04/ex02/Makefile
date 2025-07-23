@@ -7,13 +7,13 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++98 #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	Animal.hpp \
+INCL		:=	AAnimal.hpp \
 				Brain.cpp \
 				Cat.hpp \
 				Dog.hpp \
 				WrongAnimal.hpp \
 				WrongCat.hpp
-SRCS		:= 	Animal.cpp \
+SRCS		:= 	AAnimal.cpp \
 				Brain.cpp \
 				Cat.cpp \
 				Dog.cpp \
