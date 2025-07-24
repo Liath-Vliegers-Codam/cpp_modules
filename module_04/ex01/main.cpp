@@ -103,7 +103,6 @@ void test_array_of_animals()
     }
 }
 
-
 void test_deep_copy()
 {
    	std::cout << YELLOW << "\nDEEP COPY TEST - copying ideas of the animals" << DEFAULT << std::endl;

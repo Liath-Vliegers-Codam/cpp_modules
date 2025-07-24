@@ -9,11 +9,11 @@ class Animal
 		std::string _type;
 	public:
 		Animal();
-		virtual ~Animal(); // Virtual destructor for proper cleanup
+		virtual ~Animal();
 
 		Animal(const Animal &other);
 		Animal &operator=(const Animal &other);
 
-		virtual void makeSound() const; // Virtual enables polymorphism
+		virtual void makeSound() const;
 		const std::string &getType() const;
 };

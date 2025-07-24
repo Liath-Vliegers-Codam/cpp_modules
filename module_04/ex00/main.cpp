@@ -29,12 +29,10 @@ int main()
 	const WrongAnimal* wrong_cat_ptr = new WrongCat();
 	const WrongCat wrong_cat;
 
-
 	// Both dog_ptr and cat_ptr are of type Animal*
 	// At runtime, C++ determines the actual object type (Dog or Cat)
 	// The correct makeSound() method is called based on the actual object, not the pointer type
 	// This works because Animal::makeSound() is declared as virtual
-
 
 	std::cout << YELLOW;
 	std::cout << "animal_ptr is of type " << animal_ptr->getType() << " and makes this sound:		";
@@ -53,7 +51,7 @@ int main()
 	wrong_cat_ptr->makeSound(); //will output the wrong Animal sound!
 	
 	std::cout << "wrong_cat is of type " << wrong_cat.getType() << " and makes this sound:		";
-	wrong_cat.makeSound(); //will output the wrong Animal sound!
+	wrong_cat.makeSound(); //will output the wrong Cat sound!
 	std::cout << DEFAULT;
 
 	delete animal_ptr;
@@ -69,34 +67,3 @@ int main()
 // The WrongAnimal class is a base class that does not have a virtual function for makeSound
 // so the WrongCat class does not override it properly. 
 
-
-// int main()
-// {
-// 	const Animal		default_animal;
-// 	const Cat			cat;
-// 	const Dog			dog;
-// 	const WrongAnimal	wrong_animal;
-// 	const WrongCat		not_a_cat;
-
-// 	std::cout << YELLOW;
-// 	std::cout << "Animal type of default_animal	= " << default_animal.getType() << std::endl;
-// 	std::cout << "Animal type of cat		= " << cat.getType() << std::endl;
-// 	std::cout << "Animal type of dog		= " << dog.getType() << std::endl;
-// 	std::cout << "Animal type of wrong_animal	= " << wrong_animal.getType() << std::endl;
-// 	std::cout << "Animal type of not_a_cat	= " << not_a_cat.getType() << std::endl;
-
-// 	std::cout << GREEN;
-// 	std::cout << "default_animal:	";
-// 	default_animal.makeSound(); // will output an animal sound!
-// 	std::cout << "cat:		";
-// 	cat.makeSound(); // will output the cat sound!
-// 	std::cout << "dog:		";
-// 	dog.makeSound(); // will output the dog sound!
-// 	std::cout << "wrong_animal:	";
-// 	wrong_animal.makeSound(); // will output the wrong animal sound!
-// 	std::cout << "not_a_cat:	";
-// 	not_a_cat.makeSound(); // will output the wrong cat sound!
-// 	std::cout << DEFAULT;
-
-// 	return (0);
-// }

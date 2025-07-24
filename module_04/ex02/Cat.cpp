@@ -24,11 +24,11 @@ Cat &Cat::operator=(const Cat &other)
     std::cout << "Cat copy assignment operator called" << std::endl;
     if (this != &other)
     {
-        AAnimal::operator=(other);
-        delete this->_brain;
-        this->_brain = new Brain(*other._brain);
+		this->_type = other._type;
+		delete this->_brain;
+		this->_brain = new Brain(*other._brain);
     }
-    return *this;
+    return (*this);
 }
 
 void Cat::makeSound() const
