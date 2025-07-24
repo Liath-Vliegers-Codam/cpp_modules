@@ -18,4 +18,6 @@ class Cat : public AAnimal
 		Cat &operator=(const Cat &other);
 
 		void makeSound() const;
+		void setIdea(int index, const std::string& idea);
+		const std::string& getIdea(int index) const;
 };

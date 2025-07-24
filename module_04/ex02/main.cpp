@@ -73,53 +73,87 @@ void test_direct_vs_polymorphic()
 void test_array_of_animals()
 {
 	std::cout << YELLOW << "\nARRAY TEST - creating 5 dogs and 5 cats" << DEFAULT << std::endl;
-    
-    const int array_size = 10;
-    AAnimal* animals[array_size];
-    
-    for (int i = 0; i < array_size; i++)
-    {
-        if (i < array_size / 2)
-            animals[i] = new Dog();
-        else
-            animals[i] = new Cat();
-    }
-    
-    std::cout << GREEN << "Testing polymorphic behavior:" << DEFAULT << std::endl;
-    for (int i = 0; i < array_size; i++)
-    {
-        std::cout << animals[i]->getType() << ": ";
-        animals[i]->makeSound();
-    }
+		
+	const int array_size = 10;
+	AAnimal* animals[array_size];
+		
+	for (int i = 0; i < array_size; i++)
+	{
+		if (i < array_size / 2)
+			animals[i] = new Dog();
+		else
+			animals[i] = new Cat();
+	}
+		
+	std::cout << GREEN << "Testing polymorphic behavior:" << DEFAULT << std::endl;
+	for (int i = 0; i < array_size; i++)
+	{
+		std::cout << animals[i]->getType() << ": ";
+		animals[i]->makeSound();
+	}
 	std::cout << std::endl;
-    for (int i = 0; i < array_size; i++)
-    {
-        delete animals[i];
-    }
+	for (int i = 0; i < array_size; i++)
+	{
+		delete animals[i];
+	}
 }
 
 void test_deep_copy()
 {
-   	std::cout << YELLOW << "\nDEEP COPY TEST - copying ideas of the animals" << DEFAULT << std::endl;
+	std::cout << YELLOW << "\nDEEP COPY TEST - copying ideas of the animals" << DEFAULT << std::endl;
 
-    Dog original_dog;
-    Dog copied_dog(original_dog);
-    Dog assigned_dog;
-    assigned_dog = original_dog;
+	Dog original_dog;
+		
+	std::cout << GREEN << "\nSetting ideas for original dog:" << DEFAULT << std::endl;
+	original_dog.setIdea(0, "Chase the mailman");
+	original_dog.setIdea(1, "Bury bones in the garden");
+	original_dog.setIdea(2, "Bark at strangers");
+	original_dog.setIdea(3, "Guard the house");
+	original_dog.setIdea(4, "Play fetch with humans");
+		
+	std::cout << "Original dog's ideas:" << std::endl;
+	for (int i = 0; i < 5; i++)
+	{
+		std::cout << "  [" << i << "] " << original_dog.getIdea(i) << std::endl;
+	}
 
-    std::cout << "\nOriginal dog address: " << &original_dog << std::endl;
-    std::cout << "Copied dog address: " << &copied_dog << std::endl;
-    std::cout << "Assigned dog address: " << &assigned_dog << std::endl;
+	std::cout << "\nCopying original dog:" << std::endl;
+	Dog copied_dog(original_dog);
+	Dog assigned_dog;
+	assigned_dog = original_dog;
 
-    if (&original_dog != &copied_dog && &original_dog != &assigned_dog)
-        std::cout << GREEN << "Deep copy successful - different addresses\n" << DEFAULT << std::endl;
+	std::cout << "\nDog object addresses:" << std::endl;
+	std::cout << "Original dog: " << &original_dog << std::endl;
+	std::cout << "Copied dog: " << &copied_dog << std::endl;
+	std::cout << "Assigned dog: " << &assigned_dog << std::endl;
+
+	std::cout << CYAN << "\nTesting deep copy - modifying original dog's ideas:" << DEFAULT << std::endl;
+	original_dog.setIdea(0, "Sleep all day");
+	original_dog.setIdea(1, "Eat treats");
+
+	std::cout << "After modification:" << std::endl;
+	std::cout << "Original dog idea [0]: " << original_dog.getIdea(0) << std::endl;
+	std::cout << "Original dog idea [1]: " << original_dog.getIdea(1) << std::endl;
+
+	std::cout << "Copied dog idea [0]: " << copied_dog.getIdea(0) << std::endl;
+	std::cout << "Copied dog idea [1]: " << copied_dog.getIdea(1) << std::endl;
+	
+	std::cout << "Assigned dog idea [0]: " << assigned_dog.getIdea(0) << std::endl;
+	std::cout << "Assigned dog idea [1]: " << assigned_dog.getIdea(1) << std::endl;
+
+	std::cout << CYAN << "\nTesting copied dog independence:" << DEFAULT << std::endl;
+		
+	copied_dog.setIdea(2, "Dream about cats");
+		
+	std::cout << "Original dog idea [2]: " << original_dog.getIdea(2) << std::endl;
+	std::cout << "Copied dog idea [2]: " << copied_dog.getIdea(2) << "\n" << std::endl;
 }
 
 int main()
 {
-    test_direct_vs_polymorphic();
-    test_array_of_animals();
-    test_deep_copy();
+	test_direct_vs_polymorphic();
+	test_array_of_animals();
+	test_deep_copy();
 	
 	return (0);
 }
