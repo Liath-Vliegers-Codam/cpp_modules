@@ -7,9 +7,11 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++11 #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	Bureaucrat.hpp
+INCL		:=	Bureaucrat.hpp \
+				AForm.cpp
 SRCS		:= 	main.cpp \
-				Bureaucrat.cpp
+				Bureaucrat.cpp \
+				AForm.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

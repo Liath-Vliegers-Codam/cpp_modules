@@ -37,134 +37,73 @@
 	As usual, submit some tests to prove that everything works as expected.
 */
 
-#include <iostream>
+#include "Bureaucrat.hpp"
 
-#define MAX_GRADE 1
-#define MIN_GRADE 150
-
-
-class Bureaucrat
+int main(void)
 {
-	private:
-		const std::string _name;
-		int _grade;
-
-	public:
-		Bureaucrat(const std::string name, int grade);
-		~Bureaucrat();
-
-		Bureaucrat(const Bureaucrat& other);
-		Bureaucrat& operator=(const Bureaucrat& other);
-
-
-		std::string getName() const;
-		int getGrade() const;
-
-		void incrementGrade();
-		void decrementGrade();
-
-		std::string GradeTooHighException();
-		std::string GradeTooLowException();
-};
-
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
-
-
-Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
-{
-	if (grade < 1)
-		std::cout << GradeTooHighException() << std::endl;
-	if (grade > 150)
-		std::cout << GradeTooLowException() << std::endl;
-}
-
-Bureaucrat::~Bureaucrat()
-{
-
-}
-
-Bureaucrat::Bureaucrat(const Bureaucrat& other) : _name(other._name)
-{
-	*this = other;
-}
-
-Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) 
-{
-	if (this != &other)
-	{
-		// _name is const, so we can't assign to it here
-		_grade = other._grade;
-	}
-	return *this;
-}
-
-std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
-{
-	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
-	return (os);
-}
-
-std::string Bureaucrat::getName() const
-{
-	return (_name);
-}
-
-int Bureaucrat::getGrade() const
-{
-	return (_grade);
-}
-
-void Bureaucrat::incrementGrade()
-{
-	if (this->_grade + 1 > 150)
-		throw GradeTooHighException();
-	else
-		this->_grade++;
-}
-
-void Bureaucrat::decrementGrade()
-{
-	if (this->_grade - 1 < 1)
-		throw GradeTooLowException();
-	else
-		this->_grade--;
-}
-
-std::string Bureaucrat::GradeTooHighException()
-{
-	return ("MAX Grade");
-}
-
-std::string Bureaucrat::GradeTooLowException()
-{
-	return ("MIN Grade");
-}
-
-
-
-int	main(void)
-{
+	// Test valid construction and output
 	try
 	{
-		Bureaucrat john("John", 10);
-		Bureaucrat bert("Bert", 0);
-		Bureaucrat ernie("Ernie", 1000);
+		Bureaucrat luffy("Luffy", 10);
+		std::cout << luffy << std::endl;
 
-		std::cout << john << std::endl;
-		std::cout << bert << std::endl;
-		std::cout << ernie << std::endl;
+		luffy.incrementGrade();
+		std::cout << luffy << std::endl;
 
-		john.incrementGrade();
-		std::cout << john << std::endl;
-
-		john.decrementGrade();
-		std::cout << john << std::endl;
+		luffy.decrementGrade();
+		std::cout << luffy << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << e.what() << std::endl;
+		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
 
+	// Test construction with grade too high
+	try
+	{
+		Bureaucrat zorro("Zorro", 0);
+		std::cout << zorro << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
+
+	// Test construction with grade too low
+	try
+	{
+		Bureaucrat usopp("Usopp", 1000);
+		std::cout << usopp << std::endl;
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
+
+	// Test incrementing at highest grade
+	try
+	{
+		Bureaucrat nami("Nami", 1);
+		std::cout << nami << std::endl;
+		nami.incrementGrade();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
+
+	// Test decrementing at lowest grade
+	try
+	{
+		Bureaucrat sanji("Sanji", 150);
+		std::cout << sanji << std::endl;
+		sanji.decrementGrade();
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception caught: " << e.what() << std::endl;
+	}
+	
 	return (0);
 }
 
