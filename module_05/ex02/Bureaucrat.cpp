@@ -1,4 +1,4 @@
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
@@ -70,7 +70,7 @@ void Bureaucrat::decrementGrade()
 		this->_grade++;
 }
 
-void Bureaucrat::signForm(Form& formToSign)
+void Bureaucrat::signForm(AForm& formToSign)
 {
 	
 	if (formToSign.getSignedStatus() == true)

@@ -1,8 +1,8 @@
 
-#include "Form.hpp"
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
-Form::Form(const std::string name, int grade_to_sign, int grade_to_execute) : _name(name), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
+AForm::AForm(const std::string name, int grade_to_sign, int grade_to_execute) : _name(name), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
 {
 	if (grade_to_sign < 1 || grade_to_execute < 1)
 	{
@@ -15,18 +15,18 @@ Form::Form(const std::string name, int grade_to_sign, int grade_to_execute) : _n
 	this->_signed_status = false;
 }
 
-Form::~Form()
+AForm::~AForm()
 {
 
 }
 
 
-Form::Form(const Form& other) : _name(other._name), _signed_status(other._signed_status),  _grade_to_sign(other._grade_to_sign), _grade_to_execute(other._grade_to_execute)
+AForm::AForm(const AForm& other) : _name(other._name), _signed_status(other._signed_status),  _grade_to_sign(other._grade_to_sign), _grade_to_execute(other._grade_to_execute)
 {
 	*this = other;
 }
 
-Form& Form::operator=(const Form& other)
+AForm& AForm::operator=(const AForm& other)
 {
 	if (this != &other)
 	{
@@ -37,42 +37,41 @@ Form& Form::operator=(const Form& other)
 }
 
 
-std::string Form::getName() const
+std::string AForm::getName() const
 {
-	return (_name);
+	return (this->_name);
 }
 
-bool Form::getSignedStatus() const
+bool AForm::getSignedStatus() const
 {
-	return (_signed_status);
+	return (this->_signed_status);
 }
 
-int Form::getGradeToSign() const
+int AForm::getGradeToSign() const
 {
-	return (_grade_to_sign);
+	return (this->_grade_to_sign);
 }
 
-int Form::getGradeToExecute() const
+int AForm::getGradeToExecute() const
 {
-	return (_grade_to_execute);
+	return (this->_grade_to_execute);
 }
 
-
-void Form::beSigned(Bureaucrat &b_crat)
+void AForm::beSigned(Bureaucrat &b_crat)
 {
 	if (b_crat.getGrade() <= this->_grade_to_sign)
 	{
 		this->_signed_status = true;
+		// std::cout << "Form " << this->_name << " is signed by " << b_crat.getName() << std::endl;
 	}
 	else
 		throw GradeTooLowException();
 }
 
-
-std::ostream &operator<<(std::ostream &os, const Form &form)
+std::ostream &operator<<(std::ostream &os, const AForm &form)
 {
-	os << BLUE << "-------- Form Info: --------\n" \
-	<< "Form name: " << form.getName() << "\n" << "Grade to sign: " << form.getGradeToSign() << "\n" << "Grade to execute: " << form.getGradeToExecute() << "\n" << "Form Signed: " << form.getSignedStatus()\
+	os << BLUE << "-------- AForm Info: --------\n" \
+	<< "AForm name: " << form.getName() << "\n" << "Grade to sign: " << form.getGradeToSign() << "\n" << "Grade to execute: " << form.getGradeToExecute() << "\n" << "AForm Signed: " << form.getSignedStatus()\
 	<< "\n----------------------------" << DEFAULT;
 	return (os);
 }

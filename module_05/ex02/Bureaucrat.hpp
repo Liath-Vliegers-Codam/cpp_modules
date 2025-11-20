@@ -14,7 +14,7 @@
 #define MAX_GRADE 1
 #define MIN_GRADE 150
 
-class Form;
+class AForm;
 
 class Bureaucrat 
 {
@@ -35,7 +35,7 @@ class Bureaucrat
 		void incrementGrade();
 		void decrementGrade();
 
-		void signForm(Form& formToSign);
+		void signForm(AForm& formToSign);
 		// member function in the Bureaucrat class. This function must call Form::beSigned() to attempt to sign the form. 
 		// If the form is signed successfully, it will print something like:
 		// <bureaucrat> signed <form>

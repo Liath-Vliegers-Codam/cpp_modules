@@ -43,92 +43,157 @@ If not, print an explicit error message.
 Implement and submit some tests to ensure everything works as expected.
 */
 
-#include "Form.hpp"
+// #include <iostream>
+// #include <cstdlib>
+// #include <ctime>
+
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
+#include "ShrubberyCreationForm.hpp"
+#include "RobotomyRequestForm.hpp"
+#include "PresidentialPardonForm.hpp"
 
 int main(void)
 {
-    std::cout << YELLOW << "\n===== Test valid Form construction and output: =====\n" << DEFAULT << std::endl;
-    try
-    {
-        Form leaveForm("Leave Request", 50, 30);
-        std::cout << leaveForm << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
 
-    std::cout << YELLOW << "\n===== Test Form construction with grade too high: =====\n" << DEFAULT << std::endl;
-    try
-    {
-        Form invalidFormHigh("Invalid High", 0, 30);
-        std::cout << invalidFormHigh << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
+	std::cout << YELLOW << "\n===== ShrubberyCreationForm tests =====\n" << DEFAULT << std::endl;
+	try
+	{
+		ShrubberyCreationForm shrub("home");
+		std::cout << shrub << std::endl;
 
-    std::cout << YELLOW << "\n===== Test Form construction with grade too low: =====\n" << DEFAULT << std::endl;
-    try
-    {
-        Form invalidFormLow("Invalid Low", 151, 30);
-        std::cout << invalidFormLow << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
+		Bureaucrat alice("Alice", 140);
 
-    std::cout << YELLOW << "\n===== Test signing with sufficient grade: =====\n" << DEFAULT << std::endl;
-    try
-    {
-        Bureaucrat robin("Robin", 10);
-        std::cout << robin << std::endl;
-        Form permit("Permit", 20, 10);
-        std::cout << permit << std::endl;
+		std::cout << alice << std::endl;
 
-        robin.signForm(permit);
-        std::cout << permit << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
+		alice.signForm(shrub);
 
-    std::cout << YELLOW << "\n===== Test signing with insufficient grade: =====\n" << DEFAULT << std::endl;
-    try
-    {
-        Bureaucrat chopper("Chopper", 100);
-        std::cout << chopper << std::endl;
-        Form secret("Secret Doc", 50, 10);
-        std::cout << secret << std::endl;
+		try
+		{
+			shrub.execute(alice);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << "Execution by Alice failed: " << e.what() << std::endl;
+		}
 
-        chopper.signForm(secret);
-        std::cout << secret << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
+		Bureaucrat bob("Bob", 136);
+		std::cout << bob << std::endl;
 
-    std::cout << YELLOW << "\n===== Test signing an already signed form: =====\n" << DEFAULT << std::endl;
-    try
-    {
-        Bureaucrat franky("Franky", 1);
-        std::cout << franky << std::endl;
-        Form blueprint("Blueprint", 10, 5);
-        std::cout << blueprint << std::endl;
+		try
+		{
+			shrub.execute(bob);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << "Execution by Bob failed: " << e.what() << std::endl;
+		}
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Exception: " << e.what() << std::endl;
+	}
 
-        franky.signForm(blueprint);
-        franky.signForm(blueprint); // Should not throw, but should indicate already signed
-        std::cout << blueprint << std::endl;
-    }
-    catch (std::exception &e)
-    {
-        std::cout << "Exception caught: " << e.what() << std::endl;
-    }
+	std::cout << YELLOW << "\n===== RobotomyRequestForm tests =====\n" << DEFAULT << std::endl;
+	try
+	{
+		RobotomyRequestForm robo("target_bot");
+		std::cout << robo << std::endl;
 
-    return (0);
+		Bureaucrat chopper("Chopper", 100);
+		std::cout << chopper << std::endl;
+		chopper.signForm(robo); // expected to fail (sign grade 72)
+
+		Bureaucrat drillMaster("DrillMaster", 50);
+		std::cout << drillMaster << std::endl;
+		drillMaster.signForm(robo); // should succeed (50 <= 72)
+
+		try
+		{
+			robo.execute(drillMaster); // expected to fail (exec grade 45)
+		}
+		catch (std::exception &e)
+		{
+			std::cout << "Execution by DrillMaster failed: " << e.what() << std::endl;
+		}
+
+		Bureaucrat execGuy("ExecGuy", 40);
+		std::cout << execGuy << std::endl;
+		for (int i = 0; i < 10; ++i)
+		{
+			try
+			{
+				robo.execute(execGuy); // random success/failure
+			}
+			catch (std::exception &e)
+			{
+				std::cout << "Execution attempt " << (i + 1) << " failed: " << e.what() << std::endl;
+			}
+		}
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Robotomy tests exception: " << e.what() << std::endl;
+	}
+
+
+	std::cout << YELLOW << "\n===== PresidentialPardonForm tests =====\n" << DEFAULT << std::endl;
+	try
+	{
+		PresidentialPardonForm pardon("Marvin");
+		std::cout << pardon << std::endl;
+
+
+		Bureaucrat clerk("Clerk", 25);
+		std::cout << clerk << std::endl;
+		clerk.signForm(pardon); // should succeed (sign grade 25)
+
+		try
+		{
+			pardon.execute(clerk); // expected to fail (exec grade 5)
+		}
+		catch (std::exception &e)
+		{
+			std::cout << "Execution by Clerk failed: " << e.what() << std::endl;
+		}
+
+		Bureaucrat president("President", 1);
+		std::cout << president << std::endl;
+		try
+		{
+			pardon.execute(president); // should succeed
+		}
+				catch (std::exception &e)
+		{
+			std::cout << "Execution by President failed: " << e.what() << std::endl;
+		}
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Presidential tests exception: " << e.what() << std::endl;
+	}
+
+
+	std::cout << YELLOW << "\n===== Unsigned form execution test =====\n" << DEFAULT << std::endl;
+	try
+	{
+		ShrubberyCreationForm unsignedForm("garden");
+		std::cout << unsignedForm << std::endl;
+
+		Bureaucrat smallGuy("SmallGuy", 1);
+		try
+		{
+			unsignedForm.execute(smallGuy); // should report that form is not signed
+		}
+		catch (std::exception &e)
+		{
+			std::cout << "Execution failed: " << e.what() << std::endl;
+		}
+	}
+	catch (std::exception &e)
+	{
+		std::cout << "Unsigned form test exception: " << e.what() << std::endl;
+	}
+
+	return (0);
 }
