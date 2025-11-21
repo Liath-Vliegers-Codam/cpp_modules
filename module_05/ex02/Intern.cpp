@@ -4,25 +4,25 @@
 #include "RobotomyRequestForm.hpp"
 #include "AForm.hpp"
 
-
-Intern::Intern(const Intern &form)
+// Constructors
+Intern::Intern()
 {
-	*this = form;
+	std::cout << "Intern default constructor is called" << std::endl;
 }
 
-Intern&	Intern::operator=(const Intern &form)
+Intern::Intern(const Intern &other)
 {
-	if (sizeof(form))
-		std::cout << "Intern copy assignment is called" << std::endl;
-	return (*this);
+	std::cout << "Intern copy constructor is called" << std::endl;
+	*this = other;
 }
 
+// Destructor
 Intern::~Intern()
 {
-
+	std::cout << "Intern destructor is called "  << std::endl;
 }
 
-
+// Member functions
 static	AForm* createShrubberyCreatorForm(std::string const &target)
 {
 	return (new ShrubberyCreationForm(target));
@@ -38,7 +38,7 @@ static	AForm* createPresidentialPardonForm(std::string const &target)
 	return (new PresidentialPardonForm(target));
 }
 
-AForm &Intern::makeForm(std::string const &form_name, std::string const &form_target)
+AForm *Intern::makeForm(std::string const &form_name, std::string const &form_target)
 {
 	std::string form_names[3] = {"shrubbery creation form", "robotomy request form", "presidential pardon form"};
 	AForm* (*formConstructors[3])(std::string const &) = {createShrubberyCreatorForm, createRobotomyRequestForm, createPresidentialPardonForm};
@@ -48,10 +48,18 @@ AForm &Intern::makeForm(std::string const &form_name, std::string const &form_ta
 		if (form_names[i] == form_name)
 		{
 			std::cout << "Intern created " << form_name << std::endl;
-			return (*(formConstructors[i])(form_target));
+			return ((formConstructors[i])(form_target));
 		}
 	}
 	throw FormNotFound();
+}
+
+// Operators
+Intern&	Intern::operator=(const Intern &form)
+{
+	if (sizeof(form))
+		std::cout << "Intern copy assignment is called" << std::endl;
+	return (*this);
 }
 
 std::ostream& operator<<(std::ostream& os, Intern &form)

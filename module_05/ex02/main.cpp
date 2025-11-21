@@ -62,31 +62,31 @@ int main(void)
 		ShrubberyCreationForm shrub("home");
 		std::cout << shrub << std::endl;
 
-		Bureaucrat alice("Alice", 140);
+		Bureaucrat robin("Robin", 140);
 
-		std::cout << alice << std::endl;
+		std::cout << robin << std::endl;
 
-		alice.signForm(shrub);
-
-		try
-		{
-			shrub.execute(alice);
-		}
-		catch (std::exception &e)
-		{
-			std::cout << "Execution by Alice failed: " << e.what() << std::endl;
-		}
-
-		Bureaucrat bob("Bob", 136);
-		std::cout << bob << std::endl;
+		robin.signForm(shrub);
 
 		try
 		{
-			shrub.execute(bob);
+			shrub.execute(robin);
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution by Bob failed: " << e.what() << std::endl;
+			std::cout << "Execution by Robin failed: " << e.what() << std::endl;
+		}
+
+		Bureaucrat zorro("Zorro", 136);
+		std::cout << zorro << std::endl;
+
+		try
+		{
+			shrub.execute(zorro);
+		}
+		catch (std::exception &e)
+		{
+			std::cout << "Execution by Zorro failed: " << e.what() << std::endl;
 		}
 	}
 	catch (std::exception &e)
@@ -104,26 +104,26 @@ int main(void)
 		std::cout << chopper << std::endl;
 		chopper.signForm(robo); // expected to fail (sign grade 72)
 
-		Bureaucrat drillMaster("DrillMaster", 50);
-		std::cout << drillMaster << std::endl;
-		drillMaster.signForm(robo); // should succeed (50 <= 72)
+		Bureaucrat franky("Franky", 50);
+		std::cout << franky << std::endl;
+		franky.signForm(robo); // should succeed (50 <= 72)
 
 		try
 		{
-			robo.execute(drillMaster); // expected to fail (exec grade 45)
+			robo.execute(franky); // expected to fail (exec grade 45)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution by DrillMaster failed: " << e.what() << std::endl;
+			std::cout << "Execution by Franky failed: " << e.what() << std::endl;
 		}
 
-		Bureaucrat execGuy("ExecGuy", 40);
-		std::cout << execGuy << std::endl;
+		Bureaucrat nami("Nami", 40);
+		std::cout << nami << std::endl;
 		for (int i = 0; i < 10; ++i)
 		{
 			try
 			{
-				robo.execute(execGuy); // random success/failure
+				robo.execute(nami); // random success/failure
 			}
 			catch (std::exception &e)
 			{
@@ -143,29 +143,28 @@ int main(void)
 		PresidentialPardonForm pardon("Marvin");
 		std::cout << pardon << std::endl;
 
-
-		Bureaucrat clerk("Clerk", 25);
-		std::cout << clerk << std::endl;
-		clerk.signForm(pardon); // should succeed (sign grade 25)
+		Bureaucrat sanji("Sanji", 25);
+		std::cout << sanji << std::endl;
+		sanji.signForm(pardon); // should succeed (sign grade 25)
 
 		try
 		{
-			pardon.execute(clerk); // expected to fail (exec grade 5)
+			pardon.execute(sanji); // expected to fail (exec grade 5)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution by Clerk failed: " << e.what() << std::endl;
+			std::cout << "Execution by Sanji failed: " << e.what() << std::endl;
 		}
 
-		Bureaucrat president("President", 1);
-		std::cout << president << std::endl;
+		Bureaucrat luffy("Luffy", 1);
+		std::cout << luffy << std::endl;
 		try
 		{
-			pardon.execute(president); // should succeed
+			pardon.execute(luffy); // should succeed
 		}
-				catch (std::exception &e)
+		catch (std::exception &e)
 		{
-			std::cout << "Execution by President failed: " << e.what() << std::endl;
+			std::cout << "Execution by Luffy failed: " << e.what() << std::endl;
 		}
 	}
 	catch (std::exception &e)
@@ -180,10 +179,10 @@ int main(void)
 		ShrubberyCreationForm unsignedForm("garden");
 		std::cout << unsignedForm << std::endl;
 
-		Bureaucrat smallGuy("SmallGuy", 1);
+		Bureaucrat ussop("Ussop", 1);
 		try
 		{
-			unsignedForm.execute(smallGuy); // should report that form is not signed
+			unsignedForm.execute(ussop); // should report that form is not signed
 		}
 		catch (std::exception &e)
 		{

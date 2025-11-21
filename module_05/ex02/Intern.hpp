@@ -9,6 +9,7 @@ class	Intern
 	public:
 
 		// Constructors
+		Intern();
 		Intern(const Intern &form);
 
 		// Operators
@@ -18,7 +19,7 @@ class	Intern
 		~Intern();
 
 		// Member functions
-		AForm&	makeForm(std::string const &form_name, std::string const &form_target);
+		AForm *makeForm(std::string const &form_name, std::string const &form_target);
 
 };
 

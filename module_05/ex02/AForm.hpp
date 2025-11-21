@@ -72,6 +72,6 @@ class FormNotFound : public AFormException
 public:
     const char* what() const throw()
     {
-        return "Form was not found!";
+        return "Form was not found or is invalid!";
     }
 };

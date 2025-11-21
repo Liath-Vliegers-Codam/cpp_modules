@@ -6,30 +6,21 @@
 // Constructors
 ShrubberyCreationForm::ShrubberyCreationForm(std::string target)  : AForm("ShrubberyCreationForm", 145, 137)
 {
+	std::cout << "ShrubberyCreationForm constructor is called" << std::endl;
 	this->_target = target;
 }
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm &form) : AForm(form)
 {
+	std::cout << "ShrubberyCreationForm copy constructor is called" << std::endl;
 	this->_target = form._target;
-}
-
-ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
-{
-	if (this != &other)
-	{
-		AForm::operator=(other);
-		this->_target = other._target;
-	}
-	return (*this);
 }
 
 // Destructor
 ShrubberyCreationForm::~ShrubberyCreationForm()
 {
-
+	std::cout << "ShrubberyCreationForm destructor is called for " << this->getName() << std::endl;
 }
-
 
 // Getters and Setters
 std::string &ShrubberyCreationForm::getTarget()
@@ -156,6 +147,17 @@ bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 }
 
 // Operators
+ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationForm &other)
+{
+	std::cout << "ShrubberyCreationForm copy assignment is called for ShrubberyCreationForm " << std::endl;
+	if (this != &other)
+	{
+		AForm::operator=(other);
+		this->_target = other._target;
+	}
+	return (*this);
+}
+
 std::ostream& operator<<(std::ostream &os, ShrubberyCreationForm &form)
 {
 	os << BLUE << "-------- Form Info: --------\n" \

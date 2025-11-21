@@ -2,8 +2,10 @@
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
+// Constructors
 Form::Form(const std::string name, int grade_to_sign, int grade_to_execute) : _name(name), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
 {
+	std::cout << "Form constructor is called for " << name << std::endl;
 	if (grade_to_sign < 1 || grade_to_execute < 1)
 	{
 		throw GradeTooHighException();
@@ -15,28 +17,19 @@ Form::Form(const std::string name, int grade_to_sign, int grade_to_execute) : _n
 	this->_signed_status = false;
 }
 
-Form::~Form()
-{
-
-}
-
-
 Form::Form(const Form& other) : _name(other._name), _signed_status(other._signed_status),  _grade_to_sign(other._grade_to_sign), _grade_to_execute(other._grade_to_execute)
 {
+	std::cout << "Form copy constructor is called" << std::endl;
 	*this = other;
 }
 
-Form& Form::operator=(const Form& other)
+// Destructor
+Form::~Form()
 {
-	if (this != &other)
-	{
-		// _name and grades are const, so we can't assign to them here
-		_signed_status = other._signed_status;
-	}
-	return (*this);
+	std::cout << "Form destructor is called for " << this->_name << std::endl;
 }
 
-
+// Getters and Setters
 std::string Form::getName() const
 {
 	return (_name);
@@ -57,7 +50,7 @@ int Form::getGradeToExecute() const
 	return (_grade_to_execute);
 }
 
-
+// Member functions
 void Form::beSigned(Bureaucrat &b_crat)
 {
 	if (b_crat.getGrade() <= this->_grade_to_sign)
@@ -68,6 +61,16 @@ void Form::beSigned(Bureaucrat &b_crat)
 		throw GradeTooLowException();
 }
 
+// Operators
+Form& Form::operator=(const Form& other)
+{
+	if (this != &other)
+	{
+		// _name and grades are const, so we can't assign to them here
+		_signed_status = other._signed_status;
+	}
+	return (*this);
+}
 
 std::ostream &operator<<(std::ostream &os, const Form &form)
 {

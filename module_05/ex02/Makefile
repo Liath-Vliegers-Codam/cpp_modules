@@ -11,14 +11,16 @@ INCL		:=	AForm.hpp \
 				Bureaucrat.hpp \
 				PresidentialPardonForm.hpp \
 				RobotomyRequestForm.hpp \
-				ShrubberyCreationForm.hpp
+				ShrubberyCreationForm.hpp \
+				Intern.hpp #DELETE IN EX02!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 				
 SRCS		:= 	AForm.cpp \
 				Bureaucrat.cpp \
 				PresidentialPardonForm.cpp \
 				RobotomyRequestForm.cpp \
 				ShrubberyCreationForm.cpp \
-				main.cpp
+				ex03_main.cpp \
+				Intern.cpp #DELETE IN EX02!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

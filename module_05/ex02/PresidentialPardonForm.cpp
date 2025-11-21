@@ -4,29 +4,26 @@
 // Constructors
 PresidentialPardonForm::PresidentialPardonForm(std::string target) : AForm("PresidentialPardonForm", 25, 5)
 {
+	std::cout << "PresidentialPardonForm constructor is called" << std::endl;
 	this->_target = target;
 }
 
-PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &form) : AForm(form)
+PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm &other) : AForm(other)
 {
-	this->_target = form._target;
+	std::cout << "PresidentialPardonForm copy constructor is called" << std::endl;
+	this->_target = other._target;
 }
 
 // Destructor
 PresidentialPardonForm::~PresidentialPardonForm()
 {
-
+	std::cout << "PresidentialPardonForm destructor is called for " << this->getName() << std::endl;
 }
 
-// Operators
-PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &form)
+// Getters and Setters
+std::string &PresidentialPardonForm::getTarget()
 {
-	if (this != &form)
-	{
-		AForm::operator=(form);
-		this->_target = form._target;
-	}
-	return (*this);
+	return (this->_target);
 }
 
 // Member functions
@@ -44,10 +41,16 @@ bool PresidentialPardonForm::execute(Bureaucrat const & executor) const
 	return (false);
 }
 
-// Getters and Setters
-std::string &PresidentialPardonForm::getTarget()
+// Operators
+PresidentialPardonForm &PresidentialPardonForm::operator=(const PresidentialPardonForm &other)
 {
-	return (this->_target);
+	std::cout << "PresidentialPardonForm copy assignment is called for PresidentialPardonForm " << std::endl;
+	if (this != &other)
+	{
+		AForm::operator=(other);
+		this->_target = other._target;
+	}
+	return (*this);
 }
 
 std::ostream& operator<<(std::ostream &os, PresidentialPardonForm &form)
