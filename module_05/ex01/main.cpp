@@ -47,7 +47,7 @@ Implement and submit some tests to ensure everything works as expected.
 
 int main(void)
 {
-    std::cout << YELLOW << "\n===== Test valid Form construction and output: =====\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test valid Form construction and output: ------------\n" << DEFAULT << std::endl;
     try
     {
         Form leaveForm("Leave Request", 50, 30);
@@ -58,7 +58,7 @@ int main(void)
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
-    std::cout << YELLOW << "\n===== Test Form construction with grade too high: =====\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test Form construction with grade too high: ------------\n" << DEFAULT << std::endl;
     try
     {
         Form invalidFormHigh("Invalid High", 0, 30);
@@ -69,7 +69,7 @@ int main(void)
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
-    std::cout << YELLOW << "\n===== Test Form construction with grade too low: =====\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test Form construction with grade too low: ------------\n" << DEFAULT << std::endl;
     try
     {
         Form invalidFormLow("Invalid Low", 151, 30);
@@ -80,7 +80,7 @@ int main(void)
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
-    std::cout << YELLOW << "\n===== Test signing with sufficient grade: =====\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test signing with sufficient grade: ------------\n" << DEFAULT << std::endl;
     try
     {
         Bureaucrat robin("Robin", 10);
@@ -96,7 +96,7 @@ int main(void)
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
-    std::cout << YELLOW << "\n===== Test signing with insufficient grade: =====\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test signing with insufficient grade: ------------\n" << DEFAULT << std::endl;
     try
     {
         Bureaucrat chopper("Chopper", 100);
@@ -112,7 +112,7 @@ int main(void)
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
-    std::cout << YELLOW << "\n===== Test signing an already signed form: =====\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test signing an already signed form: ------------\n" << DEFAULT << std::endl;
     try
     {
         Bureaucrat franky("Franky", 1);

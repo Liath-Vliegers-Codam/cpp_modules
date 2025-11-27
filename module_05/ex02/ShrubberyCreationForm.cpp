@@ -45,9 +45,9 @@ bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 	else
 	{
 		shrubbery_file << \
-		"                                                                           #                                                                          \n" \
-		<< "                                                                                                                                                      \n" \
-		<< "                                                                           #                                                                          \n" \
+		"                                                                        #                                                                          \n" \
+		<< "                                                                       #                                                                              \n" \
+		<< "                                                                      #                                                                               \n" \
 		<< "                                                                     #                                                                                \n" \
 		<< "                                                                     #                            +                                                   \n" \
 		<< "                                                                     #    #*     #               +*+                                                  \n" \
@@ -137,7 +137,7 @@ bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		<< "                                                                   %#####%%%%%%%%                                                                     \n" \
 		<< "                                                                   %#####%%%%%%%%#                                                                    \n" \
 		<< "                                                                   %######%%%%%%%#                                                                    \n" \
-		<< "                                                                  %#########%%%%%#                                                                    \n" \
+		<< "                                                                   #########%%%%%#                                                                    \n" \
 		<< "                                                                    ##############                                                                    " << std::endl;
         shrubbery_file.close();
 		std::cout << "Execution of ShrubberyForm was succesfull. See created file." << std::endl;
@@ -164,7 +164,7 @@ std::ostream& operator<<(std::ostream &os, ShrubberyCreationForm &form)
 	<< "Form name: " << form.getName() << "\n" \
 	<< "Grade to sign: " << form.getGradeToSign() << "\n" \
 	<< "Grade to execute: " << form.getGradeToExecute() << "\n" \
-	<< "Form Signed: " << form.getSignedStatus() << "\n" \
+	<< "Form signed: " << form.getSignedStatus() << "\n" \
 	<< "Form target: " << form.getTarget() << "\n" \
 	<< "----------------------------" << DEFAULT;
 	return (os);

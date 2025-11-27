@@ -73,7 +73,7 @@ std::ostream& operator<<(std::ostream &os, RobotomyRequestForm &form)
 	<< "Form name: " << form.getName() << "\n" \
 	<< "Grade to sign: " << form.getGradeToSign() << "\n" \
 	<< "Grade to execute: " << form.getGradeToExecute() << "\n" \
-	<< "Form Signed: " << form.getSignedStatus() << "\n" \
+	<< "Form signed: " << form.getSignedStatus() << "\n" \
 	<< "Form target: " << form.getTarget() << "\n" \
 	<< "----------------------------" << DEFAULT;
 	return (os);

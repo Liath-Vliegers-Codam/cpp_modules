@@ -27,119 +27,7 @@
 	}
 */
 
-
-
 // REMOVE FormNotFound in AForm.hpp (EX02) ONLY FOR EX03
-
-
-// #include "Intern.hpp"
-// #include "AForm.hpp"
-// #include "ShrubberyCreationForm.hpp"
-// #include "RobotomyRequestForm.hpp"
-// #include "PresidentialPardonForm.hpp"
-// #include "Bureaucrat.hpp"
-
-// int main()
-// {
-// 	Intern someRandomIntern;
-// 	AForm *shrub_form;
-// 	AForm *robot_form;
-// 	AForm *president_form;
-// 	AForm *invalid_form;
-
-// 	std::cout << YELLOW << "=========== shrubbery creation test ===========" << DEFAULT << std::endl;
-// 	try
-// 	{
-// 		shrub_form = someRandomIntern.makeForm("shrubbery creation", "Home");
-// 	}
-// 	catch (const std::exception &e)
-// 	{
-// 		std::cout << "Intern failed to create form: " << e.what() << std::endl;
-// 	}
-
-// 	std::cout << YELLOW << "=========== robotomy request test ===========" << DEFAULT << std::endl;
-// 	try
-// 	{
-// 		robot_form = someRandomIntern.makeForm("robotomy request", "Bender");
-// 	}
-// 	catch (const std::exception &e)
-// 	{
-// 		std::cout << "Intern failed to create form: " << e.what() << std::endl;
-// 	}
-
-// 	std::cout << YELLOW << "=========== presidential pardon test ===========" << DEFAULT << std::endl;
-// 	try
-// 	{
-// 		president_form = someRandomIntern.makeForm("presidential pardon", "Marvin");
-// 	}
-// 	catch (const std::exception &e)
-// 	{
-// 		std::cout << "Intern failed to create form: " << e.what() << std::endl;
-// 	}
-
-// 	std::cout << YELLOW << "=========== invalid form test ===========" << DEFAULT << std::endl;
-// 	try
-// 	{
-// 		invalid_form = someRandomIntern.makeForm("invalid form", "Unknown");
-// 	}
-// 	catch (const std::exception &e)
-// 	{
-// 		std::cout << "Intern failed to create form: " << e.what() << std::endl;
-// 	}
-
-//     // Intern someRandomIntern;
-//     // Bureaucrat boss("Boss", 1);
-
-//     // const char* names[] = {
-//     //     "shrubbery creation",
-//     //     "robotomy request",
-//     //     "presidential pardon",
-//     //     "unknown form"
-//     // };
-
-//     // const char* targets[] = {
-//     //     "home",
-//     //     "Bender",
-//     //     "Marvin",
-//     //     "Nobody"
-//     // };
-
-//     // for (int i = 0; i < 4; ++i)
-//     // {
-//     //     std::cout << "\n-- Requesting form: " << names[i] << " (target: " << targets[i] << ") --" << std::endl;
-//     //     AForm* form = someRandomIntern.makeForm(names[i], targets[i]);
-//     //     if (!form)
-//     //     {
-//     //         std::cout << "Intern failed to create form: " << names[i] << std::endl;
-//     //         continue;
-//     //     }
-
-//     //     std::cout << *form << std::endl;
-
-//     //     try
-//     //     {
-//     //         boss.signForm(*form);
-//     //     }
-//     //     catch (std::exception& e)
-//     //     {
-//     //         std::cout << "Sign failed: " << e.what() << std::endl;
-//     //     }
-
-//     //     try
-//     //     {
-//     //         boss.executeForm(*form);
-//     //     }
-//     //     catch (std::exception& e)
-//     //     {
-//     //         std::cout << "Execute failed: " << e.what() << std::endl;
-//     //     }
-
-//     //     delete form;
-//     // }
-
-//     return (0);
-// }
-
 
 #include "Intern.hpp"
 #include "AForm.hpp"
@@ -158,7 +46,7 @@ int main()
 
 	try
 	{
-		std::cout << YELLOW << "=========== shrubbery creation test ===========" << DEFAULT << std::endl;
+		std::cout << YELLOW << "------------ shrubbery creation test ------------" << DEFAULT << std::endl;
 		shrub_form = someRandomIntern.makeForm("shrubbery creation form", "Home");
 		std::cout << *shrub_form << std::endl;
 	}
@@ -168,7 +56,7 @@ int main()
 	}
 	try
 	{
-		std::cout << YELLOW << "=========== robotomy request test ===========" << DEFAULT << std::endl;
+		std::cout << YELLOW << "------------ robotomy request test ------------" << DEFAULT << std::endl;
 		robot_form = someRandomIntern.makeForm("robotomy request form", "Bender");
 		std::cout << *robot_form << std::endl;
 	}
@@ -178,7 +66,7 @@ int main()
 	}
 	try
 	{
-		std::cout << YELLOW << "=========== presidential pardon test ===========" << DEFAULT << std::endl;
+		std::cout << YELLOW << "------------ presidential pardon test ------------" << DEFAULT << std::endl;
 		president_form = someRandomIntern.makeForm("presidential pardon form", "Marvin");
 		std::cout << *president_form << std::endl;
 	}
@@ -188,7 +76,7 @@ int main()
 	}
 	try
 	{
-		std::cout << YELLOW << "=========== invalid form test ===========" << DEFAULT << std::endl;
+		std::cout << YELLOW << "------------ invalid form test ------------" << DEFAULT << std::endl;
 		invalid_form = someRandomIntern.makeForm("invalid form", "Nobody");
 		std::cout << *invalid_form << std::endl;
 	}
@@ -231,8 +119,7 @@ int main()
 		std::cout << "Error during signing/execution: " << e.what() << std::endl;
 	}
 
-	std::cout << "==============================================================" << std::endl;
-
+	std::cout << "------------------------------------------------------------------------------------------" << std::endl;
 
     delete shrub_form;
     delete robot_form;

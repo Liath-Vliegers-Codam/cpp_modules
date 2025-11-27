@@ -41,7 +41,7 @@
 
 int main(void)
 {
-	// Test valid construction and output
+	std::cout << YELLOW << "------------ Test valid construction and output ------------" << DEFAULT << std::endl;
 	try
 	{
 		Bureaucrat luffy("Luffy", 10);
@@ -58,7 +58,7 @@ int main(void)
 		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
 
-	// Test construction with grade too high
+	std::cout << YELLOW << "------------ Test construction with grade too high ------------" << DEFAULT << std::endl;
 	try
 	{
 		Bureaucrat zorro("Zorro", 0);
@@ -69,7 +69,7 @@ int main(void)
 		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
 
-	// Test construction with grade too low
+	std::cout << YELLOW << "------------ Test construction with grade too low ------------" << DEFAULT << std::endl;
 	try
 	{
 		Bureaucrat usopp("Usopp", 1000);
@@ -80,7 +80,7 @@ int main(void)
 		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
 
-	// Test incrementing at highest grade
+	std::cout << YELLOW << "------------ Test incrementing at highest grade ------------" << DEFAULT << std::endl;
 	try
 	{
 		Bureaucrat nami("Nami", 1);
@@ -92,7 +92,7 @@ int main(void)
 		std::cout << "Exception caught: " << e.what() << std::endl;
 	}
 
-	// Test decrementing at lowest grade
+	std::cout << YELLOW << "------------ Test decrementing at lowest grade ------------" << DEFAULT << std::endl;
 	try
 	{
 		Bureaucrat sanji("Sanji", 150);
@@ -102,8 +102,6 @@ int main(void)
 	catch (std::exception &e)
 	{
 		std::cout << "Exception caught: " << e.what() << std::endl;
-	}
-	
+	}	
 	return (0);
 }
-

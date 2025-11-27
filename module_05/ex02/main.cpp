@@ -1,4 +1,3 @@
-
 /*
 Exercise 02 : No, you need form 28B, not 28C...
 Turn-in directory: ex02/
@@ -43,9 +42,6 @@ If not, print an explicit error message.
 Implement and submit some tests to ensure everything works as expected.
 */
 
-// #include <iostream>
-// #include <cstdlib>
-// #include <ctime>
 
 #include "Bureaucrat.hpp"
 #include "AForm.hpp"
@@ -55,8 +51,7 @@ Implement and submit some tests to ensure everything works as expected.
 
 int main(void)
 {
-
-	std::cout << YELLOW << "\n===== ShrubberyCreationForm tests =====\n" << DEFAULT << std::endl;
+	std::cout << YELLOW << "\n------------ ShrubberyCreationForm tests ------------\n" << DEFAULT << std::endl;
 	try
 	{
 		ShrubberyCreationForm shrub("home");
@@ -94,7 +89,7 @@ int main(void)
 		std::cout << "Exception: " << e.what() << std::endl;
 	}
 
-	std::cout << YELLOW << "\n===== RobotomyRequestForm tests =====\n" << DEFAULT << std::endl;
+	std::cout << YELLOW << "\n------------ RobotomyRequestForm tests ------------\n" << DEFAULT << std::endl;
 	try
 	{
 		RobotomyRequestForm robo("target_bot");
@@ -136,8 +131,7 @@ int main(void)
 		std::cout << "Robotomy tests exception: " << e.what() << std::endl;
 	}
 
-
-	std::cout << YELLOW << "\n===== PresidentialPardonForm tests =====\n" << DEFAULT << std::endl;
+	std::cout << YELLOW << "\n------------ PresidentialPardonForm tests ------------\n" << DEFAULT << std::endl;
 	try
 	{
 		PresidentialPardonForm pardon("Marvin");
@@ -172,8 +166,7 @@ int main(void)
 		std::cout << "Presidential tests exception: " << e.what() << std::endl;
 	}
 
-
-	std::cout << YELLOW << "\n===== Unsigned form execution test =====\n" << DEFAULT << std::endl;
+	std::cout << YELLOW << "\n------------ Unsigned form execution test ------------\n" << DEFAULT << std::endl;
 	try
 	{
 		ShrubberyCreationForm unsignedForm("garden");
