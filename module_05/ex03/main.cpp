@@ -27,7 +27,6 @@
 	}
 */
 
-// REMOVE FormNotFound in AForm.hpp (EX02) ONLY FOR EX03
 
 #include "Intern.hpp"
 #include "AForm.hpp"
@@ -47,7 +46,7 @@ int main()
 	try
 	{
 		std::cout << YELLOW << "------------ shrubbery creation test ------------" << DEFAULT << std::endl;
-		shrub_form = someRandomIntern.makeForm("shrubbery creation form", "Home");
+		shrub_form = someRandomIntern.makeForm("shrubbery creation form", "home");
 		std::cout << *shrub_form << std::endl;
 	}
 	catch (const std::exception &e)
@@ -67,7 +66,7 @@ int main()
 	try
 	{
 		std::cout << YELLOW << "------------ presidential pardon test ------------" << DEFAULT << std::endl;
-		president_form = someRandomIntern.makeForm("presidential pardon form", "Marvin");
+		president_form = someRandomIntern.makeForm("presidential pardon form", "Marvin the Paranoid Android");
 		std::cout << *president_form << std::endl;
 	}
 	catch (const std::exception &e)
@@ -121,10 +120,10 @@ int main()
 
 	std::cout << "------------------------------------------------------------------------------------------" << std::endl;
 
-    delete shrub_form;
-    delete robot_form;
-    delete president_form;
-    delete invalid_form;
+    if (shrub_form) 	delete shrub_form;
+    if (robot_form) 	delete robot_form;
+    if (president_form) delete president_form;
+    if (invalid_form) 	delete invalid_form;
 
     return (0);
 }

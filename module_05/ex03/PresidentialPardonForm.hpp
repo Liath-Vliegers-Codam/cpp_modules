@@ -27,7 +27,7 @@ class PresidentialPardonForm : public AForm
 		PresidentialPardonForm &operator=(const PresidentialPardonForm &form);
 
 		// Member functions
-		bool execute(Bureaucrat const & executor) const;
+		void execute(Bureaucrat const & executor) const;
 
 		// Getters and Setters
 		std::string &getTarget();

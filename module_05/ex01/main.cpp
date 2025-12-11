@@ -47,21 +47,21 @@ Implement and submit some tests to ensure everything works as expected.
 
 int main(void)
 {
-    std::cout << YELLOW << "\n------------ Test valid Form construction and output: ------------\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test valid form construction and output: ------------\n" << DEFAULT << std::endl;
     try
     {
-        Form leaveForm("Leave Request", 50, 30);
-        std::cout << leaveForm << std::endl;
+        Form validForm("Valid Form", 50, 30);
+        std::cout << validForm << std::endl;
     }
     catch (std::exception &e)
     {
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
-    std::cout << YELLOW << "\n------------ Test Form construction with grade too high: ------------\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test invalid form construction with grade too high: ------------\n" << DEFAULT << std::endl;
     try
     {
-        Form invalidFormHigh("Invalid High", 0, 30);
+        Form invalidFormHigh("Invalid Form Grade Too High", 0, 30);
         std::cout << invalidFormHigh << std::endl;
     }
     catch (std::exception &e)
@@ -69,10 +69,10 @@ int main(void)
         std::cout << "Exception caught: " << e.what() << std::endl;
     }
 
-    std::cout << YELLOW << "\n------------ Test Form construction with grade too low: ------------\n" << DEFAULT << std::endl;
+    std::cout << YELLOW << "\n------------ Test invalid form construction with grade too low: ------------\n" << DEFAULT << std::endl;
     try
     {
-        Form invalidFormLow("Invalid Low", 151, 30);
+        Form invalidFormLow("Invalid Form Grade Too Low", 151, 30);
         std::cout << invalidFormLow << std::endl;
     }
     catch (std::exception &e)
@@ -85,11 +85,11 @@ int main(void)
     {
         Bureaucrat robin("Robin", 10);
         std::cout << robin << std::endl;
-        Form permit("Permit", 20, 10);
-        std::cout << permit << std::endl;
+        Form poneglyph("Road Poneglyph", 20, 10);
+        std::cout << poneglyph << std::endl;
 
-        robin.signForm(permit);
-        std::cout << permit << std::endl;
+        robin.signForm(poneglyph);
+        std::cout << poneglyph << std::endl;
     }
     catch (std::exception &e)
     {
@@ -101,11 +101,11 @@ int main(void)
     {
         Bureaucrat chopper("Chopper", 100);
         std::cout << chopper << std::endl;
-        Form secret("Secret Doc", 50, 10);
-        std::cout << secret << std::endl;
+        Form doctors_note("Doctors Note", 50, 10);
+        std::cout << doctors_note << std::endl;
 
-        chopper.signForm(secret);
-        std::cout << secret << std::endl;
+        chopper.signForm(doctors_note);
+        std::cout << doctors_note << std::endl;
     }
     catch (std::exception &e)
     {

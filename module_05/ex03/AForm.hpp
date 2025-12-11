@@ -18,6 +18,7 @@ class AForm
 		AForm(const std::string name, int grade_to_sign, int grade_to_execute);
 		AForm(const AForm &other);
 
+
 	public:
 		// Destructor	
 		virtual ~AForm();
@@ -33,7 +34,7 @@ class AForm
 
 		// Member functions
 		void beSigned(Bureaucrat &b_crat);
-		virtual bool execute(Bureaucrat const &executor) const = 0;
+		virtual void execute(Bureaucrat const &executor) const = 0;
 };
 
 std::ostream &operator<<(std::ostream &os, const AForm &form);
@@ -64,4 +65,13 @@ class ExecutorGradeTooLow : public AFormException
 		{
 			return "Executor's grade is too low to execute the form!";
 		}
+};
+
+class FormNotFound : public AFormException
+{
+public:
+    const char* what() const throw()
+    {
+        return "Form was not found or is invalid!";
+    }
 };

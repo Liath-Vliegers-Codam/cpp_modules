@@ -8,6 +8,7 @@ OBJ_DIR		:= obj
 SRC_DIR		:= src
 
 INCL		:=	Bureaucrat.hpp
+
 SRCS		:= 	main.cpp \
 				Bureaucrat.cpp
 

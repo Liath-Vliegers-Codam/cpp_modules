@@ -21,7 +21,7 @@ Add the following concrete classes:
 	Makes some drilling noises, then informs that <target> has been robotomized successfully 50% of the time. 
 	Otherwise, it informs that the robotomy failed.
 • PresidentialPardonForm: Required grades: sign 25, exec 5
-	Informs that <target> has been pardoned by Zaphod Beeblebrox.
+	Informs that <target> has been presidental_formed by Zaphod Beeblebrox.
 All of them take only one parameter in their constructor: the target of the form. 
 For example, "home" if you want to plant shrubbery at home.
 
@@ -54,18 +54,18 @@ int main(void)
 	std::cout << YELLOW << "\n------------ ShrubberyCreationForm tests ------------\n" << DEFAULT << std::endl;
 	try
 	{
-		ShrubberyCreationForm shrub("home");
-		std::cout << shrub << std::endl;
+		ShrubberyCreationForm scrubbery_form("home");
+		std::cout << scrubbery_form << std::endl;
 
 		Bureaucrat robin("Robin", 140);
 
 		std::cout << robin << std::endl;
 
-		robin.signForm(shrub);
+		robin.signForm(scrubbery_form);
 
 		try
 		{
-			shrub.execute(robin);
+			scrubbery_form.execute(robin);
 		}
 		catch (std::exception &e)
 		{
@@ -77,7 +77,7 @@ int main(void)
 
 		try
 		{
-			shrub.execute(zorro);
+			scrubbery_form.execute(zorro);
 		}
 		catch (std::exception &e)
 		{
@@ -92,20 +92,20 @@ int main(void)
 	std::cout << YELLOW << "\n------------ RobotomyRequestForm tests ------------\n" << DEFAULT << std::endl;
 	try
 	{
-		RobotomyRequestForm robo("target_bot");
-		std::cout << robo << std::endl;
+		RobotomyRequestForm robotomy_form("target_bot");
+		std::cout << robotomy_form << std::endl;
 
 		Bureaucrat chopper("Chopper", 100);
 		std::cout << chopper << std::endl;
-		chopper.signForm(robo); // expected to fail (sign grade 72)
+		chopper.signForm(robotomy_form); // expected to fail (sign grade 72)
 
 		Bureaucrat franky("Franky", 50);
 		std::cout << franky << std::endl;
-		franky.signForm(robo); // should succeed (50 <= 72)
+		franky.signForm(robotomy_form); // should succeed (50 <= 72)
 
 		try
 		{
-			robo.execute(franky); // expected to fail (exec grade 45)
+			robotomy_form.execute(franky); // expected to fail (exec grade 45)
 		}
 		catch (std::exception &e)
 		{
@@ -114,11 +114,11 @@ int main(void)
 
 		Bureaucrat nami("Nami", 40);
 		std::cout << nami << std::endl;
-		for (int i = 0; i < 10; ++i)
+		for (int i = 0; i < 20; ++i)
 		{
 			try
 			{
-				robo.execute(nami); // random success/failure
+				robotomy_form.execute(nami); // random success/failure
 			}
 			catch (std::exception &e)
 			{
@@ -134,16 +134,16 @@ int main(void)
 	std::cout << YELLOW << "\n------------ PresidentialPardonForm tests ------------\n" << DEFAULT << std::endl;
 	try
 	{
-		PresidentialPardonForm pardon("Marvin");
-		std::cout << pardon << std::endl;
+		PresidentialPardonForm presidental_form("Marvin the Paranoid Android");
+		std::cout << presidental_form << std::endl;
 
 		Bureaucrat sanji("Sanji", 25);
 		std::cout << sanji << std::endl;
-		sanji.signForm(pardon); // should succeed (sign grade 25)
+		sanji.signForm(presidental_form); // should succeed (sign grade 25)
 
 		try
 		{
-			pardon.execute(sanji); // expected to fail (exec grade 5)
+			presidental_form.execute(sanji); // expected to fail (exec grade 5)
 		}
 		catch (std::exception &e)
 		{
@@ -154,7 +154,7 @@ int main(void)
 		std::cout << luffy << std::endl;
 		try
 		{
-			pardon.execute(luffy); // should succeed
+			presidental_form.execute(luffy); // should succeed
 		}
 		catch (std::exception &e)
 		{
@@ -169,13 +169,13 @@ int main(void)
 	std::cout << YELLOW << "\n------------ Unsigned form execution test ------------\n" << DEFAULT << std::endl;
 	try
 	{
-		ShrubberyCreationForm unsignedForm("garden");
-		std::cout << unsignedForm << std::endl;
+		ShrubberyCreationForm unsigned_form("home");
+		std::cout << unsigned_form << std::endl;
 
 		Bureaucrat ussop("Ussop", 1);
 		try
 		{
-			unsignedForm.execute(ussop); // should report that form is not signed
+			unsigned_form.execute(ussop); // should report that form is not signed
 		}
 		catch (std::exception &e)
 		{

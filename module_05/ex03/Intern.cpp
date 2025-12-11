@@ -22,7 +22,7 @@ Intern::~Intern()
 	std::cout << "Intern destructor is called "  << std::endl;
 }
 
-// Member functions
+// Other functions
 static	AForm* createShrubberyCreatorForm(std::string const &target)
 {
 	return (new ShrubberyCreationForm(target));
@@ -38,6 +38,7 @@ static	AForm* createPresidentialPardonForm(std::string const &target)
 	return (new PresidentialPardonForm(target));
 }
 
+// Member functions
 AForm *Intern::makeForm(std::string const &form_name, std::string const &form_target)
 {
 	std::string form_names[3] = {"shrubbery creation form", "robotomy request form", "presidential pardon form"};

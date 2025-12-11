@@ -23,37 +23,35 @@ class Bureaucrat
 		int _grade;
 
 	public:
+		// Constructors
 		Bureaucrat(const std::string name, int grade);
+		Bureaucrat(const Bureaucrat& other);
+	
+		// Destructor	
 		~Bureaucrat();
 
-		Bureaucrat(const Bureaucrat& other);
+		// Operators
 		Bureaucrat& operator=(const Bureaucrat& other);
 
+		// Getters and Setters
 		std::string getName() const;
 		int getGrade() const;
 
+		// Member functions
 		void incrementGrade();
 		void decrementGrade();
-
 		void signForm(AForm& formToSign);
-		// member function in the Bureaucrat class. This function must call Form::beSigned() to attempt to sign the form. 
-		// If the form is signed successfully, it will print something like:
-		// <bureaucrat> signed <form>
-		// Otherwise, it will print something like:
-		// <bureaucrat> couldn’t sign <form> because <reason>.
-
-
-
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 
+// Exceptions
 class GradeTooHighException : public std::exception
 {
-		const char* what() const noexcept override;
+	const char* what() const noexcept override;
 };
 
 class GradeTooLowException : public std::exception
 {
-		const char* what() const noexcept override;
+	const char* what() const noexcept override;
 };

@@ -9,6 +9,7 @@ SRC_DIR		:= src
 
 INCL		:=	Bureaucrat.hpp \
 				Form.cpp
+				
 SRCS		:= 	main.cpp \
 				Bureaucrat.cpp \
 				Form.cpp

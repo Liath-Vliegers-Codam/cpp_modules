@@ -56,18 +56,24 @@ class Form
 		const int			_grade_to_sign;
 		const int			_grade_to_execute;
 
-	public:
+	public:		
+		// Constructors
 		Form(const std::string name, int grade_to_sign, int grade_to_execute);
-		~Form();
-		
 		Form(const Form& other);
+
+		// Destructor	
+		~Form();
+
+		// Operators
 		Form& operator=(const Form& other);
 
+		// Getters and Setters
 		std::string getName() const;
 		bool getSignedStatus() const;
 		int getGradeToSign() const;
 		int getGradeToExecute() const;
-
+		
+		// Member functions
 		void beSigned(Bureaucrat &b_crat);
 };
 
