@@ -30,30 +30,27 @@ std::string &RobotomyRequestForm::getTarget()
 }
 
 // Member functions
-bool RobotomyRequestForm::execute(Bureaucrat const & executor) const
+void RobotomyRequestForm::execute(Bureaucrat const & executor) const
 {
 	static bool seeded = false;
+    if (!seeded)
+    {
+		std::srand(static_cast<unsigned int>(std::time(NULL))); // Seeding initializes the pseudo-random number generator (PRNG) so it produces a different sequence each run. 
+        seeded = true;
+    }
 
 	if (getSignedStatus() == false)
 		throw FormIsNotSigned();
 	if (executor.getGrade() >= getGradeToExecute())
 		throw ExecutorGradeTooLow();
-
-	if (!seeded)
-    {
-		std::srand(static_cast<unsigned int>(std::time(NULL))); // Seeding initializes the pseudo-random number generator (PRNG) so it produces a different sequence each run. 
-        seeded = true;
-    }
 	
 	std::cout << "DDRRRRRRRRRRRRRR DRRRRR DDDDRRRRRRRRRRRRRRRRRRRRRRRRR" << std::endl;
-
-	int random_number = rand() % 2;
+	
+	int random_number = rand() % 2; // generate 0 or 1
 	if (random_number == 1)
 		std::cout << this->_target << " has been robotomized" << std::endl;
 	else
 		throw RobotomyRequestError();
-
-	return (true);
 }
 
 // Operators

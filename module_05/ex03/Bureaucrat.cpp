@@ -1,14 +1,18 @@
+#include "AForm.hpp"
 #include "Bureaucrat.hpp"
 
 // Constructors
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
+	std::cout << "Bureaucrat constructor is called for " << name << std::endl;
 	if (grade < MAX_GRADE)
 	{
+		// std::cout << GradeTooHighException() << std::endl;
 		throw GradeTooHighException();
 	}
 	if (grade > MIN_GRADE)
 	{
+		// std::cout << GradeTooLowException() << std::endl;
 		throw GradeTooLowException();
 	}	
 }
@@ -43,7 +47,6 @@ void Bureaucrat::incrementGrade()
 		throw GradeTooLowException();
 	else
 		this->_grade--;
-	
 }
 
 void Bureaucrat::decrementGrade()
@@ -54,11 +57,33 @@ void Bureaucrat::decrementGrade()
 		this->_grade++;
 }
 
+void Bureaucrat::signForm(AForm& formToSign)
+{
+	
+	if (formToSign.getSignedStatus() == true)
+		std::cout << this->_name << " could not sign the form "<< formToSign.getName() << " because it is already signed." << std::endl;
+	else
+	{
+		try
+		{
+			formToSign.beSigned(*this);
+			std::cout << "The form "<< formToSign.getName() << " has been successfully signed by " << this->_name << std::endl;
+		}
+		catch (const std::exception& e)
+		{
+			std::cout << this->_name << " could not sign the form "<< formToSign.getName() << " because ";
+			std::cerr << e.what() << std::endl;
+		}
+	} 
+}
+
 // Operators
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) 
 {
+	std::cout << "Bureaucrat copy assignment is called for " << other._name << std::endl;
 	if (this != &other)
 	{
+		// _name is const, so we can't assign to it here
 		_grade = other._grade;
 	}
 	return (*this);
@@ -66,7 +91,9 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
 {
-	os << bureaucrat.getName() << ", bureaucrat grade " << bureaucrat.getGrade() << ".";
+	os << GREEN << "----- Bureaucrat Info: -----\n" \
+	<< "Bureaucrat name: " << bureaucrat.getName() << "\n" << "Bureaucrat grade: " << bureaucrat.getGrade() \
+	<< "\n----------------------------" << DEFAULT;
 	return (os);
 }
 

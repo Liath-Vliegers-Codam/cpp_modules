@@ -29,7 +29,7 @@ std::string &ShrubberyCreationForm::getTarget()
 }
 	
 // Member functions
-bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
 	if (getSignedStatus() == false)
 		throw FormIsNotSigned();
@@ -141,9 +141,7 @@ bool ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 		<< "                                                                    ##############                                                                    " << std::endl;
         shrubbery_file.close();
 		std::cout << "Execution of ShrubberyForm was succesfull. See created file." << std::endl;
-		return (true);
 	}
-	return (false);
 }
 
 // Operators

@@ -6,11 +6,11 @@
 Form::Form(const std::string name, int grade_to_sign, int grade_to_execute) : _name(name), _grade_to_sign(grade_to_sign), _grade_to_execute(grade_to_execute)
 {
 	std::cout << "Form constructor is called for " << name << std::endl;
-	if (grade_to_sign < 1 || grade_to_execute < 1)
+	if (grade_to_sign < MAX_GRADE || grade_to_execute < MAX_GRADE)
 	{
 		throw GradeTooHighException();
 	}
-	if (grade_to_sign > 150 || grade_to_execute > 150)
+	if (grade_to_sign > MIN_GRADE || grade_to_execute > MIN_GRADE)
 	{
 		throw GradeTooLowException();
 	}	
@@ -66,7 +66,6 @@ Form& Form::operator=(const Form& other)
 {
 	if (this != &other)
 	{
-		// _name and grades are const, so we can't assign to them here
 		_signed_status = other._signed_status;
 	}
 	return (*this);

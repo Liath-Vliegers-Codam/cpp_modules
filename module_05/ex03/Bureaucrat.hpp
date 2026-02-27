@@ -14,6 +14,8 @@
 #define MAX_GRADE 1
 #define MIN_GRADE 150
 
+class AForm;
+
 class Bureaucrat 
 {
 	private:
@@ -38,6 +40,8 @@ class Bureaucrat
 		// Member functions
 		void incrementGrade();
 		void decrementGrade();
+		void signForm(AForm& formToSign);
+
 };
 
 std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
@@ -45,10 +49,10 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat);
 // Exceptions
 class GradeTooHighException : public std::exception
 {
-	const char* what() const noexcept override;
+		const char* what() const noexcept override;
 };
 
 class GradeTooLowException : public std::exception
 {
-	const char* what() const noexcept override;
+		const char* what() const noexcept override;
 };

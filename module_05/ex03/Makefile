@@ -11,14 +11,16 @@ INCL		:=	AForm.hpp \
 				Bureaucrat.hpp \
 				PresidentialPardonForm.hpp \
 				RobotomyRequestForm.hpp \
-				ShrubberyCreationForm.hpp
+				ShrubberyCreationForm.hpp \
+				Intern.hpp
 				
 SRCS		:= 	AForm.cpp \
 				Bureaucrat.cpp \
 				PresidentialPardonForm.cpp \
 				RobotomyRequestForm.cpp \
 				ShrubberyCreationForm.cpp \
-				main.cpp 
+				main.cpp \
+				Intern.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

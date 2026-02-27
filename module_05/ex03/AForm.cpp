@@ -67,6 +67,7 @@ AForm& AForm::operator=(const AForm& other)
 	std::cout << "AForm copy assignment is called for " << other._name << std::endl;
 	if (this != &other)
 	{
+		// _name and grades are const, so we can't assign to them here
 		_signed_status = other._signed_status;
 	}
 	return (*this);

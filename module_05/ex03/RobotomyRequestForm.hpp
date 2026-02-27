@@ -29,7 +29,7 @@ class RobotomyRequestForm : public AForm
 		std::string &getTarget();
 
 		// Member functions
-		bool execute(Bureaucrat const & executor) const;
+		void execute(Bureaucrat const & executor) const;
 };
 
 std::ostream& operator<<(std::ostream &os, RobotomyRequestForm &form);
@@ -40,7 +40,7 @@ class RobotomyRequestException : public AFormException
 	public:
 		const char* what() const throw()
 		{
-			return ("RobotomyRequestForm Exception occurred!");
+			return "RobotomyRequestForm Exception occurred!";
 		}
 };
 
@@ -49,6 +49,6 @@ class RobotomyRequestError : public RobotomyRequestException
 	public:
 		const char* what() const throw()
 		{
-			return ("Robotomy failed!");
+			return  "Robotomy failed!";
 		}
 };

@@ -27,7 +27,7 @@ std::string &PresidentialPardonForm::getTarget()
 }
 
 // Member functions
-bool PresidentialPardonForm::execute(Bureaucrat const & executor) const
+void PresidentialPardonForm::execute(Bureaucrat const & executor) const
 {
 	if (getSignedStatus() == false)
 		throw FormIsNotSigned();
@@ -35,10 +35,8 @@ bool PresidentialPardonForm::execute(Bureaucrat const & executor) const
 		throw ExecutorGradeTooLow();
 	else
 	{
-		std::cout << "PresidentialPardonForm " << this->_target << " has been pardoned by Zaphod Beeblebrox" << std::endl; 
-		return (true);
+		std::cout << "PresidentialPardonForm \"" << this->_target << "\" has been pardoned by Zaphod Beeblebrox" << std::endl; 
 	}
-	return (false);
 }
 
 // Operators

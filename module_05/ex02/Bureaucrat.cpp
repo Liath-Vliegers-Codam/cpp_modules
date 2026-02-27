@@ -5,14 +5,12 @@
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name), _grade(grade)
 {
 	std::cout << "Bureaucrat constructor is called for " << name << std::endl;
-	if (grade < 1)
+	if (grade < MAX_GRADE)
 	{
-		// std::cout << GradeTooHighException() << std::endl;
 		throw GradeTooHighException();
 	}
-	if (grade > 150)
+	if (grade > MIN_GRADE)
 	{
-		// std::cout << GradeTooLowException() << std::endl;
 		throw GradeTooLowException();
 	}	
 }
@@ -43,7 +41,7 @@ int Bureaucrat::getGrade() const
 // Member functions
 void Bureaucrat::incrementGrade()
 {
-	if (this->_grade == 1)
+	if (this->_grade == MAX_GRADE)
 		throw GradeTooLowException();
 	else
 		this->_grade--;
@@ -51,7 +49,7 @@ void Bureaucrat::incrementGrade()
 
 void Bureaucrat::decrementGrade()
 {
-	if (this->_grade == 150)
+	if (this->_grade == MIN_GRADE)
 		throw GradeTooHighException();
 	else
 		this->_grade++;
@@ -83,7 +81,6 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other)
 	std::cout << "Bureaucrat copy assignment is called for " << other._name << std::endl;
 	if (this != &other)
 	{
-		// _name is const, so we can't assign to it here
 		_grade = other._grade;
 	}
 	return (*this);
@@ -100,10 +97,10 @@ std::ostream &operator<<(std::ostream &os, const Bureaucrat &bureaucrat)
 // Exceptions
 const char* GradeTooHighException::what() const noexcept
 {
-	return ("maximum grade has been reached.");
+	return ("Grade is too high.");
 }
 
 const char* GradeTooLowException::what() const noexcept
 {
-	return ("minimum grade has been reached.");
+	return ("Grade is too low.");
 }

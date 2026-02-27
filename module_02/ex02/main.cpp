@@ -3,7 +3,7 @@
 
 int main()
 {	
-	std::cout << "======= Testing arithmetic operators =======" << std::endl;
+	std::cout << "------------== Testing arithmetic operators ------------==" << std::endl;
 
 	Fixed a;
 	Fixed const b(Fixed(5.05f) + Fixed(2));
@@ -17,7 +17,7 @@ int main()
 	std::cout << "d = " << d << std::endl;
 	std::cout << "e = " << e << std::endl;
 
-	std::cout << "======= Testing comparison operators =======" << std::endl;
+	std::cout << "------------== Testing comparison operators ------------==" << std::endl;
 	
 	std::cout << std::boolalpha;
 	std::cout << "a == b:	" << (a == b) << std::endl;
@@ -27,7 +27,7 @@ int main()
 	std::cout << "a >= b:	" << (a >= b) << std::endl;
 	std::cout << "a <= b:	" << (a <= b) << std::endl;
 
-	std::cout << "======= Testing increment/decrement operators =======" << std::endl;
+	std::cout << "------------== Testing increment/decrement operators ------------==" << std::endl;
 
 	std::cout << "++a = " << ++a << std::endl;
 	std::cout << "--a = " << --a << std::endl;
@@ -36,7 +36,7 @@ int main()
 	std::cout << "a-- = " << a-- << std::endl;
 	std::cout << "a = " << a << std::endl;
 
-	std::cout << "======= Testing min/max functions =======" << std::endl;
+	std::cout << "------------== Testing min/max functions ------------==" << std::endl;
 
 	Fixed x(10.5f);
 	Fixed y(3.25f);
@@ -52,7 +52,7 @@ int main()
 	std::cout << "Fixed::max(x, z) = " << Fixed::max(x, z) << std::endl;
 
 
-	std::cout << "======= Testing const min/max functions =======" << std::endl;
+	std::cout << "------------== Testing const min/max functions ------------==" << std::endl;
 
 	const Fixed const_a(15.75f);
 	const Fixed const_b(15.75f);
