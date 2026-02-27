@@ -1,0 +1,12 @@
+
+is 0000000 a valid input? test met casten van string naar int en kijk wat het zegt
+
+0-9 is chars or ints?
+
+
+./module_06 2147483647
+char: impossible
+int: 2147483647
+float: 2147483648.0f     WTF! fix this overflow
+double: 2147483647.0
+
