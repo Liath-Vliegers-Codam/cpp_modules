@@ -10,6 +10,15 @@ cat > "${classname}.hpp" <<EOL
 
 #include <iostream>
 
+#define DEFAULT	"\033[0m"
+#define RED		"\033[31m"
+#define GREEN	"\033[32m"
+#define YELLOW	"\033[33m"
+#define BLUE	"\033[34m"
+#define MAGENTA	"\033[35m"
+#define CYAN	"\033[36m"
+#define WHITE	"\033[37m"
+
 class ${classname}
 {
 	private:
@@ -17,21 +26,22 @@ class ${classname}
 
 	public:
 		// Constructors
-		${classname}(/*Parameterized Constructor*/);
 		${classname}(void);
+		${classname}(/*Parameterized Constructor*/);
+		${classname}(const ${classname}& other);
 
 		// Destructor
 		~$classname(void);
 
 		// Operators
-		${classname} &operator=(const ${classname}& src);
+		${classname} &operator=(const ${classname}& other);
 
 		// Getters and Setters
 
 		// Member functions
 };
 
-std::ostream& operator<<(std::ostream &output_stream, ${classname}& src);
+std::ostream& operator<<(std::ostream &output_stream, ${classname}& other);
 
 // Exceptions
 class ExceptionName : public std::exception
@@ -51,7 +61,7 @@ ${classname}::${classname}(void)
     std::cout << "${classname} default constructor is called" << std::endl;
 }
 
-${classname}::${classname}(/*Parameterized Constructor*/)
+${classname}::${classname}(/*Parameters here*/)
 {
    std::cout << "${classname} parameterized constructor is called" << std::endl;
 }
@@ -74,26 +84,26 @@ ${classname}::~${classname}(void)
 
 
 // Overload operators
-${classname}& ${classname}::operator=(const ${classname}& src)
+${classname}& ${classname}::operator=(const ${classname}& other)
 {
-	std::cout << "${classname} copy assignment is called" << std::endl;
-	if (this != &src)
+	if (this != &other)
 	{
-		// Assinment variables
+		std::cout << "${classname} copy assignment is called" << std::endl;
+		*this = other;
 	}
 	return (*this);
 }
 
-std::ostream& operator<<(std::ostream& output_stream, ${classname}& src)
+std::ostream& operator<<(std::ostream& output_stream, ${classname}& other)
 {
-	output_stream << "* ${classname} Class info*" << std::endl;
+	output_stream << "*${classname} Class info here*" << std::endl;
 	return (output_stream);
 }
 
 // Exceptions
 const char* ExceptionName::what() const noexcept
 {
-	return ("Grade is too high.");
+	return ("*Exception info here*");
 }
 
 EOL

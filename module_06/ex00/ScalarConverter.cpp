@@ -25,7 +25,7 @@ ScalarConverter::~ScalarConverter()
 // Member functions
 void ScalarConverter::convert(std::string input)
 {
-	std::cout << GREEN << input << DEFAULT << std::endl; // DEBUG
+	// std::cout << GREEN << input << DEFAULT << std::endl; // DEBUG
 
 	ScalarType type = whichType(input);
 
@@ -47,7 +47,7 @@ void ScalarConverter::convert(std::string input)
 			std::cout << INVALID_INPUT_MESSAGE << std::endl;
 			break;
 	}
-	std::cout << std::endl;	// DEBUG
+	// std::cout << std::endl;	// DEBUG
 }
 
 // Operators
@@ -60,4 +60,14 @@ ScalarConverter &ScalarConverter::operator=(const ScalarConverter &other)
 	}
 	return (*this);
 }
+
+std::ostream& operator<<(std::ostream& output_stream, ScalarConverter& other)
+{
+	(void) other;
+	
+	output_stream << "*ScalarConverter Class info here*" << std::endl;
+	return (output_stream);
+}
+
+
 

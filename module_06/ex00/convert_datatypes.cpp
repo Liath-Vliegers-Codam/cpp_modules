@@ -10,6 +10,7 @@ void ScalarConverter::convert_char(const char &input)
 
 void ScalarConverter::convert_int(const std::string &input)
 {
+	// convert input to int
 	int int_value = 0;
 	try 
 	{
@@ -40,6 +41,7 @@ void ScalarConverter::convert_int(const std::string &input)
 
 void ScalarConverter::convert_float(const std::string &input)
 {
+	// convert input to float
 	float float_value = 0.0f;
 	try 
 	{
@@ -69,7 +71,7 @@ void ScalarConverter::convert_float(const std::string &input)
 	else
 		std::cout << "int: " << static_cast<int>(float_value) << std::endl;
 
-	// print int and float and double
+	// print float and double
 	std::cout << "float: " << std::fixed << std::setprecision(1) << float_value << "f" << std::endl;
 	std::cout << "double: " << std::fixed << std::setprecision(1) << (static_cast<double>(float_value)) << std::endl;
 }
@@ -83,6 +85,7 @@ void ScalarConverter::convert_float(const std::string &input)
 
 void ScalarConverter::convert_double(const std::string &input)
 {
+	// convert input to double
 	double double_value = 0.0;
 	try 
 	{

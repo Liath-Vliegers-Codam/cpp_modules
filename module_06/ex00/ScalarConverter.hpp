@@ -53,4 +53,4 @@ class ScalarConverter
 		static void convert(std::string input);
 };
 
-// std::ostream& operator<<(std::ostream &output_stream, ScalarConverter& src);
+std::ostream& operator<<(std::ostream &output_stream, ScalarConverter& other);
