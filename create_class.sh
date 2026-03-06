@@ -23,17 +23,21 @@ class ${classname}
 		// Destructor
 		~$classname(void);
 
-		// Getters and Setters
-
-
-		// Member functions
-
 		// Operators
 		${classname} &operator=(const ${classname}& src);
+
+		// Getters and Setters
+
+		// Member functions
 };
 
 std::ostream& operator<<(std::ostream &output_stream, ${classname}& src);
 
+// Exceptions
+class ExceptionName : public std::exception
+{
+	const char* what() const noexcept override;
+};
 
 EOL
 
@@ -41,32 +45,35 @@ EOL
 cat > "${classname}.cpp" <<EOL
 #include "${classname}.hpp"
 
-/*Member functions*/
-void ${classname}::method()
+// Constructors
+${classname}::${classname}(void)
 {
-    // Method implementation
+    std::cout << "${classname} default constructor is called" << std::endl;
 }
 
-/*Getters and Setters*/
-
-/*Constructors*/
 ${classname}::${classname}(/*Parameterized Constructor*/)
 {
    std::cout << "${classname} parameterized constructor is called" << std::endl;
 }
 
-${classname}::${classname}()
+${classname}::${classname}(const ${classname}& other)
 {
-    std::cout << "${classname} default constructor is called" << std::endl;
+	std::cout << "${classname} copy constructor is called" << std::endl;
+	*this = other;
 }
 
-/*Destructors*/
-${classname}::~${classname}( void )
+// Destructor
+${classname}::~${classname}(void)
 {
     std::cout << "${classname} destructor is called" << std::endl;
 }
 
-/*Overload operators*/
+// Getters and Setters
+
+// Member functions
+
+
+// Overload operators
 ${classname}& ${classname}::operator=(const ${classname}& src)
 {
 	std::cout << "${classname} copy assignment is called" << std::endl;
@@ -80,7 +87,13 @@ ${classname}& ${classname}::operator=(const ${classname}& src)
 std::ostream& operator<<(std::ostream& output_stream, ${classname}& src)
 {
 	output_stream << "* ${classname} Class info*" << std::endl;
-	return output_stream;
+	return (output_stream);
+}
+
+// Exceptions
+const char* ExceptionName::what() const noexcept
+{
+	return ("Grade is too high.");
 }
 
 EOL

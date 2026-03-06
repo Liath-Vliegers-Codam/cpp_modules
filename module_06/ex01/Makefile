@@ -9,9 +9,7 @@ SRC_DIR		:= src
 
 INCL		:=	ScalarConverter.hpp
 SRCS		:= 	main.cpp \
-				ScalarConverter.cpp \
-				identifying_datatypes.cpp \
-				convert_datatypes.cpp
+				ScalarConverter.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
