@@ -41,7 +41,7 @@ class ${classname}
 		// Member functions
 };
 
-std::ostream& operator<<(std::ostream &output_stream, ${classname}& other);
+std::ostream& operator<<(std::ostream &output_stream, ${classname}& src);
 
 // Exceptions
 class ExceptionName : public std::exception
@@ -94,7 +94,7 @@ ${classname}& ${classname}::operator=(const ${classname}& other)
 	return (*this);
 }
 
-std::ostream& operator<<(std::ostream& output_stream, ${classname}& other)
+std::ostream& operator<<(std::ostream& output_stream, ${classname}& src)
 {
 	output_stream << "*${classname} Class info here*" << std::endl;
 	return (output_stream);
