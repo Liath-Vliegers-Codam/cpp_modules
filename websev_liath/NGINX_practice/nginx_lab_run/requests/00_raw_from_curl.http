@@ -1,0 +1,6 @@
+GET http://example.com/ HTTP/1.0
+Host: example.com
+User-Agent: curl/7.81.0
+Accept: */*
+Proxy-Connection: Keep-Alive
+

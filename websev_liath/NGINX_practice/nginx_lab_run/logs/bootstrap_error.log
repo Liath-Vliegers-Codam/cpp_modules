@@ -1,0 +1,28 @@
+nginx: [alert] could not open error log file: open() "/var/log/nginx/error.log" failed (13: Permission denied)
+2026/04/03 16:55:23 [notice] 9844#9844: using the "epoll" event method
+2026/04/03 16:55:23 [notice] 9844#9844: using the "epoll" event method
+2026/04/03 16:55:23 [notice] 9844#9844: nginx/1.18.0 (Ubuntu)
+2026/04/03 16:55:23 [notice] 9844#9844: nginx/1.18.0 (Ubuntu)
+2026/04/03 16:55:23 [notice] 9844#9844: OS: Linux 6.6.87.2-microsoft-standard-WSL2
+2026/04/03 16:55:23 [notice] 9844#9844: OS: Linux 6.6.87.2-microsoft-standard-WSL2
+2026/04/03 16:55:23 [notice] 9844#9844: getrlimit(RLIMIT_NOFILE): 10240:1048576
+2026/04/03 16:55:23 [notice] 9844#9844: getrlimit(RLIMIT_NOFILE): 10240:1048576
+2026/04/03 16:55:23 [notice] 9845#9845: start worker processes
+2026/04/03 16:55:23 [notice] 9845#9845: start worker processes
+2026/04/03 16:55:23 [notice] 9845#9845: start worker process 9846
+2026/04/03 16:55:23 [notice] 9845#9845: start worker process 9846
+nginx: [alert] could not open error log file: open() "/var/log/nginx/error.log" failed (13: Permission denied)
+2026/04/03 16:55:25 [notice] 9882#9882: signal process started
+2026/04/03 16:55:25 [notice] 9845#9845: signal 3 (SIGQUIT) received from 9882, shutting down
+2026/04/03 16:55:25 [notice] 9845#9845: signal 3 (SIGQUIT) received from 9882, shutting down
+2026/04/03 16:55:25 [notice] 9846#9846: gracefully shutting down
+2026/04/03 16:55:25 [notice] 9846#9846: gracefully shutting down
+2026/04/03 16:55:25 [notice] 9846#9846: exiting
+2026/04/03 16:55:25 [notice] 9846#9846: exiting
+2026/04/03 16:55:25 [notice] 9846#9846: exit
+2026/04/03 16:55:25 [notice] 9845#9845: signal 17 (SIGCHLD) received from 9846
+2026/04/03 16:55:25 [notice] 9845#9845: signal 17 (SIGCHLD) received from 9846
+2026/04/03 16:55:25 [notice] 9845#9845: worker process 9846 exited with code 0
+2026/04/03 16:55:25 [notice] 9845#9845: worker process 9846 exited with code 0
+2026/04/03 16:55:25 [notice] 9845#9845: exit
+2026/04/03 16:55:25 [notice] 9845#9845: exit

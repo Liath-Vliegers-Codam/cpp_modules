@@ -1,0 +1,6 @@
+uploads/seed.txt|f|18
+uploads|d|4096
+www/hello.txt|f|17
+www/index.html|f|114
+www|d|4096
+|d|4096

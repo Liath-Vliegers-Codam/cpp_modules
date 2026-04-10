@@ -1,0 +1,37 @@
+
+NGINX is high-performance server software that can act as a web server, reverse proxy, load balancer, and HTTP cache. It is known for handling many concurrent connections efficiently while using relatively few system resources.
+
+As a reverse proxy, NGINX sits between clients and your backend servers. Clients send requests to NGINX first, and NGINX forwards those requests to the appropriate backend service. This setup gives you several important advantages.
+
+First, it improves load balancing. NGINX can distribute incoming traffic across multiple backend servers, which helps prevent overload on a single machine and improves both reliability and response time. 
+Common balancing strategies include:
+- Round Robin: Requests are distributed sequentially across the servers.
+- Least Connections: Requests are sent to the server with the fewest active connections.
+- IP Hash: Requests from the same client IP address are consistently sent to the same backend server, which can help with session persistence.
+- Weighted Load Balancing: Servers can be assigned different weights based on their capacity, allowing more powerful servers to handle a larger share of the traffic.
+
+Second, it improves performance through caching. 
+Caching is a technique where NGINX stores copies of frequently requested content and serves those cached responses directly, reducing latency for users and decreasing pressure on backend servers. This can significantly speed up response times for static content like images, CSS files, and JavaScript files, as well as dynamic content that doesn't change frequently.
+
+Third, it improves security. Because backend servers are not directly exposed to the internet, NGINX reduces the attack surface. Hackers have fewer entry points to exploit. 
+This makes encrypted communication easier to manage, as you can terminate SSL/TLS at the NGINX proxy, which simplifies certificate management and allows you to offload the encryption work from your backend servers. Additionally, NGINX can be configured to block malicious traffic, filter requests, and implement rate limiting to protect against DDoS attacks.
+
+
+Fourth, NGINX can also compress responses, which reduces bandwidth usage and speeds up content delivery to clients. And it uses segmentation, sending the client response in smaller chunks, which can improve performance for large responses and allow clients to start processing data before the entire response is received.
+
+
+
+
+
+
+
+
+In short, using NGINX as a reverse proxy helps you build web applications that are faster, more scalable, and more secure.
+
+
+By using NGINX Proxy you can reduce attack surface, to improve security. Instead of having to potect all your backend servers, you can just protect the proxy server. 
+
+
+
+steps:
+learn what a request looks like when sent by curl, and how to capture it using netcat

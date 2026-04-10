@@ -1,0 +1,18 @@
+HTTP/1.1 200 OK
+Server: nginx/1.18.0 (Ubuntu)
+Date: Fri, 03 Apr 2026 14:55:25 GMT
+Content-Type: text/html
+Transfer-Encoding: chunked
+Connection: close
+
+108
+<html>
+<head><title>Index of /uploads/</title></head>
+<body>
+<h1>Index of /uploads/</h1><hr><pre><a href="../">../</a>
+<a href="seed.txt">seed.txt</a>                                           03-Apr-2026 14:55                  18
+</pre><hr></body>
+</html>
+
+0
+

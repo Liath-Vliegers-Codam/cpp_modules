@@ -1,0 +1,205 @@
+
+
+
+- Create a script that launches an isolated nginx setup (with some playground directory and files there), 
+- prepare a few http requests as files (just very raw data sent over tcp/ip, can be), 
+- save the results from the directory (the exact states of all the files).
+
+#### A way to actually get raw requests sent by curl:
+
+1. run netcat listening; its output is the request: `nc -l 9999 > raw_request.txt`
+2. run curl with timeout (in order to not hang), proxying to nc: `timeout 2 curl [http://example.com](http://example.com/) --proxy [http://localhost:9999](http://localhost:9999/)`
+
+`nc -l 9999 > raw_request.txt & timeout 2 curl [http://example.com](http://example.com/) --http1.0 --proxy [http://localhost:9999](http://localhost:9999/)` is a working command (might adjust the timeout tho), replace `curl [http://example.com](http://example.com`)` with a command for a target request to make it working
+
+#### Using netcat to get raw request+response
+
+After getting a raw request from the step earlier simply use something like `netcat [localhost 8080](http://localhost:8080) < raw_request.txt`, it requires the nginx hostname and the port. The goal of this task is to completely automate this and generate a few test cases on common setups. Prepare some nginx configs and setups to then send and receive those files, also modifying the nginx directory contents
+
+
+
+A good first step is a tiny raw-HTTP test script that talks to NGINX exactly like your future server will.
+
+This avoids browser “helpfulness” and shows the real request/response format.
+
+1) What this script does
+opens a TCP connection to NGINX
+sends a raw HTTP request
+prints the full response
+lets you compare:
+	status line
+	headers
+	body
+	error pages
+	redirects
+This is useful because your webserv project must match HTTP behavior closely.
+
+2) Minimal test script
+#!/usr/bin/env python3
+import socket
+import sys
+
+def send_request(host, port, request_text):
+    s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    s.connect((host, port))
+    s.sendall(request_text.encode())
+
+    response = b""
+    while True:
+        chunk = s.recv(4096)
+        if not chunk:
+            break
+        response += chunk
+
+    s.close()
+    return response.decode("utf-8", errors="replace")
+
+def main():
+    host = "127.0.0.1"
+    port = 8080
+
+    if len(sys.argv) >= 2:
+        port = int(sys.argv[1])
+
+    request = (
+        "GET / HTTP/1.1\r\n"
+        f"Host: {host}:{port}\r\n"
+        "Connection: close\r\n"
+        "\r\n"
+    )
+
+    response = send_request(host, port, request)
+    print("=== REQUEST ===")
+    print(request)
+    print("=== RESPONSE ===")
+    print(response)
+
+if __name__ == "__main__":
+    main()
+
+3) Step-by-step explanation
+socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+Creates a TCP socket.
+
+AF_INET means IPv4
+SOCK_STREAM means TCP, not UDP
+HTTP over NGINX uses TCP.
+
+s.connect((host, port))
+Connects to the server at 127.0.0.1:8080.
+
+This is the same idea your future client connections will use.
+
+s.sendall(request_text.encode())
+Sends the full HTTP request.
+
+The request is plain text:
+
+request line: GET / HTTP/1.1
+headers: Host, Connection
+empty line ends headers
+The blank line is important. Without it, HTTP parsing is incomplete.
+
+while True: chunk = s.recv(4096)
+Reads the response until the server closes the connection.
+
+This is simple and works well for a first test.
+
+Since we send Connection: close, NGINX will usually close after the response, so this loop finishes.
+
+errors="replace"
+If the response contains bytes that are not valid UTF-8, the script does not crash.
+
+It replaces them with placeholder characters.
+
+4) How to use it
+Run NGINX on port 8080, then run:
+
+python3 test_nginx.py
+Or:
+python3 test_nginx.py 8080
+
+
+5) What to look at in the output
+You want to compare these parts:
+
+Status line
+Example:
+	HTTP/1.1 200 OK
+or
+	HTTP/1.1 404 Not Found
+Headers
+Important ones:
+
+	Server
+	Content-Type
+	Content-Length
+	Connection
+	Location for redirects
+
+Body
+Check:
+
+	normal HTML page
+	default error page
+	directory listing
+	uploaded file content
+
+6) Good first tests against NGINX
+Change the request path in the script and observe the response.
+
+Test 1: existing page
+	GET / HTTP/1.1
+	Host: 127.0.0.1:8080
+	Connection: close
+Expected:
+
+200 OK
+HTML body
+
+
+Test 2: missing page
+	GET /does-not-exist HTTP/1.1
+	Host: 127.0.0.1:8080
+	Connection: close
+Expected:
+
+404 Not Found
+NGINX error page or your custom error page
+
+Test 3: redirect
+If your config has a redirect route, test it and check:
+
+301
+302
+Location: header
+
+Test 4: POST later
+For your future server, you will need:
+
+body parsing
+Content-Length
+uploads
+
+7) Why this helps with your school project
+Your assignment says:
+
+	no blocking I/O
+	correct HTTP status codes
+	support GET, POST, DELETE
+	compare with NGINX
+	handle multiple ports
+	serve static files
+
+
+This script helps you learn the HTTP wire format before writing the server.
+
+It is also safe with the project restrictions because it is only a client-side tester, not part of the server implementation.
+
+8) Next useful step
+After this, I can help you make a slightly better test script that can:
+
+send GET, POST, and DELETE
+print only headers
+compare responses from NGINX and your future server
+test Content-Length and error codes automatically
