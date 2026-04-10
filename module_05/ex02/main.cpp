@@ -32,7 +32,8 @@ You must check that the form is signed and that the grade of the bureaucrat atte
 Otherwise, throw an appropriate exception.
 
 Whether you check the requirements in every concrete class or in the base class 
-(and then call another function to execute the form) is up to you. However, one way is more elegant than the other.
+(and then call another function to execute the form) is up to you. 
+However, one way is more elegant than the other.
 
 Lastly, add the executeForm(AForm const & form) const member function to the Bureaucrat class. 
 It must attempt to execute the form. If successful, print something like:
@@ -69,7 +70,7 @@ int main(void)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution by Robin failed: " << e.what() << std::endl;
+			std::cerr << "Execution by Robin failed: " << e.what() << std::endl;
 		}
 
 		Bureaucrat zorro("Zorro", 136);
@@ -81,7 +82,7 @@ int main(void)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution by Zorro failed: " << e.what() << std::endl;
+			std::cerr << "Execution by Zorro failed: " << e.what() << std::endl;
 		}
 	}
 	catch (std::exception &e)
@@ -109,7 +110,7 @@ int main(void)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution by Franky failed: " << e.what() << std::endl;
+			std::cerr << "Execution by Franky failed: " << e.what() << std::endl;
 		}
 
 		Bureaucrat nami("Nami", 40);
@@ -147,7 +148,7 @@ int main(void)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution by Sanji failed: " << e.what() << std::endl;
+			std::cerr << "Execution by Sanji failed: " << e.what() << std::endl;
 		}
 
 		Bureaucrat luffy("Luffy", 1);
@@ -158,7 +159,7 @@ int main(void)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution by Luffy failed: " << e.what() << std::endl;
+			std::cerr << "Execution by Luffy failed: " << e.what() << std::endl;
 		}
 	}
 	catch (std::exception &e)
@@ -179,7 +180,7 @@ int main(void)
 		}
 		catch (std::exception &e)
 		{
-			std::cout << "Execution failed: " << e.what() << std::endl;
+			std::cerr << "Execution failed: " << e.what() << std::endl;
 		}
 	}
 	catch (std::exception &e)

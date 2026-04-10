@@ -55,7 +55,7 @@ int main(void)
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     std::cout << YELLOW << "\n------------ Test invalid form construction with grade too high: ------------\n" << DEFAULT << std::endl;
@@ -66,7 +66,7 @@ int main(void)
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     std::cout << YELLOW << "\n------------ Test invalid form construction with grade too low: ------------\n" << DEFAULT << std::endl;
@@ -77,7 +77,7 @@ int main(void)
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     std::cout << YELLOW << "\n------------ Test signing with sufficient grade: ------------\n" << DEFAULT << std::endl;
@@ -93,7 +93,7 @@ int main(void)
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     std::cout << YELLOW << "\n------------ Test signing with insufficient grade: ------------\n" << DEFAULT << std::endl;
@@ -109,13 +109,13 @@ int main(void)
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     std::cout << YELLOW << "\n------------ Test signing an already signed form: ------------\n" << DEFAULT << std::endl;
     try
     {
-        Bureaucrat franky("Franky", 1);
+        Bureaucrat franky("Franky", 10);
         std::cout << franky << std::endl;
         Form blueprint("Blueprint", 10, 5);
         std::cout << blueprint << std::endl;
@@ -126,7 +126,7 @@ int main(void)
     }
     catch (std::exception &e)
     {
-        std::cout << "Exception caught: " << e.what() << std::endl;
+        std::cerr << "Exception caught: " << e.what() << std::endl;
     }
 
     return (0);

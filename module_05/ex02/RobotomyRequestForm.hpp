@@ -49,6 +49,6 @@ class RobotomyRequestError : public RobotomyRequestException
 	public:
 		const char* what() const throw()
 		{
-			return ("Robotomy failed!");
+			return ("Error requesting the Robotomy form!");
 		}
 };

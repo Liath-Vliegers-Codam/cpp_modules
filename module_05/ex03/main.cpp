@@ -51,7 +51,7 @@ int main()
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Intern failed to create shrubbery form: " << e.what() << std::endl;
+		std::cerr << "Intern failed to create shrubbery form: " << e.what() << std::endl;
 	}
 	try
 	{
@@ -61,7 +61,7 @@ int main()
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Intern failed to create robotomy form: " << e.what() << std::endl;
+		std::cerr << "Intern failed to create robotomy form: " << e.what() << std::endl;
 	}
 	try
 	{
@@ -71,7 +71,7 @@ int main()
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Intern failed to create presidential form: " << e.what() << std::endl;
+		std::cerr << "Intern failed to create presidential form: " << e.what() << std::endl;
 	}
 	try
 	{
@@ -81,7 +81,7 @@ int main()
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Intern failed to create invalid form: " << e.what() << std::endl;
+		std::cerr << "Intern failed to create invalid form: " << e.what() << std::endl;
 	}
 
 	Bureaucrat boss("Boss", 1);
@@ -115,7 +115,7 @@ int main()
 	}
 	catch (const std::exception &e)
 	{
-		std::cout << "Error during signing/execution: " << e.what() << std::endl;
+		std::cerr << "Error during signing/execution: " << e.what() << std::endl;
 	}
 
 	std::cout << "------------------------------------------------------------------------------------------" << std::endl;

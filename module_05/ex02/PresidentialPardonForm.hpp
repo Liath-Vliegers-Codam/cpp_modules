@@ -26,11 +26,11 @@ class PresidentialPardonForm : public AForm
 		// Operators
 		PresidentialPardonForm &operator=(const PresidentialPardonForm &form);
 
-		// Member functions
-		bool execute(Bureaucrat const & executor) const;
-
 		// Getters and Setters
 		std::string &getTarget();
+		
+		// Member functions
+		bool execute(Bureaucrat const & executor) const;
 };
 
 std::ostream& operator<<(std::ostream &os, PresidentialPardonForm &form);

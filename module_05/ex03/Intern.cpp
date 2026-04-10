@@ -48,7 +48,7 @@ AForm *Intern::makeForm(std::string const &form_name, std::string const &form_ta
 	{
 		if (form_names[i] == form_name)
 		{
-			std::cout << "Intern created " << form_name << std::endl;
+			std::cout << "The intern created " << form_name << std::endl;
 			return ((formConstructors[i])(form_target));
 		}
 	}
@@ -69,5 +69,3 @@ std::ostream& operator<<(std::ostream& os, Intern &form)
 		os << "This is an Intern, they can only make forms.";
 	return (os);
 }
-
-

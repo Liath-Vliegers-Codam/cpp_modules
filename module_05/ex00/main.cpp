@@ -55,7 +55,7 @@ int main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
+		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
 
 	std::cout << YELLOW << "------------ Test construction with grade too high ------------" << DEFAULT << std::endl;
@@ -66,18 +66,18 @@ int main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
+		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
 
 	std::cout << YELLOW << "------------ Test construction with grade too low ------------" << DEFAULT << std::endl;
 	try
 	{
-		Bureaucrat usopp("Usopp", 1000);
+		Bureaucrat usopp("Usopp", 151);
 		std::cout << usopp << std::endl;
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
+		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
 
 	std::cout << YELLOW << "------------ Test incrementing at highest grade ------------" << DEFAULT << std::endl;
@@ -89,7 +89,7 @@ int main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
+		std::cerr << "Exception caught: " << e.what() << std::endl;
 	}
 
 	std::cout << YELLOW << "------------ Test decrementing at lowest grade ------------" << DEFAULT << std::endl;
@@ -101,7 +101,7 @@ int main(void)
 	}
 	catch (std::exception &e)
 	{
-		std::cout << "Exception caught: " << e.what() << std::endl;
-	}	
+		std::cerr << "Exception caught: " << e.what() << std::endl;
+	}
 	return (0);
 }
