@@ -19,7 +19,7 @@ class RobotomyRequestForm : public AForm
 		RobotomyRequestForm(std::string target);
 		RobotomyRequestForm(const RobotomyRequestForm &form);
 
-		// Destructors
+		// Destructor
 		virtual ~RobotomyRequestForm();
 
 		// Operators

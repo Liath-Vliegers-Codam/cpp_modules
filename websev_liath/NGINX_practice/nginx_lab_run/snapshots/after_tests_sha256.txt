@@ -1,3 +1,0 @@
-0d561ae9e834b25979976f240788dfbd3142f00823099ce061e4149e9bdf2593  /mnt/c/Users/User/Documents/github/codam/websev_liath/NGINX_practice/nginx_lab_run/playground/uploads/seed.txt
-ba9d9654d13ca9a5c9766c7fd5c8ac6a8e45531708c497a485f6548b4596fb7e  /mnt/c/Users/User/Documents/github/codam/websev_liath/NGINX_practice/nginx_lab_run/playground/www/hello.txt
-7cb1e234840c7d13c6d087644f5e7f151d8615a92a2bb15226ced0bde80da6b6  /mnt/c/Users/User/Documents/github/codam/websev_liath/NGINX_practice/nginx_lab_run/playground/www/index.html

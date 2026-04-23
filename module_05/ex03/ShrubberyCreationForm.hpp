@@ -18,7 +18,7 @@ class ShrubberyCreationForm : public AForm
 		ShrubberyCreationForm(std::string target);
 		ShrubberyCreationForm(const ShrubberyCreationForm &form);
 
-		// Destructors
+		// Destructor
 		virtual ~ShrubberyCreationForm();
 
 		// Operators

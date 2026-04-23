@@ -32,12 +32,19 @@ enum ScalarType
 class ScalarConverter
 {
 	private:
+		// Constructors
 		ScalarConverter();
+		ScalarConverter(const ScalarConverter& other);
+
+		// Destructor
 		~ScalarConverter();
 
-		ScalarConverter(const ScalarConverter& other);
+		// Operators
 		ScalarConverter& operator=(const ScalarConverter& other);
 
+		// Getters and Setters
+
+		// Member functions
 		static bool is_pseudo_float(std::string input);
 		static bool is_pseudo_double(std::string input);
 		static void convert_char(const char &input);
