@@ -16,7 +16,6 @@ int main(void)
 	person_two.age = 22;
 	person_two.favourite_colour = "Purple";
 
-
 	uintptr_t person_one_serialized_data = Serializer::serialize(&person_one);
 	std::cout << YELLOW << "serialized data person one: " << DEFAULT << person_one_serialized_data << std::endl;
 
