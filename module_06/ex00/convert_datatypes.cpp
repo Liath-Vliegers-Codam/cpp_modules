@@ -82,7 +82,6 @@ void ScalarConverter::convert_float(const std::string &input)
 // The nearest representable float is 2147483648.0f ((2^{31})), so it rounds up by 1.
 // double has 53 bits of precision, so it can represent all 32-bit int values exactly, which is why your double output stays correct.
 
-
 void ScalarConverter::convert_double(const std::string &input)
 {
 	// convert input to double
