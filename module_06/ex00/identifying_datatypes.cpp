@@ -93,6 +93,7 @@ bool ScalarConverter::is_double(std::string input)
 		return (false);
 }
 
+
 ScalarType ScalarConverter::whichType(std::string input)
 {
 	if (input.length() == 1)
@@ -104,14 +105,11 @@ ScalarType ScalarConverter::whichType(std::string input)
 		if (c > 31 && c < 127)
 			return (CHAR);
 	}
-	else if (input.length() > 1)
-	{
-		if (is_int(input))
-			return (INT);
-		if (is_float(input))
-			return (FLOAT);
-		if (is_double(input))
-			return (DOUBLE);
-	}
+	else if (is_int(input))
+		return (INT);
+	else if (is_float(input))
+		return (FLOAT);
+	else if (is_double(input))
+		return (DOUBLE);
 	return (INVALID);
 }

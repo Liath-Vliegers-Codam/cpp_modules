@@ -18,28 +18,10 @@
 class Serializer
 {
 	private:
-		// Add member variables here
+		Serializer(void) = delete;
+		~Serializer(void) = delete;
 
 	public:
-		// Constructors
-		Serializer(void);
-		Serializer(const Serializer& other);
-
-
-		// Destructor
-		~Serializer(void);
-
-		// Operators
-		Serializer &operator=(const Serializer& other);
-
-		// Getters and Setters
-
-		// Member functions
 		static uintptr_t serialize(Data* ptr);
 		static Data* deserialize(uintptr_t raw);
 };
-
-std::ostream& operator<<(std::ostream &output_stream, Serializer& other);
-
-
-

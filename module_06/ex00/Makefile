@@ -24,7 +24,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -I . $^ -o $@
 
 # Compiling source files into object files
-$(OBJ_DIR)/%.o: %.cpp | $(OBJ_DIR)
+$(OBJ_DIR)/%.o: %.cpp $(INCL) | $(OBJ_DIR)
 	$(CC) $(CFLAGS) -I . -c $< -o $@
 
 # Ensure the object directory exists

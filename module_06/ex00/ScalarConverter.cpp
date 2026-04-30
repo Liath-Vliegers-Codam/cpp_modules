@@ -68,6 +68,3 @@ std::ostream& operator<<(std::ostream& output_stream, ScalarConverter& other)
 	output_stream << "*ScalarConverter Class info here*" << std::endl;
 	return (output_stream);
 }
-
-
-

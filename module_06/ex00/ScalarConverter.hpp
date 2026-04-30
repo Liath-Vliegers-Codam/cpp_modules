@@ -22,11 +22,11 @@
 
 enum ScalarType
 {
-	CHAR,		// 0
-	INT,		// 1
-	FLOAT,		// 2
-	DOUBLE,		// 3
-	INVALID		// 4
+	CHAR,
+	INT,
+	FLOAT,
+	DOUBLE,
+	INVALID
 };
 
 class ScalarConverter

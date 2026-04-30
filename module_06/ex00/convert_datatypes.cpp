@@ -72,15 +72,9 @@ void ScalarConverter::convert_float(const std::string &input)
 		std::cout << "int: " << static_cast<int>(float_value) << std::endl;
 
 	// print float and double
-	std::cout << "float: " << std::fixed << std::setprecision(1) << float_value << "f" << std::endl;
-	std::cout << "double: " << std::fixed << std::setprecision(1) << (static_cast<double>(float_value)) << std::endl;
+	std::cout << "float: " << std::setprecision(std::numeric_limits<float>::max_digits10) << float_value << "f" << std::endl;
+	std::cout << "double: " << std::setprecision(std::numeric_limits<double>::max_digits10) << (static_cast<double>(float_value)) << std::endl;
 }
-
-// A float has only 24 bits of integer precision (including the hidden bit), so it can represent all integers exactly only up to (2^{24}).
-// 2147483647 is (2^{31}-1), far beyond that exact range.
-// Near (2^{31}), adjacent representable float values are 256 apart, so 2147483647 cannot be stored exactly.
-// The nearest representable float is 2147483648.0f ((2^{31})), so it rounds up by 1.
-// double has 53 bits of precision, so it can represent all 32-bit int values exactly, which is why your double output stays correct.
 
 void ScalarConverter::convert_double(const std::string &input)
 {
@@ -118,8 +112,8 @@ void ScalarConverter::convert_double(const std::string &input)
 	if (double_value_f > std::numeric_limits<float>::max() || double_value_f < std::numeric_limits<float>::lowest())
 		std::cout << "float: impossible" << std::endl;
 	else
-		std::cout << "float: " << std::fixed << std::setprecision(1) << (static_cast<float>(double_value)) << "f" << std::endl;
+		std::cout << "float: " << std::setprecision(std::numeric_limits<float>::max_digits10) << (static_cast<float>(double_value)) << "f" << std::endl;
 
 	// print double
-	std::cout << "double: " << std::fixed << std::setprecision(1) << double_value << std::endl;
+	std::cout << "double: " << std::setprecision(std::numeric_limits<double>::max_digits10) << double_value << std::endl;
 }
