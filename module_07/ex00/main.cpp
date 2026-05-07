@@ -22,7 +22,7 @@
 
 int main(void)
 {
-	std::cout << BLUE << "INTS:" << DEFAULT << std::endl;
+	std::cout << BLUE << "\nINTS:" << DEFAULT << std::endl;
 	int int_one = 2;
 	int int_two = 3;
 	std::cout << "int_one = " << int_one << std::endl;
@@ -30,11 +30,11 @@ int main(void)
 	std::cout << "min (int_one, int_two) = " << ::min(int_one, int_two) << std::endl;
 	std::cout << "max (int_one, int_two) = " << ::max(int_one, int_two) << std::endl;
 	::swap(int_one, int_two);
-	std::cout << YELLOW << "after swap: " << DEFAULT << std::endl;
+	std::cout << MAGENTA << "after swap: " << DEFAULT << std::endl;
 	std::cout << "int_one = " << int_one << std::endl;
 	std::cout << "int_two = " << int_two << std::endl;
 
-	std::cout << BLUE << "FLOATS:" << DEFAULT << std::endl;
+	std::cout << BLUE << "\nFLOATS:" << DEFAULT << std::endl;
 	float float_one = 1.5f;
 	float float_two = 2.5f;
 	std::cout << "float_one = " << float_one << std::endl;
@@ -42,11 +42,11 @@ int main(void)
 	std::cout << "min (float_one, float_two) = " << ::min(float_one, float_two) << std::endl;
 	std::cout << "max (float_one, float_two) = " << ::max(float_one, float_two) << std::endl;
 	::swap(float_one, float_two);
-	std::cout << YELLOW << "after swap: " << DEFAULT << std::endl;
+	std::cout << MAGENTA << "after swap: " << DEFAULT << std::endl;
 	std::cout << "float_one = " << float_one << std::endl;
 	std::cout << "float_two = " << float_two << std::endl;
 
-	std::cout << BLUE << "DOUBLES:" << DEFAULT << std::endl;
+	std::cout << BLUE << "\nDOUBLES:" << DEFAULT << std::endl;
 	double double_one = 1.5;
 	double double_two = 2.5;
 	std::cout << "double_one = " << double_one << std::endl;
@@ -54,11 +54,11 @@ int main(void)
 	std::cout << "min (double_one, double_two) = " << ::min(double_one, double_two) << std::endl;
 	std::cout << "max (double_one, double_two) = " << ::max(double_one, double_two) << std::endl;
 	::swap(double_one, double_two);
-	std::cout << YELLOW << "after swap: " << DEFAULT << std::endl;
+	std::cout << MAGENTA << "after swap: " << DEFAULT << std::endl;
 	std::cout << "double_one = " << double_one << std::endl;
 	std::cout << "double_two = " << double_two << std::endl;
 
-	std::cout << BLUE << "CHARS:" << DEFAULT << std::endl;
+	std::cout << BLUE << "\nCHARS:" << DEFAULT << std::endl;
 	char char_one = 'a';
 	char char_two = 'b';
 	std::cout << "char_one = " << char_one << std::endl;
@@ -66,11 +66,11 @@ int main(void)
 	std::cout << "min (char_one, char_two) = " << ::min(char_one, char_two) << std::endl;
 	std::cout << "max (char_one, char_two) = " << ::max(char_one, char_two) << std::endl;
 	::swap(char_one, char_two);
-	std::cout << YELLOW << "after swap: " << DEFAULT << std::endl;
+	std::cout << MAGENTA << "after swap: " << DEFAULT << std::endl;
 	std::cout << "char_one = " << char_one << std::endl;
 	std::cout << "char_two = " << char_two << std::endl;
 
-	std::cout << BLUE << "STRINGS:" << DEFAULT << std::endl;
+	std::cout << BLUE << "\nSTRINGS:" << DEFAULT << std::endl;
 	std::string string_one = "chaine1";
 	std::string string_two = "chaine2";
 	std::cout << "string_one = " << string_one << std::endl;
@@ -78,7 +78,7 @@ int main(void)
 	std::cout << "min (string_one, string_two) = " << ::min(string_one, string_two) << std::endl;
 	std::cout << "max (string_one, string_two) = " << ::max(string_one, string_two) << std::endl;
 	::swap(string_one, string_two);
-	std::cout << YELLOW << "after swap: " << DEFAULT << std::endl;
+	std::cout << MAGENTA << "after swap: " << DEFAULT << std::endl;
 	std::cout << "string_one = " << string_one << std::endl;
 	std::cout << "string_two = " << string_two << std::endl;
 

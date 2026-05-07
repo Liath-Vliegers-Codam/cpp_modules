@@ -1,29 +1,81 @@
 
 # include "Array.hpp"
 
+
+// Member functions
 template <typename T>
-class Array
+size_t Array<T>::size(void)
 {
-	private:
-		T*			 _data;         
-		unsigned int _size;
+	return (_size);
+}
 
-	public:
-		// Member functions
-		unsigned int size() const;
+// Getters and Setters
 
-		// Getters and Setters
+// Constructors
+template <typename T>
+Array<T>::Array() : _data(NULL), _size(0)
+{
+	std::cout << BLUE << "Array default constructor is called" << DEFAULT << std::endl;
+}
 
-		// Constructors
-		Array(void);
-		Array(unsigned int n);
-		Array(const Array& other);
+template <typename T>
+Array<T>::Array(size_t n) : _data(NULL), _size(n)
+{
+	_data = new T[_size];
+	// for (size_t i = 0; i < _size; i++)
+	// {
+	// 	_data[i] = NULL;
+	// }
+	std::cout << BLUE << "Array parameterized constructor is called" << DEFAULT << std::endl;
+}
 
-		// Destructors
-		~Array();
+template <typename T>
+Array<T>::Array(const Array& other)
+{
+	_size = other._size;
+	for (size_t i = 0; i < _size; i++)
+	{
+		_data[i] = other._data[i];
+	}
+	std::cout << BLUE << "Array copy constructor is called" << DEFAULT << std::endl;
 
-		// Overload operators
-		Array &operator=(const Array& src);
-		T& operator[](unsigned int index);
-		const T& operator[](unsigned int index) const;
-};
+}
+
+// Destructors
+template <typename T>
+Array<T>::~Array()
+{
+	delete[] _data;
+	std::cout << BLUE << "Array deconstructor is called" << DEFAULT << std::endl;
+}
+
+// Overload operators
+template <typename T>
+Array<T>& Array<T>::operator=(const Array& other)
+{
+	if (this != &other)
+	{
+		delete[] _data;
+
+		_size = other._size;
+		_data = new T[_size];
+		for (size_t i = 0; i < _size; i++)
+		{
+			_data[i] = other._data[i];
+		}
+	}
+	std::cout << BLUE << "Array copy assignment is called" << DEFAULT << std::endl;
+	return (*this);
+}
+
+template <typename T>
+T& Array<T>::operator[](size_t index)
+{
+	if (index >= _size)
+	{
+		throw std::out_of_range("Index out of bounds");
+	}
+	return _data[index];
+}
+
+

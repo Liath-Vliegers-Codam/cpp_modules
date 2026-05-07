@@ -2,6 +2,7 @@
 #pragma once
 
 #include <iostream>
+#include <typeinfo>
 
 #define DEFAULT	"\033[0m"
 #define RED		"\033[31m"
@@ -22,20 +23,13 @@ void print_array(T const  &element)
 template <typename T>
 void add_explenation_mark(T& element)
 {
-	element =  element + "!";
+	element = element + "!";
 }
 
 template <typename T>
-void increment_array(T &element)
+void increment_array(T& element)
 {
 	element += 1;
-}
-
-template <typename T, std::size_t N>
-std::size_t length_array(T (&arr)[N])
-{
-	(void)arr;
-	return (N);
 }
 
 template <typename T, typename F>
