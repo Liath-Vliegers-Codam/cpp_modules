@@ -1,5 +1,5 @@
 
-NAME		:= module_07
+NAME		:= module_08
 
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++20 #-g -fsanitize=address 
@@ -7,8 +7,8 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++20 #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	templates.hpp
-SRCS		:= 	main.cpp 
+INCL		:=	easyfind.hpp
+SRCS		:= 	main.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

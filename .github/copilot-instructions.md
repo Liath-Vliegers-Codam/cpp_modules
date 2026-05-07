@@ -25,7 +25,7 @@ Generate C++ code that adheres to C++11 best practices and the specific guidelin
     *   `using` declarations for specific symbols (e.g., `using std::cout;`) are acceptable in source (`.cpp`) files.
     *   In header files, always qualify names (e.g., `std::string`, `std::vector`).
 6.  **STL Containers & Algorithms:**
-    *   Use STL containers and algorithms as provided in C++98.
+    *   Use STL containers and algorithms as provided in C++20.
 
 ## 🏗️ Code Structure & Naming Conventions
 
@@ -65,11 +65,14 @@ Generate C++ code that adheres to C++11 best practices and the specific guidelin
     *   Assume a build system (e.g., Makefile).
     *   For Makefiles:
         *   Compiler: `CXX = c++`
-        *   Flags: `CXXFLAGS = -Wall -Wextra -Werror -std=c++11`
+        *   Flags: `CXXFLAGS = -Wall -Wextra -Werror -std=c++20`
         *   Common targets: `all`, `clean`, `fclean`, `re`.
 
 ## 🚨 Important Note
     **DO NOT EVER PUT COMMENTS ALL OVER THE CODE.**
     Comments should be used sparingly and only when necessary to clarify complex logic or design decisions. The code itself should be self-explanatory through clear naming and structure.
+
+    **DO NOT MODIFY EXISTING SOURCE OR PROJECT FILES UNLESS THE USER EXPLICITLY REQUESTS IT.**
+    Only make edits to repository files when given explicit permission by the user; avoid automatic or unprompted changes to code, build files, or documentation.
 
 By following these instructions, you will help me produce high-quality, C++11 code.

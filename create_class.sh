@@ -68,8 +68,8 @@ ${classname}::${classname}(/*Parameters here*/)
 
 ${classname}::${classname}(const ${classname}& other)
 {
-	std::cout << "${classname} copy constructor is called" << std::endl;
 	*this = other;
+	std::cout << "${classname} copy constructor is called" << std::endl;
 }
 
 // Destructor
@@ -88,8 +88,8 @@ ${classname}& ${classname}::operator=(const ${classname}& other)
 {
 	if (this != &other)
 	{
-		std::cout << "${classname} copy assignment is called" << std::endl;
 		*this = other;
+		std::cout << "${classname} copy assignment is called" << std::endl;
 	}
 	return (*this);
 }
