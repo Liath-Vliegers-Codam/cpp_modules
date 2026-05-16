@@ -18,9 +18,6 @@
 
 int main(void)
 {
-	
-	
-	
 	Span span1 = Span(5);
 	try
 	{
@@ -47,8 +44,6 @@ int main(void)
 		std::cerr << RED << e.what() << DEFAULT << std::endl;
 	}
 	
-	
-
 	std::vector<int> veccy;
 
 	veccy.push_back(1);
@@ -62,7 +57,6 @@ int main(void)
 	veccy.push_back(4564);
 	veccy.push_back(8);
 
-
 	try
 	{
 		span1.addRange(std::next(veccy.begin(), 3), veccy.end());
@@ -72,8 +66,6 @@ int main(void)
 		std::cerr << RED << e.what() << DEFAULT << std::endl;
 	}
 	
-
-
 	Span span2 = Span(50);
 	try
 	{

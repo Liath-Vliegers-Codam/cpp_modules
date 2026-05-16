@@ -7,9 +7,8 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++20 #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	Span.hpp
-SRCS		:= 	main.cpp \
-				Span.cpp
+INCL		:=	MutantStack.hpp
+SRCS		:= 	main.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

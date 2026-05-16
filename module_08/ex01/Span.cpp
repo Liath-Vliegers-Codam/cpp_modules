@@ -87,9 +87,6 @@ size_t Span::longestSpan()
 	return (distance);
 }
 
-
-
-
 // Overload operators
 Span& Span::operator=(const Span& other)
 {
@@ -116,10 +113,3 @@ std::ostream& operator<<(std::ostream& output_stream, Span& src)
 	output_stream << "]" << DEFAULT << std::endl;
 	return (output_stream);
 }
-
-// // Exceptions
-// const char* ExceptionName::what() const noexcept
-// {
-// 	return ("*Exception info here*");
-// }
-
