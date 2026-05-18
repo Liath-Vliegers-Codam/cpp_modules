@@ -23,7 +23,6 @@ class Span
 
 	public:
 		// Constructors
-		Span(void);
 		Span(size_t N);
 		Span(const Span& other);
 
@@ -44,32 +43,13 @@ class Span
 		template <typename ItType>
 		void addRange(ItType start_it, ItType end_it)
 		{
-			// if (end_it < start_it)
-			// {
-			// 	throw std::runtime_error("The end iterator is smaller than the start iterator");
-			// }
-			// size_t range_size = std::distance(start_it, end_it);
-			
-			// if (_size + range_size > _max_size)
-			// {
-			// 	throw std::runtime_error("Range exceeds max size of this Span object");
-			// }
-			// while (start_it != end_it)
-			// {
-			// 	_vec.push_back(*start_it);
-			// 	_size++;
-			// 	start_it++;
-			// }
-
-
-			int range_size = std::distance(start_it, end_it);
+			size_t range_size = std::distance(start_it, end_it);
 
 			if (range_size < 0)
 			{
 				throw std::runtime_error("The end iterator is smaller than the start iterator");
 			}
-
-			if (_size + static_cast<size_t>(range_size) > _max_size)
+			if (_size + range_size > _max_size)
 			{
 				throw std::runtime_error("Range exceeds max size of this Span object");
 			}
@@ -83,10 +63,3 @@ class Span
 };
 
 std::ostream& operator<<(std::ostream &output_stream, Span& src);
-
-// // Exceptions
-// class ExceptionName : public std::exception
-// {
-// 	const char* what() const noexcept override;
-// };
-

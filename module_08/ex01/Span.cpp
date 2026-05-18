@@ -1,26 +1,23 @@
 #include "Span.hpp"
 
 // Constructors
-Span::Span(void) : _max_size(0), _size(0)
-{
-    std::cout << "Span default constructor is called" << std::endl;
-}
-
 Span::Span(size_t max_size) : _max_size(max_size), _size(0)
 {
-	std::cout << "Span parameterized constructor is called" << std::endl;
+	std::cout << BLUE << "Span parameterized constructor is called" << DEFAULT << std::endl;
 }
 
 Span::Span(const Span& other)
 {
-	*this = other;
-	std::cout << "Span copy constructor is called" << std::endl;
+	_max_size = other._max_size;
+	_size = other._size;
+	_vec = other._vec;
+	std::cout << BLUE << "Span copy constructor is called" << DEFAULT << std::endl;
 }
 
 // Destructor
 Span::~Span(void)
 {
-    std::cout << "Span destructor is called" << std::endl;
+    std::cout << BLUE << "Span destructor is called" << DEFAULT << std::endl;
 }
 
 // Getters and Setters
@@ -55,8 +52,8 @@ size_t Span::shortestSpan()
 	size_t shortest_distance = SIZE_MAX;
 	std::multiset<int>	sorted_mset(_vec.begin(), _vec.end());
 
-    std::multiset<int>::iterator it = std::next(sorted_mset.begin(), 1);
-    std::multiset<int>::iterator prev_it = sorted_mset.begin();
+    std::multiset<int>::iterator it = std::next(sorted_mset.begin(), 1); 	// index 1
+    std::multiset<int>::iterator prev_it = sorted_mset.begin();				// index 0
 
 	while (it != sorted_mset.end())
 	{
@@ -92,16 +89,18 @@ Span& Span::operator=(const Span& other)
 {
 	if (this != &other)
 	{
-		*this = other;
+		_max_size = other._max_size;
+		_size = other._size;
+		_vec = other._vec;
 		std::cout << "Span copy assignment is called" << std::endl;
 	}
-	return (*this);
+	return *this;
 }
 
 std::ostream& operator<<(std::ostream& output_stream, Span& src)
 {
 	std::vector<int> vec = src.get_vec();
-	output_stream << BLUE << "This Span object contains the numbers: [";
+	output_stream << "This Span object contains the numbers: [";
 
 	for (size_t i = 0; i < vec.size(); ++i)
 	{
@@ -110,6 +109,6 @@ std::ostream& operator<<(std::ostream& output_stream, Span& src)
 			output_stream << ", ";
 	}
 
-	output_stream << "]" << DEFAULT << std::endl;
+	output_stream << "]";
 	return (output_stream);
 }

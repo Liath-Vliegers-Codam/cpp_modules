@@ -1,7 +1,6 @@
 
 # include "Array.hpp"
 
-
 // Member functions
 template <typename T>
 size_t Array<T>::size(void)
@@ -22,23 +21,14 @@ template <typename T>
 Array<T>::Array(size_t n) : _data(NULL), _size(n)
 {
 	_data = new T[_size];
-	// for (size_t i = 0; i < _size; i++)
-	// {
-	// 	_data[i] = NULL;
-	// }
 	std::cout << BLUE << "Array parameterized constructor is called" << DEFAULT << std::endl;
 }
 
 template <typename T>
-Array<T>::Array(const Array& other)
+Array<T>::Array(const Array &other) 
 {
-	_size = other._size;
-	for (size_t i = 0; i < _size; i++)
-	{
-		_data[i] = other._data[i];
-	}
-	std::cout << BLUE << "Array copy constructor is called" << DEFAULT << std::endl;
-
+    this->_data = new T[1];
+    *this = other;
 }
 
 // Destructors
@@ -77,5 +67,3 @@ T& Array<T>::operator[](size_t index)
 	}
 	return _data[index];
 }
-
-

@@ -74,9 +74,12 @@ int main()
 	iter(array_str, length_arr_str, print_array<std::string>);
 	std::cout << std::endl;
 
-	// // CHANGE INCREMENT ARRAY TO SOMETHING PRINTABLE
+
+	// // CHANGE THE VALUE IN THE INCREMENT ARRAY FUNCTION TO SOMETHING PRINTABLE
 
 	// iter(array_str, length_arr_str, increment_array<std::string>);
 	// iter(array_str, length_arr_str, print_array<std::string>);
 	// std::cout << std::endl;
+
+	return (0);
 }

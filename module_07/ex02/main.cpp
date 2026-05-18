@@ -1,26 +1,3 @@
-/*
-	Exercise 02 		: Array
-	Turn-in directory	: ex02/
-	Files to turn in	: Makefile, main.cpp, Array.{h, hpp}, and optional file	: Array.tpp
-	Forbidden functions	: None
-
-	Develop a class template Array that contains elements of type T and that implements the following behavior and functions:
-
-	• Construction with no parameter: Creates an empty array.
-	• Construction with an unsigned int n as a parameter: Creates an array of n elements initialized by default.
-		Tip: Try to compile int * a = new int(); then display *a.
-	• Construction by copy and assignment operator. 
-		In both cases, modifying either the original array or its copy after copying musn’t affect the other array.
-	• You MUST use the operator new[] to allocate memory. 
-		Preventive allocation (allocating memory in advance) is forbidden. 
-		Your program must never access non-allocated memory.
-	• Elements can be accessed through the subscript operator: [ ].
-	• When accessing an element with the [ ] operator, if its index is out of bounds, an std::exception is thrown.
-	• A member function size() that returns the number of elements in the array. 
-		This member function takes no parameters and must not modify the current instance.
-
-	As usual, ensure everything works as expected and turn in a main.cpp file that contains your tests.
-*/
 
 #include "Array.hpp"
 
@@ -204,11 +181,11 @@ void struct_array_tests(void)
 
 	try
 	{
-		std::cout << "name of Data in struct_array at index 0 = " << struct_array[0].name << std::endl;
-		std::cout << "name of Data in struct_array at index 1 = " << struct_array[1].name << std::endl;
-		std::cout << "name of Data in struct_array at index 4 = " << struct_array[4].name << std::endl;
-		std::cout << "name of Data in struct_array at index 7 = " << struct_array[7].name << std::endl;
-		std::cout << "name of Data in struct_array at index 10 = " << struct_array[10].name << std::endl;
+		std::cout << "name of Data in struct_array at index 0 = " << struct_array[0].name << " and id = " << struct_array[0].id << std::endl;
+		std::cout << "name of Data in struct_array at index 1 = " << struct_array[1].name << " and id = " << struct_array[1].id << std::endl;
+		std::cout << "name of Data in struct_array at index 4 = " << struct_array[4].name << " and id = " << struct_array[4].id << std::endl;
+		std::cout << "name of Data in struct_array at index 7 = " << struct_array[7].name << " and id = " << struct_array[7].id << std::endl;
+		std::cout << "name of Data in struct_array at index 10 = " << struct_array[10].name << " and id = " << struct_array[10].id << std::endl;
 	}
 	catch (const std::exception& e)
 	{
@@ -263,16 +240,65 @@ void array_array_tests(void)
 	{
 		std::cout << RED << e.what() << DEFAULT << std::endl;
 	}
-
 }
 
+void copy_and_assignment_tests(void)
+{
+	std::cout << GREEN << "TEST: copy and assignment tests" << DEFAULT << std::endl;
 
+	Array<int> arr(5);
+	for (size_t i = 0; i < arr.size(); i++)
+	{
+		arr[i] = static_cast<int>(i * 10);
+	}
 
-// TODO find jisses edge case
+	for (size_t i = 0; i < arr.size(); i++)
+	{
+		std::cout << "arr index "<< i << " = " << arr[i] << std::endl;
+	}
+	
+	std::cout << MAGENTA << "\nCreating copy of arr using copy constructor" << DEFAULT << std::endl;
+	Array<int> copy = arr;
+	for (size_t i = 0; i < copy.size(); i++)
+	{
+		std::cout << "copy index "<< i << " = " << copy[i] << std::endl;
+	}
+
+	std::cout << MAGENTA << "modifying copy and arr to check for deep copy" << DEFAULT << std::endl;
+
+	std::cout << MAGENTA << "set arr[0] = 42" << DEFAULT << std::endl;
+	arr[0] = 42;
+	std::cout << "copy[0] = " << copy[0] << std::endl;
+	std::cout << "arr[0] = " << arr[0] << std::endl;
+
+	std::cout << MAGENTA << "set copy[1] = 777" << DEFAULT << std::endl;
+	copy[1] = 777;
+	std::cout << "copy[1] = " << copy[1] << std::endl;
+	std::cout << "arr[1] = " << arr[1] << std::endl;
+
+	std::cout << MAGENTA << "\nCreating assigned array using assignment operator" << DEFAULT << std::endl;
+	Array<int> assigned;
+	assigned = arr;
+	for (size_t i = 0; i < assigned.size(); i++)
+	{
+		std::cout << "assigned index "<< i << " = " << assigned[i] << std::endl;
+	}
+	std::cout << MAGENTA << "set arr[1] = 444" << DEFAULT << std::endl;
+	arr[1] = 444;
+	std::cout << "assigned[0] = " << assigned[0] << std::endl;
+	std::cout << "assigned[1] = " << assigned[1] << std::endl;
+	std::cout << "copy[0] = " << copy[0] << std::endl;
+	std::cout << "copy[1] = " << copy[1] << std::endl;
+	std::cout << "arr[0] = " << arr[0] << std::endl;
+	std::cout << "arr[1] = " << arr[1] << std::endl;
+}
+
 
 int main(void)
 {
 	subject_tests();
+
+	copy_and_assignment_tests();
 
 	int_array_tests();
 

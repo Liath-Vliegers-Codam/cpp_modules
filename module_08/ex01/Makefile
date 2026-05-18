@@ -41,7 +41,7 @@ fclean: clean
 re: fclean all
 
 # Compile and run the program
-run: all
+run: re
 	./$(NAME)
 
 # Phony targets (to prevent conflicts with actual files)

@@ -27,19 +27,19 @@ class MutantStack: public std::stack<T, Container>
 		// Constructors
 		MutantStack(void)
 		{
-			std::cout << MAGENTA << "MutantStack default constructor is called" << DEFAULT << std::endl;
+			std::cout << BLUE << "MutantStack default constructor is called" << DEFAULT << std::endl;
 		}
-		// MutantStack(/*Parameterized Constructor*/);
+
 		MutantStack(const MutantStack& other)
 		{
 			*this = other;
-			std::cout << MAGENTA << "MutantStack copy constructor is called" << DEFAULT << std::endl;
+			std::cout << BLUE << "MutantStack copy constructor is called" << DEFAULT << std::endl;
 		}
 
 		// Destructor
 		~MutantStack(void)
 		{
-    		std::cout << MAGENTA << "MutantStack destructor is called" << DEFAULT << std::endl;
+    		std::cout << BLUE << "MutantStack destructor is called" << DEFAULT << std::endl;
 		}
 
 		// Operators
@@ -47,14 +47,13 @@ class MutantStack: public std::stack<T, Container>
 		{
 			if (this != &other)
 			{
-				std::stack<T, Container>::operator=(other); // copies underlying container
-				std::cout << MAGENTA << "MutantStack copy assignment is called" << DEFAULT << std::endl;
+				this->c = other.c;
+				std::cout << BLUE << "MutantStack copy assignment is called" << DEFAULT << std::endl;
 			}
 			return (*this);
 		}
 
 		// Getters and Setters
-
 
 		// Member functions
 		typedef typename Container::iterator iterator;
@@ -107,8 +106,6 @@ class MutantStack: public std::stack<T, Container>
 template <typename T, class Container>
 std::ostream& operator<<(std::ostream& output_stream, const MutantStack<T, Container>& src)
 {
-    // output_stream << YELLOW << "PRINT STACK:\n-----------" << std::endl;
-
     typename MutantStack<T, Container>::const_reverse_iterator it = src.crbegin();
     while (it != src.crend())
     {
