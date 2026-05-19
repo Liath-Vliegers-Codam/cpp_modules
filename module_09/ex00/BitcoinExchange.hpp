@@ -37,10 +37,6 @@ class BitcoinExchange
 		// Getters and Setters
 
 		// Member functions
-
-
-
-
 };
 
 // std::ostream& operator<<(std::ostream &output_stream, BitcoinExchange& src);
@@ -51,3 +47,4 @@ class BitcoinExchange
 // 	const char* what() const noexcept override;
 // };
 
+bool check_date(std::string date);
