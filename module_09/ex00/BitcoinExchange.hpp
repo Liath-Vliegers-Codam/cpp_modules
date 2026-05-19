@@ -21,8 +21,8 @@
 class BitcoinExchange
 {
 	private:
-		std::map<std::string, double> data;
-
+		std::map<std::string, double> _data;
+	
 	public:
 		// Constructors
 		BitcoinExchange(void);
@@ -37,6 +37,8 @@ class BitcoinExchange
 		// Getters and Setters
 
 		// Member functions
+
+
 };
 
 // std::ostream& operator<<(std::ostream &output_stream, BitcoinExchange& src);
@@ -47,4 +49,8 @@ class BitcoinExchange
 // 	const char* what() const noexcept override;
 // };
 
-bool check_date(std::string date);
+bool check_date(std::string date, std::string file);
+bool is_int(std::string input);
+bool is_double(std::string input);
+
+void print_map(std::map<std::string, double> data);		// TAKE OUT

@@ -1,16 +1,63 @@
 #include "BitcoinExchange.hpp"
 
+bool is_int(std::string input)
+{
+	size_t i = 0;
+
+	if (input[0] == '-' || input[0] == '+')
+		i++;
+	while (i < input.length())
+	{
+		if (!isdigit(input[i]))
+			return (false);
+		i++;
+	}
+	return (true);
+}
+
+bool is_double(std::string input)
+{
+	if (input.length() < 2)
+		return (false);
+	
+	size_t i = 0;
+	size_t dots = 0;
+
+	if (input[i] == '+' || input[i] == '-')
+		i++;
+
+	if (input[i] == '.' || input[input.length() - 1] == '.')
+		return (false);
+
+	while (i < input.length())
+	{
+		if (!isdigit(input[i]) && input[i] != '.')
+			return (false);
+		if (input[i] == '.')
+			dots++;
+		i++;
+	}
+	if (dots == 1)
+		return (true);
+	else
+		return (false);
+}
+
 
 void print_map(std::map<std::string, double> data)		// TAKE OUT
 {
+	std::cout << YELLOW << std::endl;
+	std::cout << "--PRINTING MAP:--" << std::endl;
 	for (const auto& pair : data)
 	{
 		std::cout << pair.first << " : " << pair.second << std::endl;
 	}
+	std::cout << "-----------------" << std::endl;
+	std::cout << DEFAULT << std::endl;
 }
 
 
-bool check_date(std::string date)
+bool check_date(std::string date, std::string file)
 {
 	int year;
 	int month;
@@ -72,7 +119,7 @@ bool check_date(std::string date)
 	}
 
 	// check if the date is in the future
-	if (year == datetime->tm_year + 1900)
+	if (file == "data_file" && year == datetime->tm_year + 1900)
 	{
 		if (month > datetime->tm_mon + 1 || (month == datetime->tm_mon + 1 && day > datetime->tm_mday))
 		{
@@ -101,17 +148,27 @@ std::string trim_whitespaces(const std::string &str)
 	return (trimmed_str);
 }
 
-
-int main(int argc, char *argv[])
-{
-	BitcoinExchange bitcoinExchange;
-
+void print_subject()
+{	
+	std::cout << "============================" << std::endl;
+	std::cout << "INPUT FILE:" << std::endl;
+	std::cout << "============================" << std::endl;
+	std::cout << "date | exchange_rate_str" << std::endl;
+	std::cout << "2011-01-03 | 3" << std::endl;
+	std::cout << "2011-01-03 | 2" << std::endl;
+	std::cout << "2011-01-03 | 1" << std::endl;
+	std::cout << "2011-01-03 | 1.2" << std::endl;
+	std::cout << "2011-01-09 | 1" << std::endl;
+	std::cout << "2012-01-11 | -1" << std::endl;
+	std::cout << "2001-42-42" << std::endl;
+	std::cout << "2012-01-11 | 1" << std::endl;
+	std::cout << "2012-01-11 | 2147483648" << std::endl;
 	std::cout << "============================" << std::endl;
 	std::cout << "WHAT WE WANT TO SEE:" << std::endl;
 	std::cout << "============================" << std::endl;
 	std::cout << "$> ./btc" << std::endl;
 	std::cout << "Error: could not open file." << std::endl;
-	std::cout << "============================" << std::endl;
+	std::cout << "----------------------------" << std::endl;
 	std::cout << "$> ./btc input.txt" << std::endl;
 	std::cout << "2011-01-03 => 3 = 0.9" << std::endl;
 	std::cout << "2011-01-03 => 2 = 0.6" << std::endl;
@@ -124,47 +181,81 @@ int main(int argc, char *argv[])
 	std::cout << "Error: too large a number." << std::endl;
 	std::cout << "$>" << std::endl;
 	std::cout << "============================" << std::endl;
+	std::cout << "WHAT WE SEE:" << std::endl;
+	std::cout << "============================" << std::endl;
+}
 
+int main(int argc, char *argv[])
+{
+	(void)argc;
+	(void)*argv;
 
-
-	if (argc != 2)
+	try
 	{
-		std::cerr << "Please make sure you run this program with the path to an input file" << std::endl;
-	}
-	std::ifstream input_file(argv[1]);
-	if (!input_file.is_open())
-	{
-		std::cerr << "An input file is required for this program, but it is missing or unable to open in this repository";
-	}
+		BitcoinExchange btc;
 
-	std::string line;
-	// int line_nbr = 1;
+		print_subject();
 
-	while (std::getline(input_file, line))
-	{
-		// line_nbr++;
-
-		size_t split_pos = line.find('|');
-		if (split_pos == std::string::npos)
+		if (argc != 2)
 		{
-			std::cerr << "Error: bad input => " << line << std::endl;
-			continue;
+			std::cerr << "Error: could not open file." << std::endl;
+			return (1);
+		}
+		std::ifstream input_file(argv[1]);
+		if (!input_file.is_open())
+		{
+			std::cerr << "Error: could not open file." << std::endl;
+			return (1);
 		}
 
-		std::string date = trim_whitespaces(line.substr(0, split_pos));
-		std::string value = trim_whitespaces(line.substr(split_pos + 1));
+		std::string line;
 
-		std::map<std::string, double> input_data;
+		std::getline(input_file, line);
+		if (line != "date | value")
+		{
+			std::cerr << RED << "Error : wrong format of the header. Should be [date | value]" << std::endl;
+		}
 
-	
+
+		while (std::getline(input_file, line))
+		{
+			size_t split_pos = line.find('|');
+			if (split_pos == std::string::npos)
+			{
+				std::cerr << "Error: bad input => " << line << std::endl;
+				continue;
+			}
+
+			std::string date = trim_whitespaces(line.substr(0, split_pos));
+			std::string exchange_rate_str = trim_whitespaces(line.substr(split_pos + 1));
+
+			double exchange_rate;
+			try
+			{
+				exchange_rate = stod(exchange_rate_str);
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << e.what() << '\n';
+			}
+			
+			
+			std::cout << "date : " << date << " exchange_rate : " << exchange_rate << std::endl;
+
+		}
+
+		input_file.close();
 	}
 
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << std::endl;
+		return (2);
+	}
+	
 
+	
 
-
-
-	// 	// trimm spaces
-		
 
 
 
@@ -178,25 +269,25 @@ int main(int argc, char *argv[])
 	// 		continue;
 	// 	}
 
-	// 	double value;
+	// 	double exchange_rate_str;
 	// 	try
 	// 	{
-	// 		value = stof(line.substr(split_pos + 1));
-	// 		// std::cout << "value = " << std::fixed << std::setprecision(2) << value <<std::endl;
+	// 		exchange_rate_str = stof(line.substr(split_pos + 1));
+	// 		// std::cout << "exchange_rate_str = " << std::fixed << std::setprecision(2) << exchange_rate_str <<std::endl;
 
-	// 		this->data.insert({date, value});
+	// 		this->data.insert({date, exchange_rate_str});
 	// 	}
 	// 	catch(const std::exception& e)
 	// 	{
-	// 		std::cerr << "Error : wrong format of the value in data.csv at line [" << line_nbr << "] : " << line << std::endl;
+	// 		std::cerr << "Error : wrong format of the exchange_rate_str in data.csv at line [" << line_nbr << "] : " << line << std::endl;
 	// 	}
 		
-	// 	this->data.insert({date, value});
+	// 	this->data.insert({date, exchange_rate_str});
 	// }
 
 	// // print_map(this->data);		// TAKE OUT
 
 	// data_file.close();
 
-	// return (0);
+	return (0);
 }
