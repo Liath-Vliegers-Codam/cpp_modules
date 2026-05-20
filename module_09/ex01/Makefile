@@ -1,5 +1,5 @@
 
-NAME		:= module_09
+NAME		:= RPN
 
 CC			:= c++
 CFLAGS		:= -Wall -Wextra -Werror -std=c++20 #-g -fsanitize=address 
@@ -7,8 +7,9 @@ CFLAGS		:= -Wall -Wextra -Werror -std=c++20 #-g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	
-SRCS		:= 	main.cpp
+INCL		:=	RPN.hpp
+SRCS		:= 	main.cpp \
+				RPN.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

@@ -40,26 +40,99 @@
 	$>
 */
 
-
 #include "RPN.hpp"
 
-int main(int argc, char* argv[])
+
+// bool check_input(std::string input)
+// {
+// 	std::string::iterator it = input.begin();
+// 	while (it != input.end())
+// 	{
+// 		if (*it == ' ')
+// 		{
+// 			it++;
+// 		}
+
+
+// 	}
+
+
+// 	return (true);
+// }
+
+bool is_operator(char c)
 {
-	// if (argc != 2)
-	// {	
-	// 	std::cerr << "ERROR NO INPUT" << std::endl;
-	// 	return (1);
-	// }
+	if (c == '+' || c == '-' || c == '*' || c == '/')
+		return (true);
+	else
+		return (false);
+}
 
-	// RPN(argv[1]);
+bool check_input(std::string split_input)
+{
+	std::cout << YELLOW << "split input : "<< split_input << DEFAULT << std::endl; // TAKE OUT
+	std::cout << YELLOW << "split length : "<< split_input.length() << DEFAULT << std::endl; // TAKE OUT
 
+	if (split_input.length() > 1)
 	{
-		(void)argv;
-		(void)argc;
-		RPN("8 9 * 9 - 9 - 9 - 4 - 1 +");
-		// RPN("1");
-		// RPN("11");
+		return (false);
+	}
+	char c = split_input[0];
+	if (!isdigit(c) && !isspace(c) && !is_operator(c))
+	{
+		return (false);
+	}
+	return (true);
+}
+
+std::string parse_input(std::string input)
+{
+	std::cout << BLUE << "not parsed input : "<< input << DEFAULT << std::endl; // TAKE OUT
+
+	// SPLIT
+	std::string result;
+	std::string split_str;
+	char delimiter = ' ';
+
+	auto start_pos = 0;
+	auto del_pos = input.find(delimiter, start_pos);
+
+	while (del_pos != std::string::npos) 
+	{
+		split_str = input.substr(start_pos, del_pos);
+		if (!check_input(split_str))
+		{
+			throw std::invalid_argument("Error");
+		}
+		else
+		{
+			result += split_str;
+			start_pos = del_pos;
+			del_pos = input.find(delimiter, start_pos);
+		}
 	}
 
-	return (0);
+	std::cout << BLUE << "parsed input : "<< result << DEFAULT << std::endl; // TAKE OUT
+	return (result);
 }
+
+void RPN(std::string input)
+{
+	
+	// std::stack<int> rpn_stack;
+	// int total;
+	// int stack_items = 0;
+	// char symbol;
+
+	try
+	{
+		parse_input(input);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << DEFAULT << std::endl;
+	}
+	
+	
+}
+
