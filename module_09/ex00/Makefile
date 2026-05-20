@@ -7,9 +7,11 @@ CFLAGS		:= -Wall -Wextra  -std=c++20 #-Werror -g -fsanitize=address
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	BitcoinExchange.hpp
+INCL		:=	BitcoinExchange.hpp \
+				utils.hpp
 SRCS		:= 	main.cpp \
-				BitcoinExchange.cpp
+				BitcoinExchange.cpp \
+				utils.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)
