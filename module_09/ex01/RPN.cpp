@@ -78,7 +78,7 @@ bool check_input(std::string split_input)
 		return (false);
 	}
 	char c = split_input[0];
-	if (!isdigit(c) && !isspace(c) && !is_operator(c))
+	if (!isdigit(c) && !is_operator(c))
 	{
 		return (false);
 	}
