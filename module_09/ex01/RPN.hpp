@@ -1,8 +1,9 @@
 #pragma once
 
 #include <iostream>
+#include <sstream>
+#include <string>
 #include <stack>
-
 
 #define DEFAULT	"\033[0m"
 #define RED		"\033[31m"
@@ -12,6 +13,5 @@
 #define MAGENTA	"\033[35m"
 #define CYAN	"\033[36m"
 #define WHITE	"\033[37m"
-
 
 void RPN(std::string input);
