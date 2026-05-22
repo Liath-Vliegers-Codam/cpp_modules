@@ -88,7 +88,7 @@ ${classname}& ${classname}::operator=(const ${classname}& other)
 {
 	if (this != &other)
 	{
-		*this = other;
+		// copy data members here
 		std::cout << "${classname} copy assignment is called" << std::endl;
 	}
 	return (*this);

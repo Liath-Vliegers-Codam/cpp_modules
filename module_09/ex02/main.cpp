@@ -44,6 +44,92 @@
 
 */
 
+#include "PmergeMe.hpp"
+
+void print_vector(std::vector<int> vector)
+{
+	for (int x : vector)
+	{
+		std::cout << x << " ";
+	}
+	std::cout << std::endl;
+}
 
 
+bool check_token(std::string token)
+{
+	for (size_t i = 0; i < token.length(); i++)
+	{
+		if (!isdigit(token[i]))
+			return (false);
+	}
+	return (true);
+}
+
+
+std::vector<int> parse_input(std::string input)
+{
+	std::vector<int> parsed_input_vec;
+	std::stringstream sstream(input);
+	std::string token;
+
+	while (sstream >> token)
+	{
+		std::cout << YELLOW << "token = " << token << DEFAULT << std::endl;
+		if (!check_token(token))
+		{
+			throw std::runtime_error("Error (check_token() failed (invalid token))");
+		}
+
+		int parsed_input;
+		try
+		{
+			parsed_input = stoi(token);
+		}
+		catch(const std::exception& e)
+		{
+			throw std::runtime_error("Error (stoi() failed (probably overflow))");
+		}
+
+		parsed_input_vec.push_back(parsed_input);
+	}
+
+	return (parsed_input_vec);
+}
+
+
+int main(int argc, char *argv[])
+{
+	if (argc < 2)
+	{
+		std::cerr << RED << "Error: This program must use a positive integer sequence as an argument" << DEFAULT << std::endl;
+		return (EXIT_FAILURE);
+	}
+
+	// parse input
+	std::vector<int> parsed_input_vec;
+	try
+	{
+		for (int i = 1; argv[i] != NULL; i++)
+		{
+			std::cout << GREEN << "input #" << i << " = " << argv[i] << DEFAULT << std::endl;
+			std::vector<int> part = parse_input(argv[i]);
+    		parsed_input_vec.insert(parsed_input_vec.end(), part.begin(), part.end());
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << e.what() << DEFAULT << std::endl;
+		return (EXIT_FAILURE);
+	}
+	
+	std::cout << GREEN << "before: "; print_vector(parsed_input_vec); std::cout << DEFAULT << std::endl;
+
+	// sort input
+
+
+
+	
+	return (EXIT_SUCCESS);
+}
 

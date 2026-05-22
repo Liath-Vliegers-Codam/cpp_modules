@@ -179,10 +179,11 @@ FORBIDDEN CONTAINERS (from ex00/ex01):
 ================================================================================
 
 PHASE 1: INPUT PARSING & VALIDATION (Prerequisite)
-  [ ] Parse command-line arguments as positive integers
-  [ ] Validate: all positive, no overflow, within range
-  [ ] Handle errors: print "Error" to stderr and exit
-  [ ] Store original sequence for display
+  [x] Check if input needs to be split by spaces
+  [x] Parse command-line arguments as positive integers
+  [x] Validate: all positive, no overflow, within range
+  [x] Handle errors: print "Error" to stderr and exit
+  [x] Store original sequence for display
 
 PHASE 2: CORE ALGORITHM (Main work)
   [ ] Create template class PmergeMe<Container>
