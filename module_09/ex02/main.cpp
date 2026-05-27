@@ -46,15 +46,16 @@
 
 #include "PmergeMe.hpp"
 
-void print_vector(std::vector<int> vector)
+template <typename Container>
+void print_container(const Container &cont, const std::string &prefix)
 {
-	for (int x : vector)
+	std::cout << prefix;
+	for (typename Container::const_iterator it = cont.begin(); it != cont.end(); it++)
 	{
-		std::cout << x << " ";
+		std::cout << *it << " ";
 	}
 	std::cout << std::endl;
 }
-
 
 bool check_token(std::string token)
 {
@@ -67,36 +68,60 @@ bool check_token(std::string token)
 }
 
 
-std::vector<int> parse_input(std::string input)
+// Container::value_type must be convertible from int
+template <typename Container>
+Container parse_part(std::string input)
 {
-	std::vector<int> parsed_input_vec;
+	Container parsed_input;
 	std::stringstream sstream(input);
 	std::string token;
 
 	while (sstream >> token)
 	{
-		std::cout << YELLOW << "token = " << token << DEFAULT << std::endl;
+		// std::cout << YELLOW << "token = " << token << DEFAULT << std::endl;
 		if (!check_token(token))
 		{
 			throw std::runtime_error("Error (check_token() failed (invalid token))");
 		}
 
-		int parsed_input;
+		int value;
 		try
 		{
-			parsed_input = stoi(token);
+			value = stoi(token);
 		}
 		catch(const std::exception& e)
 		{
 			throw std::runtime_error("Error (stoi() failed (probably overflow))");
 		}
-
-		parsed_input_vec.push_back(parsed_input);
+		parsed_input.push_back(static_cast<typename Container::value_type>(value));
 	}
-
-	return (parsed_input_vec);
+	return (parsed_input);
 }
 
+template <typename Container>
+Container parse_input(char* argv[])
+{
+	Container parsed_input;
+
+	try
+	{
+		for (int i = 0; argv[i] != NULL; i++)
+		{
+			// std::cout << GREEN << "input #" << i << " = " << argv[i] << DEFAULT << std::endl;
+			Container part = parse_part<Container>(argv[i]);
+    		parsed_input.insert(parsed_input.end(), part.begin(), part.end());
+		}
+	}
+	catch(const std::exception& e)
+	{
+		throw std::runtime_error(e.what());
+	}
+	return (parsed_input);
+}
+
+
+
+// this program parses input first into a deque or vector
 
 int main(int argc, char *argv[])
 {
@@ -106,28 +131,41 @@ int main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 
-	// parse input
+	// parse input to a vector and to a deque
+
 	std::vector<int> parsed_input_vec;
+	std::deque<int> parsed_input_deq;
+
 	try
 	{
-		for (int i = 1; argv[i] != NULL; i++)
-		{
-			std::cout << GREEN << "input #" << i << " = " << argv[i] << DEFAULT << std::endl;
-			std::vector<int> part = parse_input(argv[i]);
-    		parsed_input_vec.insert(parsed_input_vec.end(), part.begin(), part.end());
-		}
+		parsed_input_vec = parse_input<std::vector<int>>(argv + 1);
+		parsed_input_deq = parse_input<std::deque<int>>(argv + 1);
+
+		print_container(parsed_input_deq, "DEQUE:	");
+		print_container(parsed_input_vec, "VECTOR:	");
 	}
 	catch(const std::exception& e)
 	{
 		std::cerr << RED << e.what() << DEFAULT << std::endl;
 		return (EXIT_FAILURE);
 	}
-	
-	std::cout << GREEN << "before: "; print_vector(parsed_input_vec); std::cout << DEFAULT << std::endl;
 
-	// sort input
+	// get current time
 
 
+	// create PmergeMe object with the vector
+	// sort input vector
+	// get time it took to sort vector
+
+	// create PmergeMe object with the deque
+	// sort input deque
+	// get time it took to sort deque
+
+	// print:
+		// before: [print unsorted vector]
+		// after:  [print sorted verctor]
+		// Time to process a range of [N] elements with std::vector : [time] us
+		// Time to process a range of [N] elements with std::deque  : [time] us
 
 	
 	return (EXIT_SUCCESS);

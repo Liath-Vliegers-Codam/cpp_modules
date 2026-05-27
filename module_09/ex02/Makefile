@@ -8,8 +8,7 @@ OBJ_DIR		:= obj
 SRC_DIR		:= src
 
 INCL		:=	PmergeMe.hpp
-SRCS		:= 	main.cpp \
-				PmergeMe.cpp
+SRCS		:= 	main.cpp
 
 # Convert source files into object files
 OBJS		:= $(SRCS:%.cpp=$(OBJ_DIR)/%.o)

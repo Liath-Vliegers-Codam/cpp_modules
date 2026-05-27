@@ -58,12 +58,12 @@ cat > "${classname}.cpp" <<EOL
 // Constructors
 ${classname}::${classname}(void)
 {
-    std::cout << "${classname} default constructor is called" << std::endl;
+	std::cout << "${classname} default constructor is called" << std::endl;
 }
 
 ${classname}::${classname}(/*Parameters here*/)
 {
-   std::cout << "${classname} parameterized constructor is called" << std::endl;
+	std::cout << "${classname} parameterized constructor is called" << std::endl;
 }
 
 ${classname}::${classname}(const ${classname}& other)
@@ -75,7 +75,7 @@ ${classname}::${classname}(const ${classname}& other)
 // Destructor
 ${classname}::~${classname}(void)
 {
-    std::cout << "${classname} destructor is called" << std::endl;
+	std::cout << "${classname} destructor is called" << std::endl;
 }
 
 // Getters and Setters
