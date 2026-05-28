@@ -2,12 +2,13 @@
 NAME		:= PmergeMe
 
 CC			:= c++
-CFLAGS		:= -Wall -Wextra -Werror -std=c++20 #-g -fsanitize=address 
+CFLAGS		:= -std=c++20 -Wall -Wextra #-Werror #-g -fsanitize=address 
 
 OBJ_DIR		:= obj
 SRC_DIR		:= src
 
-INCL		:=	PmergeMe.hpp
+INCL		:=	PmergeMe.hpp \
+				parser.hpp
 SRCS		:= 	main.cpp
 
 # Convert source files into object files

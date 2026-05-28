@@ -44,82 +44,11 @@
 
 */
 
+
+
+
 #include "PmergeMe.hpp"
-
-template <typename Container>
-void print_container(const Container &cont, const std::string &prefix)
-{
-	std::cout << prefix;
-	for (typename Container::const_iterator it = cont.begin(); it != cont.end(); it++)
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
-}
-
-bool check_token(std::string token)
-{
-	for (size_t i = 0; i < token.length(); i++)
-	{
-		if (!isdigit(token[i]))
-			return (false);
-	}
-	return (true);
-}
-
-
-// Container::value_type must be convertible from int
-template <typename Container>
-Container parse_part(std::string input)
-{
-	Container parsed_input;
-	std::stringstream sstream(input);
-	std::string token;
-
-	while (sstream >> token)
-	{
-		// std::cout << YELLOW << "token = " << token << DEFAULT << std::endl;
-		if (!check_token(token))
-		{
-			throw std::runtime_error("Error (check_token() failed (invalid token))");
-		}
-
-		int value;
-		try
-		{
-			value = stoi(token);
-		}
-		catch(const std::exception& e)
-		{
-			throw std::runtime_error("Error (stoi() failed (probably overflow))");
-		}
-		parsed_input.push_back(static_cast<typename Container::value_type>(value));
-	}
-	return (parsed_input);
-}
-
-template <typename Container>
-Container parse_input(char* argv[])
-{
-	Container parsed_input;
-
-	try
-	{
-		for (int i = 0; argv[i] != NULL; i++)
-		{
-			// std::cout << GREEN << "input #" << i << " = " << argv[i] << DEFAULT << std::endl;
-			Container part = parse_part<Container>(argv[i]);
-    		parsed_input.insert(parsed_input.end(), part.begin(), part.end());
-		}
-	}
-	catch(const std::exception& e)
-	{
-		throw std::runtime_error(e.what());
-	}
-	return (parsed_input);
-}
-
-
+#include "parser.hpp"
 
 // this program parses input first into a deque or vector
 
@@ -133,16 +62,16 @@ int main(int argc, char *argv[])
 
 	// parse input to a vector and to a deque
 
-	std::vector<int> parsed_input_vec;
-	std::deque<int> parsed_input_deq;
-
+	std::vector<int> input_vec;
+	std::deque<int> input_deq;
+ 
 	try
 	{
-		parsed_input_vec = parse_input<std::vector<int>>(argv + 1);
-		parsed_input_deq = parse_input<std::deque<int>>(argv + 1);
+		input_vec = parse_input<std::vector<int>>(argv + 1);
+		input_deq = parse_input<std::deque<int>>(argv + 1);
 
-		print_container(parsed_input_deq, "DEQUE:	");
-		print_container(parsed_input_vec, "VECTOR:	");
+		// print_container(input_deq, "DEQUE:	");
+		// print_container(input_vec, "VECTOR:	");
 	}
 	catch(const std::exception& e)
 	{
@@ -150,7 +79,37 @@ int main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 
-	// get current time
+
+
+// TIME
+{
+    auto start_time = std::chrono::system_clock::now();
+	
+	// do sorting here
+	// std::this_thread::sleep_for(std::chrono::seconds(1));
+
+    auto end_time = std::chrono::system_clock::now();
+	
+    std::chrono::duration<double> elapsed_time = end_time - start_time;
+    
+    std::cout << "elapsed time: " << (elapsed_time.count() * 1000) << " us" << std::endl;
+}
+
+
+
+
+
+	std::cout << GREEN << "CREATING PmergeMe with a vector:" << DEFAULT << std::endl;
+	PmergeMe<int> merger_vec(input_vec);
+	merger_vec.sort();
+
+
+// same is possible starting with a deque:
+	// std::cout << GREEN << "CREATING PmergeMe with a deque:" << DEFAULT << std::endl;
+	// PmergeMe<int> merger_deq(input_deq);
+	// merger_deq.sort();
+	
+	
 
 
 	// create PmergeMe object with the vector
