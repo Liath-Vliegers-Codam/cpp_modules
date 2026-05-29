@@ -20,6 +20,12 @@
 #define WHITE	"\033[37m"
 
 
+struct PairUnit
+{
+	int big;
+	int small;
+};
+
 template <typename T>
 class PmergeMe
 {
@@ -60,15 +66,30 @@ class PmergeMe
 
 
 		// Member functions
-				
-		template <typename InputContainer, typename OutputContainer>
-		int parse_pairs(InputContainer unsorted_array, OutputContainer &pair_array);
+
 
 		template <typename PairContainer>
-		void big_sort(PairContainer it_begin, PairContainer it_end);
+		void print_big_numbers(const PairContainer &pairs_array);
+		
+		template <typename PairContainer>
+		void print_small_numbers(const PairContainer &pairs_array);
 
-		template <typename PairContainer, typename SortedContainer>
-		void small_sort(PairContainer pairs_array, SortedContainer sorted_array, int struggler);
+		template <typename InputContainer, typename OutputContainer>
+		int parse_pairs(InputContainer unsorted_array, OutputContainer &pairs);
+
+		template <typename Container>
+		void merge(Container &array, int left, int middle, int right);
+
+		template <typename Container>
+		void merge_sort(Container &array, int left, int right);
+
+		template <typename Container>
+		void sort_big_numbers(Container &pairs);
+
+
+
+		template <typename Container>
+		void insert_small_numbers(Container& pairs, int struggler);
 
 
 		void sort();
