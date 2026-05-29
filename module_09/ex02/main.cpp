@@ -80,25 +80,6 @@ int main(int argc, char *argv[])
 	}
 
 
-
-// TIME
-{
-    auto start_time = std::chrono::system_clock::now();
-	
-	// do sorting here
-	// std::this_thread::sleep_for(std::chrono::seconds(1));
-
-    auto end_time = std::chrono::system_clock::now();
-	
-    std::chrono::duration<double> elapsed_time = end_time - start_time;
-    
-    std::cout << "elapsed time: " << (elapsed_time.count() * 1000) << " us" << std::endl;
-}
-
-
-
-
-
 	std::cout << GREEN << "CREATING PmergeMe with a vector:" << DEFAULT << std::endl;
 	PmergeMe<int> merger_vec(input_vec);
 	merger_vec.sort();
