@@ -24,6 +24,7 @@ struct PairUnit
 {
 	int big;
 	int small;
+	size_t id;
 };
 
 template <typename T>
@@ -55,6 +56,7 @@ class PmergeMe
 
 		PmergeMe(const PmergeMe& other);
 
+	
 		// Destructor
 		~PmergeMe(void);
 
@@ -87,14 +89,17 @@ class PmergeMe
 		void sort_big_numbers(Container &pairs);
 
 
+		template <typename ResultContainer>
+		void bounded_insert(ResultContainer& result, int val, size_t id, size_t upper);
 
-		template <typename Container>
-		void insert_small_numbers(Container& pairs, int struggler);
+		template <typename PairContainer, typename ResultContainer>
+		void insert_small_numbers(PairContainer& pairs, ResultContainer& result, int struggler);
 
 
-		void sort();
 		void sort_with_vector(void);
 		void sort_with_deque(void);
+
+		void sort();
 };
 
 // template <typename T>

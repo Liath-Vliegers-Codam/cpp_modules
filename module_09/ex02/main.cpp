@@ -84,6 +84,7 @@ int main(int argc, char *argv[])
 	PmergeMe<int> merger_vec(input_vec);
 	merger_vec.sort();
 
+	std::cout << YELLOW << "Comparisons: " << merger_vec.m_vector_comparisons << DEFAULT << std::endl;
 
 // same is possible starting with a deque:
 	// std::cout << GREEN << "CREATING PmergeMe with a deque:" << DEFAULT << std::endl;
