@@ -31,22 +31,19 @@ template <typename T>
 class PmergeMe
 {
 	private:
-
-	public:
-	// MOVE BACK TO PRIVATE (maybe? -> we need to make getters)
 		std::chrono::duration<double> m_vector_sorting_time;
 		std::chrono::duration<double> m_deque_sorting_time;
 
 		size_t m_elements;
-
 		size_t m_comparisons;
 
 		std::vector<T> m_unsorted_vec;
 		std::vector<T> m_sorted_vec;
-    	
+		
 		std::deque<T> m_unsorted_deq;
-    	std::deque<T> m_sorted_deq;
+		std::deque<T> m_sorted_deq;
 
+	public:
 		// Constructors
 		PmergeMe(void);
 
@@ -55,54 +52,47 @@ class PmergeMe
 
 		PmergeMe(const PmergeMe& other);
 
-	
 		// Destructor
 		~PmergeMe(void);
 
 		// Operators
 		PmergeMe &operator=(const PmergeMe& other);
 
-
 		// Getters and Setters
+		std::chrono::duration<double> get_vector_sorting_time(void) const;
+		std::chrono::duration<double> get_deque_sorting_time(void) const;
+
+		size_t get_elements(void) const;
+		size_t get_comparisons(void) const;
+
+		std::vector<T> get_unsorted_vec(void) const;
+		std::vector<T> get_sorted_vec(void) const;
+		
+		std::deque<T> get_unsorted_deq(void) const;
+		std::deque<T> get_sorted_deq(void) const;
 
 
 		// Member functions
-
-
-		template <typename PairContainer>
-		void print_big_numbers(const PairContainer &pairs_array);
-		
-		template <typename PairContainer>
-		void print_small_numbers(const PairContainer &pairs_array);
-
 		template <typename InputContainer, typename OutputContainer>
 		int parse_pairs(InputContainer unsorted_array, OutputContainer &pairs);
 
 		template <typename Container>
-		void merge(Container &array, int left, int middle, int right);
-
-		template <typename Container>
-		void merge_sort(Container &array, int left, int right);
-
-		template <typename Container>
 		void sort_big_numbers(Container &pairs);
 
-
-		template <typename ResultContainer>
-		void bounded_insert(ResultContainer& result, int val, size_t id, size_t upper);
+		template <typename PairContainer>
+		std::vector<size_t> fill_jacobsthal_sequence(PairContainer& pairs);
 
 		template <typename PairContainer, typename ResultContainer>
 		void insert_small_numbers(PairContainer& pairs, ResultContainer& result, int struggler);
 
-
 		void sort_with_vector(void);
+
 		void sort_with_deque(void);
 
 		void sort();
 };
 
-// template <typename T>
-// std::ostream& operator<<(std::ostream &output_stream, const PmergeMe<T>& src);
-
+template <typename T>
+std::ostream& operator<<(std::ostream &output_stream, const PmergeMe<T>& src);
 
 #include "PmergeMe.tpp"

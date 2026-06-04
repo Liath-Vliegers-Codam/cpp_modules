@@ -5,29 +5,28 @@ void print_container(const Container &cont)
 {
 	typename Container::const_iterator it_start = cont.begin(); 
 	typename Container::const_iterator it_end = cont.end();
-	// size_t dist = std::distance(it_start, it_end);
-	// size_t numbers_to_print = 4;
+	size_t dist = std::distance(it_start, it_end);
+	size_t numbers_to_print = 4;
 
-	// if (dist > numbers_to_print)
-	// {
-	// 	for (; it_start != cont.begin() + numbers_to_print; it_start++)
-	// 	{
-	// 		std::cout << *it_start << " ";
-	// 	}
-	// 	std::cout << "[...]";
-	// 	std::cout << std::endl;
-	// }
+	if (dist > numbers_to_print)
+	{
+		for (; it_start != cont.begin() + numbers_to_print; it_start++)
+		{
+			std::cout << *it_start << " ";
+		}
+		std::cout << "[...]";
+		std::cout << std::endl;
+	}
 
-	// else
-	// {
+	else
+	{
 		for (; it_start != it_end; it_start++)
 		{
 			std::cout << *it_start << " ";
 		}
 		std::cout << std::endl;
-	// }
+	}
 }
-
 
 static bool check_token(std::string token)
 {
@@ -39,7 +38,6 @@ static bool check_token(std::string token)
 	return (true);
 }
 
-
 // Container::value_type must be convertible from int
 template <typename Container>
 Container parse_part(std::string input)
@@ -50,7 +48,6 @@ Container parse_part(std::string input)
 
 	while (sstream >> token)
 	{
-		// std::cout << YELLOW << "token = " << token << DEFAULT << std::endl;
 		if (!check_token(token))
 		{
 			throw std::runtime_error("Error (check_token() failed (invalid token))");
@@ -79,9 +76,8 @@ Container parse_input(char* argv[])
 	{
 		for (int i = 0; argv[i] != NULL; i++)
 		{
-			// std::cout << GREEN << "input #" << i << " = " << argv[i] << DEFAULT << std::endl;
 			Container part = parse_part<Container>(argv[i]);
-    		parsed_input.insert(parsed_input.end(), part.begin(), part.end());
+			parsed_input.insert(parsed_input.end(), part.begin(), part.end());
 		}
 	}
 	catch(const std::exception& e)
