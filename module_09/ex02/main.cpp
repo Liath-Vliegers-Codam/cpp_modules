@@ -80,35 +80,18 @@ int main(int argc, char *argv[])
 	}
 
 
-	std::cout << GREEN << "CREATING PmergeMe with a vector:" << DEFAULT << std::endl;
+	// std::cout << GREEN << "CREATING PmergeMe with a vector:" << DEFAULT << std::endl;
 	PmergeMe<int> merger_vec(input_vec);
 	merger_vec.sort();
 
-	std::cout << YELLOW << "Comparisons: " << merger_vec.m_vector_comparisons << DEFAULT << std::endl;
+	// std::cout << YELLOW << "Vector Comparisons: " << merger_vec.m_comparisons << DEFAULT << std::endl;
 
-// same is possible starting with a deque:
-	// std::cout << GREEN << "CREATING PmergeMe with a deque:" << DEFAULT << std::endl;
-	// PmergeMe<int> merger_deq(input_deq);
-	// merger_deq.sort();
+	// // std::cout << GREEN << "CREATING PmergeMe with a deque:" << DEFAULT << std::endl;
+	// // PmergeMe<int> merger_deq(input_deq);
+	// // merger_deq.sort();
 	
-	
+	// std::cout << YELLOW << "Deque Comparisons: " << merger_vec.m_comparisons << DEFAULT << std::endl;
 
-
-	// create PmergeMe object with the vector
-	// sort input vector
-	// get time it took to sort vector
-
-	// create PmergeMe object with the deque
-	// sort input deque
-	// get time it took to sort deque
-
-	// print:
-		// before: [print unsorted vector]
-		// after:  [print sorted verctor]
-		// Time to process a range of [N] elements with std::vector : [time] us
-		// Time to process a range of [N] elements with std::deque  : [time] us
-
-	
 	return (EXIT_SUCCESS);
 }
 

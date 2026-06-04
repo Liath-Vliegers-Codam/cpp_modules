@@ -39,8 +39,7 @@ class PmergeMe
 
 		size_t m_elements;
 
-		size_t m_vector_comparisons;
-		size_t m_deque_comparisons;
+		size_t m_comparisons;
 
 		std::vector<T> m_unsorted_vec;
 		std::vector<T> m_sorted_vec;

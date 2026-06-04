@@ -1,14 +1,31 @@
 #include "parser.hpp"
 
 template <typename Container>
-void print_container(const Container &cont, const std::string &prefix)
+void print_container(const Container &cont)
 {
-	std::cout << prefix;
-	for (typename Container::const_iterator it = cont.begin(); it != cont.end(); it++)
-	{
-		std::cout << *it << " ";
-	}
-	std::cout << std::endl;
+	typename Container::const_iterator it_start = cont.begin(); 
+	typename Container::const_iterator it_end = cont.end();
+	// size_t dist = std::distance(it_start, it_end);
+	// size_t numbers_to_print = 4;
+
+	// if (dist > numbers_to_print)
+	// {
+	// 	for (; it_start != cont.begin() + numbers_to_print; it_start++)
+	// 	{
+	// 		std::cout << *it_start << " ";
+	// 	}
+	// 	std::cout << "[...]";
+	// 	std::cout << std::endl;
+	// }
+
+	// else
+	// {
+		for (; it_start != it_end; it_start++)
+		{
+			std::cout << *it_start << " ";
+		}
+		std::cout << std::endl;
+	// }
 }
 
 

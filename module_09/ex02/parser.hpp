@@ -8,7 +8,7 @@
 
 
 template <typename Container>
-void print_container(const Container &cont, const std::string &prefix);
+void print_container(const Container &cont);
 
 static bool check_token(std::string token);
 
