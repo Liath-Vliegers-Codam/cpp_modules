@@ -74,13 +74,12 @@ class PmergeMe
 
 		// Member functions
 		template <typename InputContainer, typename OutputContainer>
-		int parse_pairs(InputContainer unsorted_array, OutputContainer &pairs);
+		int create_pairs(InputContainer unsorted_array, OutputContainer &pairs);
 
 		template <typename Container>
 		void sort_big_numbers(Container &pairs);
 
-		template <typename PairContainer>
-		std::vector<size_t> fill_jacobsthal_sequence(PairContainer& pairs);
+		std::vector<size_t> fill_jacobsthal_sequence(size_t size);
 
 		template <typename PairContainer, typename ResultContainer>
 		void insert_small_numbers(PairContainer& pairs, ResultContainer& result, int struggler);

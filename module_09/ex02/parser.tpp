@@ -5,27 +5,27 @@ void print_container(const Container &cont)
 {
 	typename Container::const_iterator it_start = cont.begin(); 
 	typename Container::const_iterator it_end = cont.end();
-	size_t dist = std::distance(it_start, it_end);
-	size_t numbers_to_print = 4;
+	// size_t dist = std::distance(it_start, it_end);
+	// size_t numbers_to_print = 4;
 
-	if (dist > numbers_to_print)
-	{
-		for (; it_start != cont.begin() + numbers_to_print; it_start++)
-		{
-			std::cout << *it_start << " ";
-		}
-		std::cout << "[...]";
-		std::cout << std::endl;
-	}
+	// if (dist > numbers_to_print)
+	// {
+	// 	for (; it_start != cont.begin() + numbers_to_print; it_start++)
+	// 	{
+	// 		std::cout << *it_start << " ";
+	// 	}
+	// 	std::cout << "[...]";
+	// 	std::cout << std::endl;
+	// }
 
-	else
-	{
+	// else
+	// {
 		for (; it_start != it_end; it_start++)
 		{
 			std::cout << *it_start << " ";
 		}
 		std::cout << std::endl;
-	}
+	// }
 }
 
 static bool check_token(std::string token)
@@ -50,7 +50,7 @@ Container parse_part(std::string input)
 	{
 		if (!check_token(token))
 		{
-			throw std::runtime_error("Error (check_token() failed (invalid token))");
+			throw std::runtime_error("Error");
 		}
 
 		int value;
@@ -60,7 +60,7 @@ Container parse_part(std::string input)
 		}
 		catch(const std::exception& e)
 		{
-			throw std::runtime_error("Error (stoi() failed (probably overflow))");
+			throw std::runtime_error("Error");
 		}
 		parsed_input.push_back(static_cast<typename Container::value_type>(value));
 	}

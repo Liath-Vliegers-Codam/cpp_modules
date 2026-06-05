@@ -10,12 +10,12 @@ int main(int argc, char *argv[])
 	}
 
 	std::vector<int> input_vec;
-	std::deque<int> input_deq;
+	// std::deque<int> input_deq;
 
 	try
 	{
 		input_vec = parse_input<std::vector<int>>(argv + 1);
-		input_deq = parse_input<std::deque<int>>(argv + 1);
+		// input_deq = parse_input<std::deque<int>>(argv + 1);
 	}
 	catch(const std::exception& e)
 	{
@@ -26,8 +26,8 @@ int main(int argc, char *argv[])
 	PmergeMe<int> merger_vec(input_vec);
 	merger_vec.sort();
 
-	// // PmergeMe<int> merger_deq(input_deq);
-	// // merger_deq.sort();
+	// PmergeMe<int> merger_deq(input_deq);
+	// merger_deq.sort();
 	
 	return (EXIT_SUCCESS);
 }
