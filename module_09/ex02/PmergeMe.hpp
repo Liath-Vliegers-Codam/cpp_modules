@@ -19,20 +19,22 @@
 #define CYAN	"\033[36m"
 #define WHITE	"\033[37m"
 
-
 struct PairUnit
 {
-	int big;
-	int small;
-	size_t id;
+    int big;
+    int small;
+    size_t id;
+
+    PairUnit() = default;
+    PairUnit(int b, int s, size_t i) : big(b), small(s), id(i) {}
 };
 
 template <typename T>
 class PmergeMe
 {
 	private:
-		std::chrono::duration<double> m_vector_sorting_time;
-		std::chrono::duration<double> m_deque_sorting_time;
+		std::chrono::duration<double, std::micro> m_vector_sorting_time;
+		std::chrono::duration<double, std::micro> m_deque_sorting_time;
 
 		size_t m_elements;
 		size_t m_comparisons;
@@ -71,28 +73,35 @@ class PmergeMe
 		std::deque<T> get_unsorted_deq(void) const;
 		std::deque<T> get_sorted_deq(void) const;
 
-
 		// Member functions
-		template <typename InputContainer, typename OutputContainer>
-		int create_pairs(InputContainer unsorted_array, OutputContainer &pairs);
+		template <typename Container>
+		void print_container(const Container &cont);
 
 		template <typename Container>
-		void sort_big_numbers(Container &pairs);
+		typename Container::iterator binary_search(Container& cont, int value);
+		
+		std::vector<size_t> jacobsthal(size_t n);
+
+		template <typename BigContainer, typename SmallContainer>
+		void insert_small_numbers(BigContainer& big_chain, SmallContainer& small_chain);
 
 		template <typename Container>
-		void merge_big_numbers(const Container& left, const Container& right, Container& result);
-
-		std::vector<size_t> fill_jacobsthal_sequence(size_t size);
-
-		template <typename PairContainer, typename ResultContainer>
-		void insert_small_numbers(PairContainer& pairs, ResultContainer& result, int struggler);
-
-
-		void sort_with_vector(void);
-
-		void sort_with_deque(void);
-
-		void sort();
+		void merge(Container& cont, const Container& left, const Container& right);
+		
+		template <typename Container>
+		void merge_sort(Container& cont);
+		
+		template <typename PairContainer, typename BigContainer, typename SmallContainer>
+		void split_pairs(const PairContainer& pairs, BigContainer& big_chain, SmallContainer& small_chain);
+	
+		template <typename InputContainer, typename PairContainer>
+		int create_pairs(const InputContainer& input, PairContainer& pairs);
+		
+		void sort_with_vector();
+		
+		void sort_with_deque();
+		
+		void sort(void);
 };
 
 template <typename T>

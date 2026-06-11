@@ -1,33 +1,5 @@
 #include "parser.hpp"
 
-template <typename Container>
-void print_container(const Container &cont)
-{
-	typename Container::const_iterator it_start = cont.begin(); 
-	typename Container::const_iterator it_end = cont.end();
-	// size_t dist = std::distance(it_start, it_end);
-	// size_t numbers_to_print = 4;
-
-	// if (dist > numbers_to_print)
-	// {
-	// 	for (; it_start != cont.begin() + numbers_to_print; it_start++)
-	// 	{
-	// 		std::cout << *it_start << " ";
-	// 	}
-	// 	std::cout << "[...]";
-	// 	std::cout << std::endl;
-	// }
-
-	// else
-	// {
-		for (; it_start != it_end; it_start++)
-		{
-			std::cout << *it_start << " ";
-		}
-		std::cout << std::endl;
-	// }
-}
-
 static bool check_token(std::string token)
 {
 	for (size_t i = 0; i < token.length(); i++)

@@ -20,7 +20,6 @@ PmergeMe<T>::PmergeMe(const Container &input_container)
 		m_unsorted_deq.push_back(*it);
 		m_elements++;
 	}
-	
 	// std::cout << BLUE << "PmergeMe parameterized constructor is called" << DEFAULT << std::endl;
 }
 
@@ -88,375 +87,251 @@ std::deque<T> PmergeMe<T>::get_sorted_deq(void) const
 }
 
 // Member functions
+
 template <typename T>
-template <typename InputContainer, typename OutputContainer>
-int PmergeMe<T>::create_pairs(InputContainer unsorted_array, OutputContainer &pairs)
+template <typename Container>
+void PmergeMe<T>::print_container(const Container &cont)
 {
-	typename InputContainer::const_iterator it = unsorted_array.begin();
-	size_t id = 0;
-	
-	while (it != unsorted_array.end())
+	typename Container::const_iterator it_start = cont.begin(); 
+	typename Container::const_iterator it_end = cont.end();
+	size_t dist = std::distance(it_start, it_end);
+	size_t numbers_to_print = 6; // print all for tester to work
+
+	if (dist > numbers_to_print)
 	{
-		int first = *it;
-		it++;
-
-		if (it == unsorted_array.end())
-			return (first); // struggler
-
-		int second = *it;
-		it++;
-
-		if (first > second)  // comparison
-			pairs.push_back(PairUnit{first, second, id});
-		else
-			pairs.push_back(PairUnit{second, first, id});
-		
-		m_comparisons++;
-		id++;
+		for (; it_start != cont.begin() + numbers_to_print; it_start++)
+		{
+			std::cout << *it_start << " ";
+		}
+		std::cout << "[...]";
+		std::cout << std::endl;
 	}
-	return (-1);
-}
 
-
-template <typename T>
-template <typename Container>
-void PmergeMe<T>::sort_big_numbers(Container& pairs)
-{
-    if (pairs.size() <= 1)
-        return;
-
-    typename Container::iterator middle = pairs.begin() + (pairs.size() / 2);;
-
-    Container left(pairs.begin(), middle);
-    Container right(middle, pairs.end());
-
-    sort_big_numbers(left);
-    sort_big_numbers(right);
-
-    merge_big_numbers(left, right, pairs);
-
-}
-template <typename T>
-template <typename Container>
-void PmergeMe<T>::merge_big_numbers(const Container& left, const Container& right, Container& result)
-{
-    result.clear();
-
-    auto lit = left.begin();
-    auto rit = right.begin();
-
-    while (lit != left.end() && rit != right.end())
-    {
-        if (lit->big <= rit->big)
-        {
-            result.push_back(*lit);
-            ++lit;
-        }
-        else
-        {
-            result.push_back(*rit);
-            ++rit;
-        }
-        m_comparisons++;
-    }
-
-    while (lit != left.end())
-        result.push_back(*lit++);
-
-    while (rit != right.end())
-        result.push_back(*rit++);
-}
-
-// ======
-
-
-template <typename T>
-std::vector<size_t> PmergeMe<T>::fill_jacobsthal_sequence(size_t size)
-{
-	// Build the Jacobsthal sequence used to decide insertion order.
-	// The sequence starts with 0 and 1, then each following number is found by adding the number before it to twice the number before that. The first Jacobsthal numbers are:
-	// 1, 1, 3, 5, 11, 21, 43, 85, 171, 341, 683, 1365, 2731, 5461, 10923, 21845, 43691, 87381, 174763, 349525, … 
-	std::vector<size_t> jacob_seq;
-	jacob_seq.push_back(1);
-	jacob_seq.push_back(1);
-
-	while (jacob_seq.back() < size)
+	else
 	{
-		size_t i = jacob_seq.size();
-		jacob_seq.push_back(jacob_seq[i - 1] + 2 * jacob_seq[i - 2]);
+		for (; it_start != it_end; it_start++)
+		{
+			std::cout << *it_start << " ";
+		}
+		std::cout << std::endl;
 	}
-	// std::cout << "jacob_seq:" << std::endl;
-	// print_container(jacob_seq);
-	return (jacob_seq);
 }
 
-// template <typename T>
-// template <typename PairContainer, typename ResultContainer>
-// void PmergeMe<T>::insert_small_numbers(PairContainer& pairs, ResultContainer& result, int struggler)
-// {
-// 	if (pairs.empty())
-// 	{
-// 		if (struggler != -1)
-// 			m_sorted_vec.push_back(struggler);
-// 		return;
-// 	}
-
-// 	std::vector<size_t> big_pos(pairs.size());
-// 	for (size_t i = 0; i < pairs.size(); i++)
-// 	{
-// 		result.push_back(std::make_pair(pairs[i].big, pairs[i].id));
-// 		big_pos[pairs[i].id] = i;
-// 	}
-
-// 	result.insert(result.begin(), std::make_pair(pairs[0].small, pairs[0].id));
-
-// 	for (size_t i = 0; i < big_pos.size(); i++)
-// 		big_pos[i]++;
-
-// 	size_t processed = 1;
-
-// 	std::vector<size_t> jacob_seq = fill_jacobsthal_sequence(pairs.size());
-
-// 	for (size_t k = 0; k < jacob_seq.size(); k++)
-// 	{
-// 		size_t boundary = jacob_seq[k];
-
-// 		if (boundary <= processed)
-// 			continue;
-
-// 		if (boundary > pairs.size())
-// 			boundary = pairs.size();
-
-// 		for (size_t idx = boundary; idx > processed; idx--)
-// 		{
-// 			size_t pair_index = idx - 1;
-// 			size_t pair_id = pairs[pair_index].id;
-
-// 			int small_val = pairs[pair_index].small;
-
-// 			size_t upper = big_pos[pair_id];
-
-// 			size_t left = 0;
-// 			size_t right = upper;
-
-// 			std::cout << "insert " << small_val << ", upper = " << upper << std::endl;
-
-// 			while (left < right) 
-// 			{
-// 				size_t mid = left + (right - left) / 2;
-				
-// 				// if (right - left > 1) // only count if range > 1, in final iteration position is already determined.
-// 				// 	m_comparisons++;
-					
-// 				if (small_val < result[mid].first) // comparison
-// 					right = mid;
-// 				else
-// 					left = mid + 1;
-
-// 				m_comparisons++;
-// 			}
-
-// 			result.insert(result.begin() + left, std::make_pair(small_val, pair_id));
-
-// 			for (size_t i = 0; i < big_pos.size(); i++)
-// 			{
-// 				if (big_pos[i] >= left)
-// 					big_pos[i]++;
-// 			}
-// 		}
-
-// 		processed = boundary;
-
-// 		if (processed >= pairs.size())
-// 			break;
-// 	}
-
-// 	if (struggler != -1)
-// 	{
-// 		size_t left = 0;
-// 		size_t right = result.size();
-
-// 		while (left < right) 
-// 		{
-// 			size_t mid = left + (right - left) / 2;
-			
-// 			// if (right - left > 1) // only count if range > 1, in final iteration position is already determined.
-// 			// 	m_comparisons++;
-
-// 			if (struggler < result[mid].first) // comparison
-// 				right = mid;
-// 			else
-// 				left = mid + 1;	
-// 			m_comparisons++;
-			
-// 		}
-// 		result.insert(result.begin() + left, std::make_pair(struggler, static_cast<size_t>(-1)));
-// 	}
-// }
-
+template <typename T>
 template <typename Container>
-typename Container::iterator binary_insert_position(
-    Container& result,
-    int value,
-    size_t& comparisons)
+typename Container::iterator PmergeMe<T>::binary_search(Container& cont, int value)
 {
     size_t left = 0;
-    size_t right = result.size();
+	size_t right = cont.size();
 
     while (left < right)
     {
-        size_t mid = (left + right) / 2;
-        comparisons++;
+        size_t middle = (left + right) / 2;
+        m_comparisons++;
 
-        if (value < result[mid].big)
-            right = mid;
+        if (value < cont[middle])
+            right = middle;
         else
-            left = mid + 1;
+            left = middle + 1;
     }
-
-    return result.begin() + left;
+    return (cont.begin() + left);
 }
 
 template <typename T>
-template <typename PairContainer, typename ResultContainer>
-void PmergeMe<T>::insert_small_numbers(PairContainer& pairs,
-                                       ResultContainer& result,
-                                       int struggler)
+std::vector<size_t> PmergeMe<T>::jacobsthal(size_t n)
 {
-    if (pairs.empty())
+    std::vector<size_t> jacob;
+    jacob.push_back(1);
+    jacob.push_back(1);
+
+    while (jacob.back() < n)
     {
-        if (struggler != -1)
-            result.push_back(PairUnit{struggler, -1, (size_t)-1});
-        return;
+        size_t i = jacob.size();
+        jacob.push_back(jacob[i - 1] + 2 * jacob[i - 2]);
     }
+    return jacob;
+}
 
-    // insert first small
-    const int small0 = pairs[0].small;
+template <typename T>
+template <typename BigContainer, typename SmallContainer>
+void PmergeMe<T>::insert_small_numbers(BigContainer& big_chain, SmallContainer& small_chain)
+{
+    const size_t size = small_chain.size();
 
-    auto pos0 = binary_insert_position(result, small0, m_comparisons);
-    result.insert(pos0, PairUnit{small0, -1, pairs[0].id});
+    std::vector<size_t> jacob = jacobsthal(size);
+    std::vector<bool> inserted(size, false);
 
-    std::vector<size_t> jacob = fill_jacobsthal_sequence(pairs.size());
+    size_t prev = 0;
 
-    size_t inserted = 1;
-
-    for (size_t j = 0; j < jacob.size(); j++)
+    for (size_t j = 1; j < jacob.size(); j++)
     {
-        size_t end = std::min(jacob[j], pairs.size());
+        size_t cur = std::min(jacob[j], size);
 
-        for (size_t i = end; i > inserted; --i)
+        for (size_t i = cur; i > prev; i--)
         {
-            const PairUnit& p = pairs[i - 1];
+            size_t idx = i - 1;
 
-            auto pos = binary_insert_position(result, p.small, m_comparisons);
-            result.insert(pos, PairUnit{p.small, -1, p.id});
+            if (inserted[idx])
+                continue;
+
+            auto pos = binary_search(big_chain, small_chain[idx].first);
+            big_chain.insert(pos, small_chain[idx].first);
+
+            inserted[idx] = true;
         }
-
-        inserted = end;
-        if (inserted >= pairs.size())
-            break;
+        prev = cur;
     }
 
-    if (struggler != -1)
+    for (size_t i = 0; i < size; i++)
     {
-        auto pos = binary_insert_position(result, struggler, m_comparisons);
-        result.insert(pos, PairUnit{struggler, -1, (size_t)-1});
+        if (!inserted[i])
+        {
+            auto pos = binary_search(big_chain, small_chain[i].first);
+            big_chain.insert(pos, small_chain[i].first);
+        }
     }
 }
 
+template <typename T>
+template <typename Container>
+void PmergeMe<T>::merge(Container& cont, const Container& left, const Container& right)
+{
+    typename Container::const_iterator left_it = left.begin();
+    typename Container::const_iterator right_it = right.begin();
+
+    while (left_it != left.end() && right_it != right.end())
+    {
+        if (*left_it <= *right_it)
+            cont.push_back(*left_it++);
+        else
+            cont.push_back(*right_it++);
+    }
+
+    while (left_it != left.end())
+        cont.push_back(*left_it++);
+
+    while (right_it != right.end())
+        cont.push_back(*right_it++);
+}
 
 template <typename T>
-void PmergeMe<T>::sort_with_vector(void)
+template <typename Container>
+void PmergeMe<T>::merge_sort(Container& cont)
 {
-    m_comparisons = 0;
-    auto start_time = std::chrono::system_clock::now();
+    if (cont.size() <= 1)
+        return;
+
+    size_t mid = cont.size() / 2;
+
+    Container left(cont.begin(), cont.begin() + mid);
+    Container right(cont.begin() + mid, cont.end());
+
+    merge_sort(left);
+    merge_sort(right);
+
+    cont.clear();
+
+    merge(cont, left, right);
+}
+
+template <typename T>
+template <typename PairContainer, typename BigContainer, typename SmallContainer>
+void PmergeMe<T>::split_pairs(const PairContainer& pairs, BigContainer& big_chain, SmallContainer& small_chain)
+{
+    for (typename PairContainer::const_iterator it = pairs.begin(); it != pairs.end(); it++)
+    {
+        big_chain.push_back(it->big);
+        small_chain.push_back(std::make_pair(it->small, it->id));
+    }
+}
+
+template <typename T>
+template <typename InputContainer, typename PairContainer>
+int PmergeMe<T>::create_pairs(const InputContainer& input, PairContainer& pairs)
+{
+    size_t id = 0;
+	typename InputContainer::const_iterator it = input.begin();
+
+	while (it != input.end())
+	{
+		int first = *it++;
+
+		if (it == input.end())
+			return first;
+
+		int second = *it++;
+
+		if (first > second)
+			pairs.push_back(PairUnit(first, second, id));
+		else
+			pairs.push_back(PairUnit(second, first, id));
+
+		id++;
+    }
+    return (-1);
+}
+
+template <typename T>
+void PmergeMe<T>::sort_with_vector()
+{
+	using clock = std::chrono::high_resolution_clock;
+	auto start = clock::now();
 
     std::vector<PairUnit> pairs;
+    std::vector<int> big_chain;
+    std::vector<std::pair<int, size_t>> small_chain;
 
-    int struggler = create_pairs(m_unsorted_vec, pairs);
-    std::cout << "pairing: " << m_comparisons << '\n';
+    int stray = create_pairs(m_unsorted_vec, pairs);
+	
+    split_pairs(pairs, big_chain, small_chain);
 
-    std::vector<PairUnit> result;
+    merge_sort(big_chain);
 
-	for (const auto& pair : pairs)
-		result.push_back(pair);
+    insert_small_numbers(big_chain, small_chain);
 
-	sort_big_numbers(result);
+    if (stray != -1)
+    {
+        auto pos = binary_search(big_chain, stray);
+        big_chain.insert(pos, stray);
+    }
 
-    std::cout << "after big sort: " << m_comparisons << '\n';
+    m_sorted_vec = big_chain;
+		
+	auto end = clock::now();
 
-    insert_small_numbers(pairs, result, struggler);
-
-    std::cout << "after insertions: " << m_comparisons << '\n';
-
-    m_sorted_vec.clear();
-
-    for (size_t i = 0; i < result.size(); i++)
-        m_sorted_vec.push_back(result[i].big);
-
-    auto end_time = std::chrono::system_clock::now();
-    m_vector_sorting_time = end_time - start_time;
+	m_vector_sorting_time = std::chrono::duration<double, std::micro>(end - start);
 }
 
+template <typename T>
+void PmergeMe<T>::sort_with_deque()
+{
+	using clock = std::chrono::high_resolution_clock;
+	auto start = clock::now();
 
-// template <typename T>
-// void PmergeMe<T>::sort_with_vector(void)
-// {
-// 	m_comparisons = 0;
-// 	auto start_time = std::chrono::system_clock::now();
-
-// 	std::vector<PairUnit> pairs;
-
-// 	int struggler = create_pairs(m_unsorted_vec, pairs);
-// 	std::cout << "pairing: " << m_comparisons << '\n';
+    std::deque<PairUnit> pairs;
+    std::deque<int> big_chain;
+    std::deque<std::pair<int, size_t>> small_chain;
 	
-// 	std::vector<PairUnit> result;
+    int stray = create_pairs(m_unsorted_deq, pairs);
 
-// 	for (const auto& pair : pairs)
-// 		result.push_back(pair);
+    split_pairs(pairs, big_chain, small_chain);
+    
+    merge_sort(big_chain);
 
-// 	sort_big_numbers(result);
+    insert_small_numbers(big_chain, small_chain);
 
-// 	std::cout << "after big sort: " << m_comparisons << '\n';
+    if (stray != -1)
+    {
+        auto pos = binary_search(big_chain, stray);
+        big_chain.insert(pos, stray);
+    }
 
-// 	insert_small_numbers(pairs, result, struggler);
-// 	std::cout << "after insertions: " << m_comparisons << '\n';
+    m_sorted_deq = big_chain;
 
+	auto end = clock::now();
 
-// 	m_sorted_vec.clear();
-	
-// 	for (size_t i = 0; i < result.size(); i++)
-// 		m_sorted_vec.push_back(result[i].big);
-
-// 	auto end_time = std::chrono::system_clock::now();
-
-// 	m_vector_sorting_time = end_time - start_time;
-// }
-
-// // template <typename T>
-// // void PmergeMe<T>::sort_with_deque(void)
-// // {
-// // 	m_comparisons = 0;
-// // 	auto start_time = std::chrono::system_clock::now();
-
-// // 	std::deque<PairUnit> pairs;
-
-// // 	int struggler = create_pairs(m_unsorted_deq, pairs);
-
-// // 	sort_big_numbers(pairs);
-
-// // 	std::deque<std::pair<int, size_t>> result;
-// // 	insert_small_numbers(pairs, result, struggler);
-
-// // 	m_sorted_deq.clear();
-
-// // 	for (size_t i = 0; i < result.size(); i++)
-// // 		m_sorted_deq.push_back(result[i].first);
-
-// // 	auto end_time = std::chrono::system_clock::now();
-
-// // 	m_deque_sorting_time = end_time - start_time;
-// // }
+	m_deque_sorting_time = std::chrono::duration<double, std::micro>(end - start);
+}
 
 template <typename T>
 void PmergeMe<T>::sort(void)
@@ -464,25 +339,27 @@ void PmergeMe<T>::sort(void)
 	std::cout << "Before:\t"; 
 	print_container(m_unsorted_vec);
 
-	this->sort_with_vector();
-
+	// VECTOR
+	m_comparisons = 0;
+	sort_with_vector();
 	size_t vec_comparisons = m_comparisons;
 
-	// this->sort_with_deque();
-
-	// size_t deq_comparisons = m_comparisons;
+    // DEQUE
+    m_comparisons = 0;
+    sort_with_deque();
+    size_t deq_comparisons = m_comparisons;
 
 	std::cout << "After:\t";
 	print_container(m_sorted_vec);
 
-	std::cout << "Time to process a range of " << m_elements << " elements with std::vector : " << std::chrono::duration<double, std::micro>(m_vector_sorting_time).count() << " us\n";
-	std::cout << "Time to process a range of " << m_elements << " elements with std::deque  : " << std::chrono::duration<double, std::micro>(m_deque_sorting_time).count() << " us\n";
+	std::cout << "Time to process a range of " << m_elements << " elements with std::vector : " << m_vector_sorting_time.count() << " us\n";
+	std::cout << "Time to process a range of " << m_elements << " elements with std::deque  : " << m_deque_sorting_time.count() << " us\n";
 
-	// std::cout << GREEN << "vec comparisons " << vec_comparisons << DEFAULT << std::endl;
-	// std::cout << GREEN << "dec comparisons " << deq_comparisons << DEFAULT << std::endl;
+	std::cout << "vec comparisons : " << vec_comparisons << std::endl;
+	std::cout << "dec comparisons : " << deq_comparisons << std::endl;
 
-	// // tester: (uses vec comparisons)
-	std::cout << "comparisons " << vec_comparisons << std::endl;
+	// // easy print for tester
+	// std::cout << "comparisons " << vec_comparisons << std::endl;
 }
 
 // Operators

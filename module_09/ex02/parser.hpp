@@ -5,9 +5,6 @@
 #include <sstream>
 #include <cstdlib>
 
-template <typename Container>
-void print_container(const Container &cont);
-
 static bool check_token(std::string token);
 
 // Container::value_type must be convertible from int
