@@ -73,26 +73,27 @@ class PmergeMe
 
 
 		// Member functions
-		template <typename InputContainer, typename OutputContainer>
-		int create_pairs(InputContainer unsorted_array, OutputContainer &pairs);
+		void insert_pend(std::vector<int>& main, std::vector<std::pair<int, size_t>>& pend);
 
 		template <typename Container>
-		void sort_big_numbers(Container &pairs);
-
+		typename Container::iterator binary_insert(Container& c, int val);
+		
 		template <typename Container>
-		void merge_big_numbers(const Container& left, const Container& right, Container& result);
+		void merge_sort(Container& cont);
+		
+		void split_pairs(const std::vector<PairUnit>& pairs, std::vector<int>& main, std::vector<std::pair<int, size_t>>& pend);
 
-		std::vector<size_t> fill_jacobsthal_sequence(size_t size);
+		template <typename Input>
+		int create_pairs(const Input& in, std::vector<PairUnit>& pairs);
+		
+		std::vector<size_t> jacobsthal(size_t n);
 
-		template <typename PairContainer, typename ResultContainer>
-		void insert_small_numbers(PairContainer& pairs, ResultContainer& result, int struggler);
+
+		void sort_with_vector();
+
+		void sort(void);
 
 
-		void sort_with_vector(void);
-
-		void sort_with_deque(void);
-
-		void sort();
 };
 
 template <typename T>
