@@ -119,22 +119,24 @@ void PmergeMe<T>::print_container(const Container &cont)
 
 template <typename T>
 template <typename Container>
-typename Container::iterator PmergeMe<T>::binary_search(Container& cont, int value)
+typename Container::iterator PmergeMe<T>::binary_search_until(Container& chain, int value, size_t limit_index)
 {
     size_t left = 0;
-	size_t right = cont.size();
+    size_t right = limit_index;
 
     while (left < right)
     {
-        size_t middle = (left + right) / 2;
+        size_t mid = (left + right) / 2;
 
-        if (value < cont[middle]) // comparison
-            right = middle;
+        if (value < chain[mid].value) // comparison
+            right = mid;
         else
-            left = middle + 1;
+            left = mid + 1;
+
 		m_comparisons++;
     }
-    return (cont.begin() + left);
+
+    return (chain.begin() + left);
 }
 
 template <typename T>
@@ -147,26 +149,36 @@ std::vector<size_t> PmergeMe<T>::jacobsthal(size_t n)
     while (jacob.back() < n)
     {
         size_t i = jacob.size();
-        jacob.push_back(jacob[i - 1] + 2 * jacob[i - 2]);
+        jacob.push_back(jacob[i - 1] + (2 * jacob[i - 2]));
     }
-    return jacob;
+    return (jacob);
 }
 
 template <typename T>
-template <typename BigContainer, typename SmallContainer>
-void PmergeMe<T>::insert_small_numbers(BigContainer& big_chain, SmallContainer& small_chain)
+template <typename Container>
+size_t PmergeMe<T>::find_position(const Container& chain, size_t id)
 {
-    const size_t size = small_chain.size();
+    for (size_t i = 0; i < chain.size(); i++)
+    {
+        if (chain[i].id == id)
+            return (i);
+    }
+    return (chain.size());
+}
 
+template <typename T>
+template <typename ResultContainer, typename Container>
+void PmergeMe<T>::insert_small_chain(ResultContainer& result_chain, Container& small_chain)
+{
+    size_t size = small_chain.size();
     std::vector<size_t> jacob = jacobsthal(size);
     std::vector<bool> inserted(size, false);
-
     size_t prev = 0;
+	typename ResultContainer::iterator pos;
 
     for (size_t j = 1; j < jacob.size(); j++)
     {
         size_t cur = std::min(jacob[j], size);
-
         for (size_t i = cur; i > prev; i--)
         {
             size_t idx = i - 1;
@@ -174,9 +186,11 @@ void PmergeMe<T>::insert_small_numbers(BigContainer& big_chain, SmallContainer& 
             if (inserted[idx])
                 continue;
 
-            auto pos = binary_search(big_chain, small_chain[idx].first);
-            big_chain.insert(pos, small_chain[idx].first);
-
+            PairUnit& p = small_chain[idx];
+            size_t limit_index = find_position(result_chain, p.id);
+            pos = binary_search_until(result_chain, p.small, limit_index);
+            
+			result_chain.insert(pos, BigNode{p.small, p.id});
             inserted[idx] = true;
         }
         prev = cur;
@@ -184,66 +198,80 @@ void PmergeMe<T>::insert_small_numbers(BigContainer& big_chain, SmallContainer& 
 
     for (size_t i = 0; i < size; i++)
     {
-        if (!inserted[i])
-        {
-            auto pos = binary_search(big_chain, small_chain[i].first);
-            big_chain.insert(pos, small_chain[i].first);
-        }
+        if (inserted[i])
+            continue;
+
+        PairUnit& p = small_chain[i];
+        size_t limit_index = find_position(result_chain, p.big);
+        pos = binary_search_until(result_chain, p.small, limit_index);
+        
+		result_chain.insert(pos, BigNode{p.small, p.id});
+        inserted[i] = true;
     }
 }
 
 template <typename T>
-template <typename Container>
-void PmergeMe<T>::merge(Container& cont, const Container& left, const Container& right)
+template <typename PairContainer, typename ResultContainer, typename Container>
+void PmergeMe<T>::build_chains(PairContainer& pairs, ResultContainer& result_chain, Container& small_chain)
 {
-    typename Container::const_iterator left_it = left.begin();
-    typename Container::const_iterator right_it = right.begin();
+	if (!pairs.empty())
+	{
+		// build result_chain
+		result_chain.push_back(BigNode{pairs[0].small, pairs[0].id});
+
+		for (size_t i = 0; i < pairs.size(); i++)
+		{
+			result_chain.push_back(BigNode{pairs[i].big, pairs[i].id});
+		}
+
+		// build small_chain
+		for (size_t i = 1; i < pairs.size(); i++)
+			small_chain.push_back(pairs[i]);
+	}
+}
+
+template <typename T>
+template <typename PairContainer>
+void PmergeMe<T>::merge_pairs(PairContainer& pairs, const PairContainer& left, const PairContainer& right)
+{
+    typename PairContainer::const_iterator left_it = left.begin();
+    typename PairContainer::const_iterator right_it = right.begin();
 
     while (left_it != left.end() && right_it != right.end())
     {
-        if (*left_it <= *right_it) // comparison
-            cont.push_back(*left_it++);
+        if (left_it->big <= right_it->big) // comparison
+            pairs.push_back(*left_it++);
         else
-            cont.push_back(*right_it++);
+            pairs.push_back(*right_it++);
+
 		m_comparisons++;
     }
 
     while (left_it != left.end())
-        cont.push_back(*left_it++);
+        pairs.push_back(*left_it++);
 
     while (right_it != right.end())
-        cont.push_back(*right_it++);
+        pairs.push_back(*right_it++);
 }
 
 template <typename T>
-template <typename Container>
-void PmergeMe<T>::merge_sort(Container& cont)
+template <typename PairContainer>
+void PmergeMe<T>::merge_sort_pairs(PairContainer& pairs)
 {
-    if (cont.size() <= 1)
+    if (pairs.size() <= 1)
         return;
 
-    size_t mid = cont.size() / 2;
+    size_t mid = pairs.size() / 2;
 
-    Container left(cont.begin(), cont.begin() + mid);
-    Container right(cont.begin() + mid, cont.end());
+    PairContainer left(pairs.begin(), pairs.begin() + mid);
+    PairContainer right(pairs.begin() + mid, pairs.end());
 
-    merge_sort(left);
-    merge_sort(right);
+    merge_sort_pairs(left);
+    merge_sort_pairs(right);
 
-    cont.clear();
+    pairs.clear();
 
-    merge(cont, left, right);
-}
-
-template <typename T>
-template <typename PairContainer, typename BigContainer, typename SmallContainer>
-void PmergeMe<T>::split_pairs(const PairContainer& pairs, BigContainer& big_chain, SmallContainer& small_chain)
-{
-    for (typename PairContainer::const_iterator it = pairs.begin(); it != pairs.end(); it++)
-    {
-        big_chain.push_back(it->big);
-        small_chain.push_back(std::make_pair(it->small, it->id));
-    }
+    merge_pairs(pairs, left, right);
 }
 
 template <typename T>
@@ -280,24 +308,23 @@ void PmergeMe<T>::sort_with_vector()
 	auto start = clock::now();
 
     std::vector<PairUnit> pairs;
-    std::vector<int> big_chain;
-    std::vector<std::pair<int, size_t>> small_chain;
+	std::vector<BigNode> result_chain;
+	std::vector<PairUnit> small_chain;
 
     int struggler = create_pairs(m_unsorted_vec, pairs);
-	
-    split_pairs(pairs, big_chain, small_chain);
-
-    merge_sort(big_chain);
-
-    insert_small_numbers(big_chain, small_chain);
+    merge_sort_pairs(pairs);
+	build_chains(pairs, result_chain, small_chain);
+	insert_small_chain(result_chain, small_chain);
 
     if (struggler != -1)
     {
-        auto pos = binary_search(big_chain, struggler);
-        big_chain.insert(pos, struggler);
+        auto pos = binary_search_until(result_chain, struggler, result_chain.size());
+        result_chain.insert(pos, BigNode{struggler, std::numeric_limits<size_t>::max()});
     }
 
-    m_sorted_vec = big_chain;
+	m_sorted_vec.clear();
+	for (size_t i = 0; i < result_chain.size(); i++)
+		m_sorted_vec.push_back(result_chain[i].value);
 		
 	auto end = clock::now();
 
@@ -311,25 +338,24 @@ void PmergeMe<T>::sort_with_deque()
 	auto start = clock::now();
 
     std::deque<PairUnit> pairs;
-    std::deque<int> big_chain;
-    std::deque<std::pair<int, size_t>> small_chain;
-	
+	std::deque<BigNode> result_chain;
+	std::deque<PairUnit> small_chain;
+
     int struggler = create_pairs(m_unsorted_deq, pairs);
-
-    split_pairs(pairs, big_chain, small_chain);
-    
-    merge_sort(big_chain);
-
-    insert_small_numbers(big_chain, small_chain);
+    merge_sort_pairs(pairs);
+	build_chains(pairs, result_chain, small_chain);
+	insert_small_chain(result_chain, small_chain);
 
     if (struggler != -1)
     {
-        auto pos = binary_search(big_chain, struggler);
-        big_chain.insert(pos, struggler);
+        auto pos = binary_search_until(result_chain, struggler, result_chain.size());
+        result_chain.insert(pos, BigNode{struggler, std::numeric_limits<size_t>::max()});
     }
 
-    m_sorted_deq = big_chain;
-
+	m_sorted_deq.clear();
+	for (size_t i = 0; i < result_chain.size(); i++)
+		m_sorted_deq.push_back(result_chain[i].value);
+		
 	auto end = clock::now();
 
 	m_deque_sorting_time = std::chrono::duration<double, std::micro>(end - start);

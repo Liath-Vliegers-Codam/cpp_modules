@@ -9,6 +9,7 @@
 #include <chrono>
 #include <ctime>
 #include <thread>
+#include <algorithm>
 
 #define DEFAULT	"\033[0m"
 #define RED		"\033[31m"
@@ -26,6 +27,14 @@ struct PairUnit
     size_t id;
 
     PairUnit(int b, int s, size_t i) : big(b), small(s), id(i) {}
+};
+
+struct BigNode
+{
+    int value;
+    size_t id;
+
+    BigNode(int v, size_t i) : value(v), id(i) {}
 };
 
 template <typename T>
@@ -77,22 +86,25 @@ class PmergeMe
 		void print_container(const Container &cont);
 
 		template <typename Container>
-		typename Container::iterator binary_search(Container& cont, int value);
-		
+		typename Container::iterator binary_search_until(Container& chain, int value, size_t limit);
+
 		std::vector<size_t> jacobsthal(size_t n);
-
-		template <typename BigContainer, typename SmallContainer>
-		void insert_small_numbers(BigContainer& big_chain, SmallContainer& small_chain);
-
-		template <typename Container>
-		void merge(Container& cont, const Container& left, const Container& right);
-		
-		template <typename Container>
-		void merge_sort(Container& cont);
-		
-		template <typename PairContainer, typename BigContainer, typename SmallContainer>
-		void split_pairs(const PairContainer& pairs, BigContainer& big_chain, SmallContainer& small_chain);
 	
+		template <typename Container>
+		size_t find_position(const Container& chain, size_t id);
+
+		template <typename ResultContainer, typename Container>
+		void insert_small_chain(ResultContainer& result_chain, Container& small_chain);
+
+		template <typename PairContainer, typename ResultContainer, typename Container>
+		void build_chains(PairContainer& pairs, ResultContainer& result_chain, Container& small_chain);
+
+		template <typename PairContainer>
+		void merge_pairs(PairContainer& result, const PairContainer& left, const PairContainer& right);
+
+		template <typename PairContainer>
+		void merge_sort_pairs(PairContainer& pairs);
+
 		template <typename InputContainer, typename PairContainer>
 		int create_pairs(const InputContainer& input, PairContainer& pairs);
 		

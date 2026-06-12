@@ -71,7 +71,7 @@ static bool check_date(std::string date, std::string file)
 		}
 	}
 
-	// check if date coming from input_file is in the future or before the first date in data_file
+	// check if date coming from input_file is before the first date in data_file
 	if (file == "input_file")
 	{
 		if (year < 2009 || (year == 2009 && month < 1) || (year == 2009 && month == 1 && day < 2))

@@ -5,7 +5,7 @@ int main(int argc, char* argv[])
 {
 	if (argc != 2)
 	{	
-		std::cerr << "Error: run program with argument" << std::endl;
+		std::cerr << "Error: run this program with a Reverse Polish mathematical Notation (RPN) as argument (as one string)\nExample: \"8 9 * 9 - 9 - 9 - 4 - 1 +\"" << std::endl;
 		return (1);
 	}
 
@@ -13,7 +13,6 @@ int main(int argc, char* argv[])
 
 	return (0);
 }
-
 
 // int main()
 // {
